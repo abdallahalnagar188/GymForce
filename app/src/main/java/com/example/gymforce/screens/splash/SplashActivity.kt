@@ -1,4 +1,4 @@
-package com.example.gymforce.splash
+package com.example.gymforce.screens.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,8 +7,8 @@ import android.os.Handler
 import android.os.Looper
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.gymforce.MainActivity
-import com.example.gymforce.splash.ui.theme.GymForceTheme
+import com.example.gymforce.screens.MainActivity
+import com.example.gymforce.screens.splash.ui.theme.GymForceTheme
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : ComponentActivity() {
@@ -18,7 +18,7 @@ class SplashActivity : ComponentActivity() {
             GymForceTheme {
                 // A surface container using the 'background' color from the theme
                 Handler(Looper.getMainLooper()).postDelayed({
-                    val intent = Intent(this@SplashActivity,MainActivity::class.java)
+                    val intent = Intent(this@SplashActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 },2500)
