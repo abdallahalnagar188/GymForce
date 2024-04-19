@@ -1,4 +1,4 @@
-package com.example.gymforce.splash.ui.theme
+package com.example.gymforce.screens.splash.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

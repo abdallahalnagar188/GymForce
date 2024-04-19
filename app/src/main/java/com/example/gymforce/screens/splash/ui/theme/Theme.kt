@@ -1,4 +1,4 @@
-package com.example.gymforce.splash.ui.theme
+package com.example.gymforce.screens.splash.ui.theme
 
 import android.app.Activity
 import android.os.Build
