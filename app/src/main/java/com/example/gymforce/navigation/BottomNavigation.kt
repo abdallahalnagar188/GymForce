@@ -39,7 +39,7 @@ fun MyBottomNavigation(navController: NavController) {
                         painterResource(id = item.icon),
                         modifier = Modifier
                             .padding(top = 6.dp)
-                            .size(35.dp),
+                            .size(25.dp),
                         contentDescription = item.title
                     )
                 },
