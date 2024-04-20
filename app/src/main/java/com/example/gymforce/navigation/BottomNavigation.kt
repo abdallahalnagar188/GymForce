@@ -34,7 +34,15 @@ fun MyBottomNavigation(navController: NavController) {
         val currentRoute = navBackStackEntry?.destination?.route
         items.forEach { item ->
             BottomNavigationItem(
-                icon = { Icon(painterResource(id = item.icon), modifier = Modifier.padding(top = 6.dp).size(35.dp), contentDescription = item.title) },
+                icon = {
+                    Icon(
+                        painterResource(id = item.icon),
+                        modifier = Modifier
+                            .padding(top = 6.dp)
+                            .size(35.dp),
+                        contentDescription = item.title
+                    )
+                },
                 label = {
                     Text(
                         text = item.title,
