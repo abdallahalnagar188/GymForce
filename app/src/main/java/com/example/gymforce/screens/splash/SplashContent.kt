@@ -23,5 +23,6 @@ fun SplashContent() {
                 painterResource(id = R.drawable.icon_app),
             )
     ) {
+
     }
 }

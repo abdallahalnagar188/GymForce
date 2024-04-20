@@ -42,7 +42,7 @@ fun MyBottomNavigation(navController: NavController) {
                     )
                 },
                 selectedContentColor = Color.Black,
-                unselectedContentColor = Color.White.copy(0.4f),
+                unselectedContentColor = Color.White.copy(0.6f),
                 alwaysShowLabel = true,
                 selected = currentRoute == item.screen_route,
                 onClick = {
