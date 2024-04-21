@@ -6,12 +6,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 
 @Composable
-fun ExercisesContent() {
+fun ExercisesContent(navHostController: NavHostController) {
     Column(modifier = Modifier.fillMaxSize(), Arrangement.Top,Alignment.CenterHorizontally) {
         ExercisesTopBar()
-        ExercisesLazyColumn()
+        ExercisesLazyColumn(navHostController)
 
     }
 
