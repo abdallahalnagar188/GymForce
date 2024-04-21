@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.example.gymforce.screens.Exercises.ExercisesScreen
 import com.example.gymforce.screens.setting.SettingScreen
 import com.example.gymforce.screens.tools.ToolsScreen
+import com.example.gymforce.screens.type.TypeScreen
 
 
 @Composable
@@ -19,10 +20,13 @@ fun NavigationGraph(navController: NavHostController) {
             SettingScreen()
         }
         composable(BottomNavItem.Exercises.screen_route) {
-            ExercisesScreen()
+            ExercisesScreen(navController)
         }
         composable(BottomNavItem.Tools.screen_route) {
             ToolsScreen()
+        }
+        composable("type training screen"){
+            TypeScreen(navController)
         }
 
     }

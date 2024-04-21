@@ -5,20 +5,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.gymforce.models.TrainingCardItem
 @Composable
-fun ExercisesLazyColumn() {
+fun ExercisesLazyColumn(navHostController: NavHostController) {
     val list = listOf(
         TrainingCardItem.ChestDay,
-        TrainingCardItem.backDay,
-        TrainingCardItem.sholderDay,
-        TrainingCardItem.armsDay,
-        TrainingCardItem.legDay,
-        TrainingCardItem.off,
+        TrainingCardItem.BackDay,
+        TrainingCardItem.ShoulderDay,
+        TrainingCardItem.ArmsDay,
+        TrainingCardItem.LegDay,
+        TrainingCardItem.Off,
     )
+
     LazyColumn (
         modifier = Modifier
             .fillMaxSize()
@@ -29,12 +29,11 @@ fun ExercisesLazyColumn() {
                 TrainingCard(
                     name = item.workOutName,
                     day = item.numOfDay,
-                    image = item.workOutImage
+                    image = item.workOutImage,
+                    navHostController
                 )
 
             }
         }
-
-
     }
 }
