@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 @Composable
 fun SettingContent() {
     Column(modifier = Modifier.fillMaxSize(),Arrangement.Center) {
-        Text(text = "Tools Screen")
+        Text(text = "Setting Screen")
 
     }
 

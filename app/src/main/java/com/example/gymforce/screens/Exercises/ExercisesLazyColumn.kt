@@ -22,15 +22,18 @@ fun ExercisesLazyColumn() {
         modifier = Modifier
             .fillMaxSize()
             .padding(bottom = 55.dp)
-    ){
-        item(list) {
-            list.forEach(
-                {
+    ) {
+        item {
+            list.forEach { item ->
+                TrainingCard(
+                    name = item.workOutName,
+                    day = item.numOfDay,
+                    image = item.workOutImage
+                )
 
-                }
-            )
-
+            }
         }
+
 
     }
 }

@@ -1,6 +1,5 @@
 package com.example.gymforce.screens.splash
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -10,7 +9,6 @@ import androidx.activity.compose.setContent
 import com.example.gymforce.screens.MainActivity
 import com.example.gymforce.screens.splash.ui.theme.GymForceTheme
 
-@SuppressLint("CustomSplashScreen")
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

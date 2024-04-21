@@ -8,10 +8,10 @@ sealed class TrainingCardItem(
     var workOutImage: Int
 ) {
 
-    data object ChestDay : TrainingCardItem("Day 1", "Chest", R.drawable.chest)
-    data object backDay : TrainingCardItem("Day 2", "back", R.drawable.chest)
-    data object sholderDay : TrainingCardItem("Day 3", "sholder", R.drawable.chest)
-    data object armsDay : TrainingCardItem("Day 4", "arms", R.drawable.chest)
-    data object legDay : TrainingCardItem("Day 5", "leg", R.drawable.chest)
-    data object off : TrainingCardItem("Day 6", "off", R.drawable.chest)
+    data object ChestDay : TrainingCardItem("Day 1", "Chest", R.drawable.icon_app)
+    data object backDay : TrainingCardItem("Day 2", "back", R.drawable.icon_app)
+    data object sholderDay : TrainingCardItem("Day 3", "sholder", R.drawable.icon_app)
+    data object armsDay : TrainingCardItem("Day 4", "arms", R.drawable.icon_app)
+    data object legDay : TrainingCardItem("Day 5", "leg", R.drawable.icon_app)
+    data object off : TrainingCardItem("Day 6", "off", R.drawable.icon_app)
 }

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,17 +23,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gymforce.R
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TrainingCard(name: String, day: String, image: Int) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(115.dp)
-            .padding(8.dp), colors = CardDefaults.cardColors(containerColor = Color.White),
+            .padding(8.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White.copy(0.9f)),
         shape = RoundedCornerShape(10.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 8.dp
-        )
+        ),
+        onClick = {
+        }
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
@@ -50,7 +55,7 @@ fun TrainingCard(name: String, day: String, image: Int) {
             Icon(
                 painter = painterResource(id = R.drawable.icon_arrow),
                 contentDescription = "icon go to training Screen ",
-                modifier = Modifier.padding(start = 110.dp)
+                modifier = Modifier.padding(start = 120.dp)
             )
         }
 
