@@ -37,7 +37,7 @@ fun TypeScreenTopBar(trainingScreenName: String) {
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
-                .padding(end = 100.dp, top = 10.dp)
+                .padding(end = 150.dp, top = 10.dp)
                 .align(
                     Alignment.CenterVertically
                 )
