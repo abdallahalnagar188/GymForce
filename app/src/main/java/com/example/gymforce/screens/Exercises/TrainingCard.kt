@@ -3,12 +3,10 @@ package com.example.gymforce.screens.Exercises
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -39,13 +37,16 @@ fun TrainingCard(name: String, day: String, image: Int, navController: NavHostCo
         ),
         shape = RoundedCornerShape(10.dp),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 8.dp
+            defaultElevation = 7.dp
         ),
         onClick = {
             navController.navigate("type training screen")
         }
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(8.dp)) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(8.dp)
+        ) {
             Image(
                 painter = painterResource(id = image),
                 contentDescription = "",
@@ -54,15 +55,14 @@ fun TrainingCard(name: String, day: String, image: Int, navController: NavHostCo
                     .padding(end = 8.dp, top = 2.dp)
                     .align(Alignment.CenterVertically)
             )
-            Spacer(modifier = Modifier.width(20.dp))
-            Column {
+            Column (modifier= Modifier.fillMaxWidth(.7f).padding(start = 8.dp)){
                 Text(text = day, fontSize = 22.sp, fontWeight = FontWeight.Bold)
                 Text(text = name, fontSize = 22.sp, fontWeight = FontWeight.Normal)
             }
             Icon(
                 painter = painterResource(id = R.drawable.icon_arrow),
                 contentDescription = "icon go to training Screen ",
-                modifier = Modifier.padding(start = 120.dp)
+                modifier = Modifier.weight(0.2f)
             )
         }
 
