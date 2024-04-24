@@ -37,7 +37,7 @@ fun TrainingCard(name: String, day: String, image: Int, navController: NavHostCo
         ),
         shape = RoundedCornerShape(10.dp),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 8.dp
+            defaultElevation = 7.dp
         ),
         onClick = {
             navController.navigate("type training screen")
