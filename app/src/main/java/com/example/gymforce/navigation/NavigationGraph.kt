@@ -23,7 +23,7 @@ fun NavigationGraph(navController: NavHostController) {
             ExercisesScreen(navController)
         }
         composable(BottomNavItem.Tools.screen_route) {
-            ToolsScreen()
+            ToolsScreen(navController)
         }
         composable("type training screen"){
             TypeScreen(navController)
