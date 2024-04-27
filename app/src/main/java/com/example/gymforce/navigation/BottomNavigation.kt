@@ -58,7 +58,10 @@ fun MyBottomNavigation(navController: NavController) {
 
                         navController.graph.startDestinationRoute?.let { screen_route ->
                             popUpTo(screen_route) {
-                                saveState = true
+                                navController.popBackStack(
+                                    route = "exercises",
+                                    inclusive = false
+                                )
                             }
                         }
                         launchSingleTop = true

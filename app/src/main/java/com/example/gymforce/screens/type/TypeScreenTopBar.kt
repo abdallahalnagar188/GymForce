@@ -24,7 +24,7 @@ fun TypeScreenTopBar(trainingScreenName: String, navHostController: NavHostContr
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Start
     ) {
         IconButton(
             onClick =
@@ -32,13 +32,12 @@ fun TypeScreenTopBar(trainingScreenName: String, navHostController: NavHostContr
                 navHostController.navigate("exercises")
             },
             modifier = Modifier
-                .padding(end = 120.dp, top = 10.dp)
                 .align(Alignment.CenterVertically)
+                .padding(start = 10.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.icon_back),
                 contentDescription = "icon back",
-
                 )
         }
 
@@ -48,11 +47,8 @@ fun TypeScreenTopBar(trainingScreenName: String, navHostController: NavHostContr
             fontFamily = FontFamily.Default,
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .padding(end = 150.dp, top = 10.dp)
-                .align(
-                    Alignment.CenterVertically
-                )
+            modifier = Modifier.padding(start = 40.dp)
+
         )
     }
 }
