@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -33,7 +34,7 @@ fun TrainingCard(name: String, day: String, image: Int, navController: NavHostCo
             .height(115.dp)
             .padding(8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.Gray.copy(0.9f)
+            containerColor = Color.White.copy(0.9f)
         ),
         shape = RoundedCornerShape(10.dp),
         elevation = CardDefaults.cardElevation(
@@ -51,9 +52,10 @@ fun TrainingCard(name: String, day: String, image: Int, navController: NavHostCo
                 painter = painterResource(id = image),
                 contentDescription = "",
                 modifier = Modifier
-                    .size(90.dp)
+                    .size(110.dp)
                     .padding(end = 8.dp, top = 2.dp)
-                    .align(Alignment.CenterVertically)
+                    .align(Alignment.CenterVertically),
+                contentScale = ContentScale.FillHeight
             )
             Column (modifier= Modifier.fillMaxWidth(.7f).padding(start = 8.dp)){
                 Text(text = day, fontSize = 22.sp, fontWeight = FontWeight.Bold)

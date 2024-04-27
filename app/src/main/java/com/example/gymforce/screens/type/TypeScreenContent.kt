@@ -16,9 +16,10 @@ fun TypeScreenContent(navHostController: NavHostController) {
         Arrangement.Top,
         Alignment.CenterHorizontally)
     {
-        TypeScreenTopBar(trainingScreenName = TrainingCardItem.ChestDay.workOutName)
-
-
+        TypeScreenTopBar(
+            navHostController = navHostController,
+            trainingScreenName = TrainingCardItem.ChestDay.workOutName
+        )
     }
 
 }
