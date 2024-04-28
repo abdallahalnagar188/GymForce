@@ -10,7 +10,10 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun ToolsContent(navHostController: NavHostController) {
-    Column(modifier = Modifier.fillMaxSize(),Arrangement.Center) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        Arrangement.Center
+    ) {
         Text(text = "Tools Screen")
 
     }
