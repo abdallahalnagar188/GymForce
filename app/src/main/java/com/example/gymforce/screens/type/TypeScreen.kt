@@ -4,6 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 
 @Composable
-fun TypeScreen(navHostController: NavHostController) {
-    TypeScreenContent(navHostController = navHostController)
+fun TypeScreen(
+    name: String,
+    navHostController: NavHostController
+) {
+    TypeScreenContent(name, navHostController = navHostController)
 }

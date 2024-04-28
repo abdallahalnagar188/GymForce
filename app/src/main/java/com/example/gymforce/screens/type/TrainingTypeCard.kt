@@ -1,7 +1,7 @@
-package com.example.gymforce.screens.Exercises
+package com.example.gymforce.screens.type
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,7 +27,7 @@ import com.example.gymforce.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TrainingCard(name: String, day: String, image: Int, navController: NavHostController) {
+fun TrainingTypeCard(name: String, image: Int, navController: NavHostController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -39,13 +39,14 @@ fun TrainingCard(name: String, day: String, image: Int, navController: NavHostCo
         shape = RoundedCornerShape(10.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 7.dp
-        ),
-        onClick = {
-            navController.navigate("TypeTrainingScreen/${name}")
-        }
+        )
+//        onClick = {
+//            navController.navigate("TypeTrainingScreen/${name}")
+//        }
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End,
             modifier = Modifier.padding(8.dp)
         ) {
             Image(
@@ -57,10 +58,14 @@ fun TrainingCard(name: String, day: String, image: Int, navController: NavHostCo
                     .align(Alignment.CenterVertically),
                 contentScale = ContentScale.FillHeight
             )
-            Column (modifier= Modifier.fillMaxWidth(.7f).padding(start = 8.dp)){
-                Text(text = day, fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                Text(text = name, fontSize = 22.sp, fontWeight = FontWeight.Normal)
-            }
+
+            Text(
+                text = name,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Normal,
+                modifier = Modifier.weight(0.7f)
+            )
+
             Icon(
                 painter = painterResource(id = R.drawable.icon_arrow),
                 contentDescription = "icon go to training Screen ",
