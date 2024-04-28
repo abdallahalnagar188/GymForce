@@ -39,10 +39,10 @@ fun TrainingTypeCard(name: String, image: Int, navController: NavHostController)
         shape = RoundedCornerShape(10.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 7.dp
-        )
-//        onClick = {
-//            navController.navigate("TypeTrainingScreen/${name}")
-//        }
+        ),
+        onClick = {
+            navController.navigate("TrainingDetails${name}")
+        }
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

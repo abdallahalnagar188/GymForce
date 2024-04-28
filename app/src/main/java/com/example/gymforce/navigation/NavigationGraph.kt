@@ -10,6 +10,7 @@ import androidx.navigation.navArgument
 import com.example.gymforce.screens.Exercises.ExercisesScreen
 import com.example.gymforce.screens.setting.SettingScreen
 import com.example.gymforce.screens.tools.ToolsScreen
+import com.example.gymforce.screens.training_details.TrainingDetailsScreen
 import com.example.gymforce.screens.type.TypeScreen
 
 
@@ -28,6 +29,24 @@ fun NavigationGraph(navController: NavHostController) {
         composable(BottomNavItem.Tools.screen_route) {
             ToolsScreen(navController)
         }
+
+
+        composable(route = "TrainingDetails/{trainingDetailsName}",
+            arguments = listOf(
+                navArgument("trainingDetailsName") {
+                    type = NavType.StringType
+                }
+            )
+
+        ) {
+            val trainingDetailsName = remember {
+                it.arguments?.getString("trainingDetailsName")
+            }
+            TrainingDetailsScreen(trainingDetailsName!!)
+
+        }
+
+
         composable(
              route = "TypeTrainingScreen/{trainingName}",
              arguments = listOf(

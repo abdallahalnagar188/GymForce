@@ -1,4 +1,4 @@
-package com.example.gymforce.screens.type
+package com.example.gymforce.screens.training_details
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -20,34 +20,21 @@ import androidx.navigation.NavHostController
 import com.example.gymforce.R
 
 @Composable
-fun TypeScreenTopBar(trainingScreenName: String, navHostController: NavHostController) {
+fun TrainingDetailsTopBar(trainingDetailsName: String) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start
     ) {
-        IconButton(
-            onClick =
-            {
-                navHostController.navigate("exercises")
-            },
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .padding(start = 10.dp)
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.icon_back),
-                contentDescription = "icon back",
-                )
-        }
 
         Text(
-            text = trainingScreenName,
+            text = trainingDetailsName,
             color = Color.Black,
             fontFamily = FontFamily.Default,
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(start = 40.dp)
+
         )
     }
 }
