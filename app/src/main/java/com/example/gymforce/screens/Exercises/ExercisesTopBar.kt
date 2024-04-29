@@ -24,7 +24,7 @@ fun ExercisesTopBar() {
             color = Color.Black,
             fontFamily = FontFamily.Default,
             fontSize = 28.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Medium,
             modifier = Modifier
                 .padding(10.dp)
                 .align(

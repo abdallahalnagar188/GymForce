@@ -24,16 +24,16 @@ fun TrainingDetailsTopBar(trainingDetailsName: String) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start
+        horizontalArrangement = Arrangement.Center
     ) {
 
         Text(
             text = trainingDetailsName,
             color = Color.Black,
             fontFamily = FontFamily.Default,
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(start = 40.dp)
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier
 
         )
     }
