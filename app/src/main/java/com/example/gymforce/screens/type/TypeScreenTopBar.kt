@@ -46,7 +46,7 @@ fun TypeScreenTopBar(trainingScreenName: String, navHostController: NavHostContr
             color = Color.Black,
             fontFamily = FontFamily.Default,
             fontSize = 28.sp,
-            fontWeight = FontWeight.Bold,
+            fontWeight = FontWeight.Medium,
             modifier = Modifier.padding(start = 40.dp)
         )
     }

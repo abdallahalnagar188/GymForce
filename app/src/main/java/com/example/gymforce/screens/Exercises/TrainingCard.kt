@@ -58,8 +58,8 @@ fun TrainingCard(name: String, day: String, image: Int, navController: NavHostCo
                 contentScale = ContentScale.FillHeight
             )
             Column (modifier= Modifier.fillMaxWidth(.7f).padding(start = 8.dp)){
-                Text(text = day, fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                Text(text = name, fontSize = 22.sp, fontWeight = FontWeight.Normal)
+                Text(text = day, fontSize = 22.sp, fontWeight = FontWeight.Medium)
+                Text(text = name, fontSize = 20.sp, fontWeight = FontWeight.Normal)
             }
             Icon(
                 painter = painterResource(id = R.drawable.icon_arrow),

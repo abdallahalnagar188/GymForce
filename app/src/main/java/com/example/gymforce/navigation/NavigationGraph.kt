@@ -31,7 +31,8 @@ fun NavigationGraph(navController: NavHostController) {
         }
 
 
-        composable(route = "TrainingDetails/{trainingDetailsName}",
+        composable(
+            route = "TrainingDetails/{trainingDetailsName}",
             arguments = listOf(
                 navArgument("trainingDetailsName") {
                     type = NavType.StringType
@@ -42,7 +43,7 @@ fun NavigationGraph(navController: NavHostController) {
             val trainingDetailsName = remember {
                 it.arguments?.getString("trainingDetailsName")
             }
-            TrainingDetailsScreen(trainingDetailsName!!)
+            TrainingDetailsScreen(trainingDetailsName?:"")
 
         }
 
