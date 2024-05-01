@@ -2,6 +2,7 @@ package com.example.gymforce.screens.training_details
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
@@ -22,7 +23,7 @@ import com.example.gymforce.R
 @Composable
 fun TrainingDetailsTopBar(trainingDetailsName: String) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().fillMaxHeight(0.06f),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
