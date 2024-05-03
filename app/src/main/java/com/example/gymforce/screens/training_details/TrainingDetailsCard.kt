@@ -53,7 +53,7 @@ fun TrainingDetailsCard(image: Int, set: String, description: String) {
                 modifier = Modifier
                     .fillMaxWidth(0.95f)
                     .padding(6.dp),
-                contentScale = ContentScale.FillHeight,
+                contentScale = ContentScale.FillWidth,
             )
             Text(
                 text = set,
