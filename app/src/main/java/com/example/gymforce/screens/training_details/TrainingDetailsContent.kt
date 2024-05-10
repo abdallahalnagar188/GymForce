@@ -18,8 +18,8 @@ fun TrainingDetailsContent(trainingDetailsName: String) {
     {
         TrainingDetailsTopBar(trainingDetailsName = trainingDetailsName)
         TrainingDetailsCard(
-            image = R.drawable.chest,
-            set = "3 Set X 3 Rap",
+            image = R.drawable.arms,
+            set = "3 Set X 12 ",
             description = "incline chest in the best train i now now and its very good"
         )
 
