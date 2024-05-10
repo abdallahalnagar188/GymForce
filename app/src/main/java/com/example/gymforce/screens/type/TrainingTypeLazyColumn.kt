@@ -14,12 +14,13 @@ import com.example.gymforce.screens.Exercises.TrainingCard
 @Composable
 fun TrainingTypeLazyColumn(navHostController: NavHostController) {
     val list =  listOf(
-        TrainingTypeItem.TrainingOne,
-        TrainingTypeItem.TrainingTwo,
-        TrainingTypeItem.TrainingThree,
-        TrainingTypeItem.TrainingFour,
-        TrainingTypeItem.TrainingFive,
-        TrainingTypeItem.TrainingSex,
+        TrainingTypeItem(R.drawable.chest,"Training a"),
+        TrainingTypeItem(R.drawable.chest,"Training b"),
+        TrainingTypeItem(R.drawable.chest,"Training c"),
+        TrainingTypeItem(R.drawable.chest,"Training d"),
+        TrainingTypeItem(R.drawable.chest,"Training e"),
+        TrainingTypeItem(R.drawable.chest,"Training f")
+
 
     )
     LazyColumn (
@@ -34,7 +35,6 @@ fun TrainingTypeLazyColumn(navHostController: NavHostController) {
                     image = item.image,
                     navHostController
                 )
-
             }
         }
     }

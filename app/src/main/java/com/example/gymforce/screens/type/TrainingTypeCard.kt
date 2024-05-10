@@ -41,7 +41,8 @@ fun TrainingTypeCard(name: String, image: Int, navController: NavHostController)
             defaultElevation = 7.dp
         ),
         onClick = {
-            navController.navigate("TrainingDetails/${name}")
+
+        navController.navigate("TrainingDetails/${name}")
         }
     ) {
         Row(
