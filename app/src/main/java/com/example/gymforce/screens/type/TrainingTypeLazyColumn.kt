@@ -9,7 +9,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.gymforce.R
 import com.example.gymforce.models.TrainingTypeItem
-import com.example.gymforce.screens.Exercises.TrainingCard
 
 @Composable
 fun TrainingTypeLazyColumn(navHostController: NavHostController) {
@@ -20,8 +19,6 @@ fun TrainingTypeLazyColumn(navHostController: NavHostController) {
         TrainingTypeItem(R.drawable.chest,"Training d"),
         TrainingTypeItem(R.drawable.chest,"Training e"),
         TrainingTypeItem(R.drawable.chest,"Training f")
-
-
     )
     LazyColumn (
         modifier = Modifier

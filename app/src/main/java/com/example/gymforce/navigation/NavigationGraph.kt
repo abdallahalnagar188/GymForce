@@ -34,7 +34,7 @@ fun NavigationGraph(navController: NavHostController) {
         composable(
             route = "TrainingDetails/{trainingDetailsName}",
             arguments = listOf(
-                navArgument("trainingDetailsName")
+                navArgument("trainingDetailsName",)
                 {
                     type = NavType.StringType
                 }
