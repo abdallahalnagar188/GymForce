@@ -10,7 +10,7 @@ import androidx.navigation.NavHostController
 import com.example.gymforce.models.TrainingCardItem
 @Composable
 fun ExercisesLazyColumn(navHostController: NavHostController) {
-    val list = listOf(
+    val exercises = listOf(
         TrainingCardItem.ChestDay,
         TrainingCardItem.BackDay,
         TrainingCardItem.ShoulderDay,
@@ -25,7 +25,7 @@ fun ExercisesLazyColumn(navHostController: NavHostController) {
             .padding(bottom = 55.dp)
     ) {
         item {
-            list.forEach { item ->
+            exercises.forEach { item ->
                 TrainingCard(
                     name = item.workOutName,
                     day = item.numOfDay,

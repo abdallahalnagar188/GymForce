@@ -18,7 +18,5 @@ fun ExercisesContent(navHostController: NavHostController) {
     {
         ExercisesTopBar()
         ExercisesLazyColumn(navHostController)
-
     }
-
 }
