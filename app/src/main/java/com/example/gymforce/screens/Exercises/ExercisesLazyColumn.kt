@@ -32,7 +32,6 @@ fun ExercisesLazyColumn(navHostController: NavHostController) {
                     image = item.workOutImage,
                     navHostController
                 )
-
             }
         }
     }

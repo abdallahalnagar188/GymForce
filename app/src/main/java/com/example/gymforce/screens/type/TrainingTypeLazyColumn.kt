@@ -13,7 +13,7 @@ import com.example.gymforce.viewModel.ExercisesViewModel
 @Composable
 fun TrainingTypeLazyColumn(navHostController: NavHostController) {
     val vm: ExercisesViewModel = viewModel()
-    LazyColumn (
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(bottom = 55.dp)

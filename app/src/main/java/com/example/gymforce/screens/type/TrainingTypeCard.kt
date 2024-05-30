@@ -42,7 +42,7 @@ fun TrainingTypeCard(name: String, image: Int, navController: NavHostController)
         ),
         onClick = {
 
-        navController.navigate("TrainingDetails/${name}")
+            navController.navigate("TrainingDetails/${name}")
         }
     ) {
         Row(
@@ -69,10 +69,9 @@ fun TrainingTypeCard(name: String, image: Int, navController: NavHostController)
 
             Icon(
                 painter = painterResource(id = R.drawable.icon_arrow),
-                contentDescription = "icon go to training Screen ",
+                contentDescription = "icon go to training Screen",
                 modifier = Modifier.weight(0.2f)
             )
         }
-
     }
 }
