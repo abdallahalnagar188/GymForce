@@ -38,13 +38,12 @@ fun TrainingDetailsCard(image: Int, set: String, description: String) {
             containerColor = Color.White.copy(0.9f)
         ),
         shape = RoundedCornerShape(8.dp),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 8.dp
-        )
+        elevation = CardDefaults.cardElevation()
     )
     {
         Column(
-            modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Top,
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(

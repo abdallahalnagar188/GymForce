@@ -29,7 +29,7 @@ fun TypeScreenTopBar(trainingScreenName: String, navHostController: NavHostContr
         IconButton(
             onClick =
             {
-                navHostController.navigate("exercises")
+                navHostController.popBackStack()
             },
             modifier = Modifier
                 .align(Alignment.CenterVertically)
@@ -38,7 +38,7 @@ fun TypeScreenTopBar(trainingScreenName: String, navHostController: NavHostContr
             Icon(
                 painter = painterResource(id = R.drawable.icon_back),
                 contentDescription = "icon back",
-                )
+            )
         }
 
         Text(

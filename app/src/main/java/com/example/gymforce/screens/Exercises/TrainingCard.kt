@@ -35,6 +35,7 @@ fun TrainingCard(name: String, day: String, image: Int, navController: NavHostCo
             .padding(8.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.White.copy(0.9f)
+
         ),
         shape = RoundedCornerShape(10.dp),
         elevation = CardDefaults.cardElevation(
