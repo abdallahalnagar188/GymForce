@@ -100,13 +100,12 @@ fun TrainingDetailsCard(image: Int, set: String, description: String) {
             ) {
                 Text(text = "Show On YouTube", fontSize = 20.sp, fontStyle = FontStyle.Normal)
                 Icon(
-                    painter = painterResource(id = R.drawable.youtube),
+                    painter = painterResource(id = R.drawable.icon_youtube),
                     contentDescription = "icon show in youtube",
                     modifier = Modifier.padding(start = 16.dp)
                 )
 
             }
-
         }
     }
 }
