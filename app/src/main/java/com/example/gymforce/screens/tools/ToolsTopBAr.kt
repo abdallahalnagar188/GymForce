@@ -27,7 +27,7 @@ fun ToolsTopBAr() {
             color = Color.Black,
             fontFamily = FontFamily.Default,
             fontSize = 24.sp,
-            fontWeight = FontWeight.Medium,
+            fontWeight = FontWeight.Normal,
             modifier = Modifier
 
         )

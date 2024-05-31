@@ -35,7 +35,7 @@ fun TrainingDetailsCard(image: Int, set: String, description: String) {
             .fillMaxSize(0.95f)
             .padding(bottom = 22.dp, top = 6.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.White.copy(0.9f)
+            containerColor = Color.Transparent
         ),
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation()
@@ -57,7 +57,7 @@ fun TrainingDetailsCard(image: Int, set: String, description: String) {
             Text(
                 text = set,
                 fontWeight = FontWeight.Medium,
-                style = TextStyle(color = Color.Black),
+                style = TextStyle(color = Color.White),
                 fontSize = 24.sp,
                 modifier = Modifier
                     .align(

@@ -30,7 +30,7 @@ fun TrainingDetailsTopBar(trainingDetailsName: String) {
 
         Text(
             text = trainingDetailsName,
-            color = Color.Black,
+            color = Color.White,
             fontFamily = FontFamily.Default,
             fontSize = 24.sp,
             fontWeight = FontWeight.Medium,

@@ -37,16 +37,16 @@ fun TypeScreenTopBar(trainingScreenName: String, navHostController: NavHostContr
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.icon_back),
-                contentDescription = "icon back",
+                contentDescription = "icon back", tint = Color.White
             )
         }
 
         Text(
             text = trainingScreenName,
-            color = Color.Black,
+            color = Color.White,
             fontFamily = FontFamily.Default,
             fontSize = 28.sp,
-            fontWeight = FontWeight.Medium,
+            fontWeight = FontWeight.Normal,
             modifier = Modifier.padding(start = 40.dp)
         )
     }

@@ -18,7 +18,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,7 +36,7 @@ fun TrainingCard(name: String, day: String, image: Int, navController: NavHostCo
             .height(115.dp)
             .padding(8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.White.copy(0.9f)
+            containerColor = colorResource(id = R.color.orange_2)
 
         ),
         shape = RoundedCornerShape(10.dp),
@@ -58,9 +60,23 @@ fun TrainingCard(name: String, day: String, image: Int, navController: NavHostCo
                     .align(Alignment.CenterVertically),
                 contentScale = ContentScale.FillHeight
             )
-            Column (modifier= Modifier.fillMaxWidth(.7f).padding(start = 8.dp)){
-                Text(text = day, fontSize = 22.sp, fontWeight = FontWeight.Medium)
-                Text(text = name, fontSize = 20.sp, fontWeight = FontWeight.Normal)
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth(.8f)
+                    .padding(start = 8.dp)
+            ) {
+                Text(
+                    text = day,
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.Medium,
+                    style = TextStyle(color = Color.Black).copy()
+                )
+                Text(
+                    text = name,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Normal,
+                    style = TextStyle(color = Color.Black)
+                )
             }
             Icon(
                 painter = painterResource(id = R.drawable.icon_arrow),
