@@ -13,7 +13,6 @@ fun MainScreenView(navController: NavHostController) {
     Scaffold(
         bottomBar = { MyBottomNavigation(navController = navController) }
     ) {
-
         NavigationGraph(navController = navController)
     }
 }

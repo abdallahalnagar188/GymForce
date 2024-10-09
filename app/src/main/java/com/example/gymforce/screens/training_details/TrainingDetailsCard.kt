@@ -69,7 +69,6 @@ fun TrainingDetailsCard(image: Int, set: String, description: String) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight(0.7f)
-
                     .padding(8.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = Color.LightGray.copy(0.9f)

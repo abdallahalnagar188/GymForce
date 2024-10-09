@@ -28,7 +28,8 @@ fun MyBottomNavigation(navController: NavController) {
     )
     BottomNavigation(
         backgroundColor = colorResource(id = R.color.orange),
-        contentColor = Color.Black, modifier = Modifier.height(55.dp),
+        contentColor = Color.Black,
+        modifier = Modifier.height(55.dp)
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -55,7 +56,6 @@ fun MyBottomNavigation(navController: NavController) {
                 selected = currentRoute == item.screen_route,
                 onClick = {
                     navController.navigate(item.screen_route) {
-
                         navController.graph.startDestinationRoute?.let { screen_route ->
                             popUpTo(screen_route) {
                                 navController.popBackStack(
