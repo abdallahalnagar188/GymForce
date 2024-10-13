@@ -7,7 +7,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.gymforce.screens.Exercises.ExercisesScreen
+import com.example.gymforce.screens.exercises.ExercisesScreen
 import com.example.gymforce.screens.setting.SettingScreen
 import com.example.gymforce.screens.tools.ToolsScreen
 import com.example.gymforce.screens.training_details.TrainingDetailsScreen

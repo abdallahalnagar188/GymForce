@@ -1,4 +1,4 @@
-package com.example.gymforce.screens.Exercises
+package com.example.gymforce.screens.exercises
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

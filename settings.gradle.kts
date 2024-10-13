@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "GymForce"
 include(":app")
- 
+include(":domain")
+include(":data")
