@@ -1,8 +1,13 @@
 package com.example.gymforce.viewModel
 
 import androidx.lifecycle.ViewModel
-import com.example.gymforce.models.listOfExercises
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ExercisesViewModel() : ViewModel() {
-    fun getExercises() = listOfExercises
+@HiltViewModel
+class ExercisesViewModel@Inject constructor(
+
+) : ViewModel() {
+
+
 }

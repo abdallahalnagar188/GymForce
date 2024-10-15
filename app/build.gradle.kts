@@ -5,6 +5,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs.kotlin")
     id ("kotlin-parcelize")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -70,6 +71,15 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.firestore.ktx)
+    implementation( platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation (libs.firebase.auth)
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+
     implementation ("androidx.navigation:navigation-compose:2.7.7")
     implementation("androidx.compose.material:material:1.4.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.0-rc01")
@@ -99,10 +109,11 @@ dependencies {
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation("com.google.dagger:hilt-android:2.49")
     kapt("com.google.dagger:hilt-android-compiler:2.49")
-    val lottieVersion = "3.4.0"
-    implementation ("com.airbnb.android:lottie:$lottieVersion")
+//    val lottieVersion = "3.4.0"
+//    implementation ("com.airbnb.android:lottie:$lottieVersion")
     implementation ("com.google.android.material:material:1.9.0")
 
+    implementation ("com.airbnb.android:lottie:5.0.3" )// Check for the latest version
 
     implementation ("com.intuit.sdp:sdp-android:1.0.6")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
