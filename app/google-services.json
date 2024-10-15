@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "643820108665",
+    "project_id": "gymforce-90267",
+    "storage_bucket": "gymforce-90267.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643820108665:android:81fc8299ec655bd67a8da8",
+        "android_client_info": {
+          "package_name": "com.example.gymforce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCazHGtvy29Os1FNOijE2qXtWCmNuR3CJ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
