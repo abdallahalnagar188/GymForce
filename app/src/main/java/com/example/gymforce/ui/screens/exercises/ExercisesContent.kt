@@ -25,6 +25,5 @@ fun ExercisesContent(navHostController: NavHostController) {
     {
         Text(text = "Exercises Screen",fontSize = 30.sp, color = Color.White, fontFamily = fontMedium)
 
-
     }
 }

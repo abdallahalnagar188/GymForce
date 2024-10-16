@@ -10,6 +10,7 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -47,7 +48,7 @@ fun MyBottomNavigation(navController: NavController) {
                             modifier = Modifier
                                 .size(40.dp) // Adjust size as needed
                                 .clip(shape = RoundedCornerShape(10.dp))
-                                .background(colorResource(R.color.green)) // Circular background
+                                .background(colorResource(R.color.green))
                         ) {
                             Icon(
                                 painterResource(id = item.icon),
@@ -55,7 +56,7 @@ fun MyBottomNavigation(navController: NavController) {
                                 modifier = Modifier
                                     .padding(10.dp)
                                     .size(25.dp), // Adjust size as needed
-                                tint = Color.White
+                                tint = colorResource(R.color.black_low)
                             )
                         }
                     } else {
