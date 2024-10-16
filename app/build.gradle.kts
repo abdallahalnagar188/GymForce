@@ -106,6 +106,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
+
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation("com.google.dagger:hilt-android:2.49")
     kapt("com.google.dagger:hilt-android-compiler:2.49")
@@ -114,6 +115,7 @@ dependencies {
     implementation ("com.google.android.material:material:1.9.0")
 
     implementation ("com.airbnb.android:lottie:5.0.3" )// Check for the latest version
+    implementation ("com.airbnb.android:lottie-compose:6.1.0")
 
     implementation ("com.intuit.sdp:sdp-android:1.0.6")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
@@ -143,4 +145,10 @@ dependencies {
 
     // For Kotlin coroutines support
     implementation ("androidx.paging:paging-common-ktx:3.2.0")
+
+    implementation( "com.google.accompanist:accompanist-pager:0.32.0" )// Check for the latest version
+    implementation( "com.google.accompanist:accompanist-pager-indicators:0.32.0")
+
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0-RC")  // Use the latest version
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 }

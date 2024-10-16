@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
+import com.example.gymforce.common.fontMedium
 
 @Composable
 fun ProfileScreenContent() {
@@ -17,7 +18,7 @@ fun ProfileScreenContent() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Profile Screen", fontSize = 30.sp, color = Color.White)
+        Text(text = "Profile Screen", fontSize = 30.sp, color = Color.White, fontFamily = fontMedium)
 
     }
 

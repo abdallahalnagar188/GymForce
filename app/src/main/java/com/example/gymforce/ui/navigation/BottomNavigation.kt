@@ -1,8 +1,11 @@
 package com.example.gymforce.ui.navigation
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -10,6 +13,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -23,8 +27,8 @@ import com.example.gymforce.R
 fun MyBottomNavigation(navController: NavController) {
     val items = listOf(
         BottomNavItem.Home,
-        BottomNavItem.Setting,
         BottomNavItem.Tools,
+        BottomNavItem.Setting,
         BottomNavItem.Profile
     )
     BottomNavigation(
@@ -37,13 +41,33 @@ fun MyBottomNavigation(navController: NavController) {
         items.forEach { item ->
             BottomNavigationItem(
                 icon = {
-                    Icon(
-                        painterResource(id = item.icon),
-                        modifier = Modifier
-                            .padding(top = 6.dp)
-                            .size(25.dp),
-                        contentDescription = item.title
-                    )
+                    if (currentRoute == item.screen_route) {
+                        // Selected icon with circular background
+                        Box(
+                            modifier = Modifier
+                                .size(40.dp) // Adjust size as needed
+                                .clip(shape = RoundedCornerShape(10.dp))
+                                .background(colorResource(R.color.green)) // Circular background
+                        ) {
+                            Icon(
+                                painterResource(id = item.icon),
+                                contentDescription = item.title,
+                                modifier = Modifier
+                                    .padding(10.dp)
+                                    .size(25.dp), // Adjust size as needed
+                                tint = Color.White
+                            )
+                        }
+                    } else {
+                        // Unselected icon (default)
+                        Icon(
+                            painterResource(id = item.icon),
+                            contentDescription = item.title,
+                            modifier = Modifier
+                                .padding(top = 6.dp)
+                                .size(25.dp)
+                        )
+                    }
                 },
                 label = {
                     Text(
@@ -73,3 +97,4 @@ fun MyBottomNavigation(navController: NavController) {
         }
     }
 }
+
