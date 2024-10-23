@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -20,9 +22,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.gymforce.R
 import com.example.gymforce.common.fontMedium
 import com.example.gymforce.ui.commonUi.AppTextField
 import com.example.gymforce.ui.commonUi.PassWordAppTextField
@@ -101,6 +105,11 @@ fun RegisterScreen(
                 )
             },
             modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = colorResource(id = R.color.green),
+                contentColor = Color.Black
+            ),
             enabled = name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() &&
                     weight.isNotEmpty() && height.isNotEmpty() && authState !is UiState.Loading,
         ) {

@@ -8,9 +8,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
-import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material.Text
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -19,12 +22,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.gymforce.R
 import com.example.gymforce.common.UiState
 import com.example.gymforce.common.fontMedium
 import com.example.gymforce.ui.commonUi.AppTextField
+import com.example.gymforce.ui.commonUi.CircularProgressAnimated
 import com.example.gymforce.ui.commonUi.PassWordAppTextField
 import com.example.gymforce.ui.navigation.BottomNavItem
 
@@ -47,7 +53,8 @@ fun LoginScreen(navController: NavHostController, viewModel: LoginViewModel = hi
         AppTextField(
             value = email,
             label = "Email",
-            onValueChange = { email = it }
+            onValueChange = { email = it },
+            leadingIcon = R.drawable.ic_email
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -56,7 +63,8 @@ fun LoginScreen(navController: NavHostController, viewModel: LoginViewModel = hi
         PassWordAppTextField(
             value = password,
             label = "Password",
-            onValueChange = { password = it }
+            onValueChange = { password = it },
+            leadingIcon = R.drawable.ic_password
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -67,12 +75,17 @@ fun LoginScreen(navController: NavHostController, viewModel: LoginViewModel = hi
                 viewModel.signIn(email, password) // Trigger login
             },
             modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = colorResource(id = R.color.green),
+                contentColor = Color.Black
+            ),
             enabled = email.isNotEmpty() && password.isNotEmpty() && authState !is UiState.Loading
         ) {
             if (authState is UiState.Loading) {
-              //  CircularProgressIndicator(color = Color.White)
+                CircularProgressAnimated(Modifier.size(24.dp))
             } else {
-                Text("Login", fontFamily = fontMedium)
+                Text("Login", color = Color.Black, fontFamily = fontMedium)
             }
         }
 
