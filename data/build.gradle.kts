@@ -4,6 +4,8 @@ plugins {
     kotlin("kapt")
     id ("kotlin-parcelize")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
+
 }
 
 android {
@@ -50,6 +52,14 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
+
+
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.firestore.ktx)
+    implementation( platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation (libs.firebase.auth)
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
     //room
     implementation ("androidx.room:room-runtime:2.5.1")
     kapt ("androidx.room:room-compiler:2.5.1")

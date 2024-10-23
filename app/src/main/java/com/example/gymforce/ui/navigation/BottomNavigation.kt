@@ -1,7 +1,7 @@
 package com.example.gymforce.ui.navigation
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -10,7 +10,6 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -35,7 +34,6 @@ fun MyBottomNavigation(navController: NavController) {
     BottomNavigation(
         backgroundColor = colorResource(id = R.color.black_low),
         contentColor = Color.Black,
-        modifier = Modifier.height(55.dp)
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -43,24 +41,28 @@ fun MyBottomNavigation(navController: NavController) {
             BottomNavigationItem(
                 icon = {
                     if (currentRoute == item.screen_route) {
-                        // Selected icon with circular background
-                        Box(
+                        // Selected icon with text beside it
+                        Row(
                             modifier = Modifier
-                                .size(40.dp) // Adjust size as needed
                                 .clip(shape = RoundedCornerShape(10.dp))
-                                .background(colorResource(R.color.green))
+                                .background(colorResource(R.color.green)) // Background for selected item
+                                .padding(horizontal = 10.dp, vertical = 5.dp) // Adjust padding as needed
                         ) {
                             Icon(
                                 painterResource(id = item.icon),
                                 contentDescription = item.title,
-                                modifier = Modifier
-                                    .padding(10.dp)
-                                    .size(25.dp), // Adjust size as needed
+                                modifier = Modifier.size(25.dp), // Icon size
                                 tint = colorResource(R.color.black_low)
+                            )
+                            Text(
+                                text = item.title,
+                                fontSize = 14.sp, // Font size
+                                color = colorResource(R.color.black_low),
+                                modifier = Modifier.padding(start = 8.dp) // Space between icon and text
                             )
                         }
                     } else {
-                        // Unselected icon (default)
+                        // Unselected icon (without label)
                         Icon(
                             painterResource(id = item.icon),
                             contentDescription = item.title,
@@ -70,15 +72,10 @@ fun MyBottomNavigation(navController: NavController) {
                         )
                     }
                 },
-                label = {
-                    Text(
-                        text = item.title,
-                        fontSize = 11.sp
-                    )
-                },
+             //   label = { /* Hide label for unselected items */ },
                 selectedContentColor = colorResource(R.color.green),
                 unselectedContentColor = Color.Gray,
-                alwaysShowLabel = true,
+                alwaysShowLabel = false, // Hide labels for unselected items
                 selected = currentRoute == item.screen_route,
                 onClick = {
                     navController.navigate(item.screen_route) {
@@ -98,4 +95,6 @@ fun MyBottomNavigation(navController: NavController) {
         }
     }
 }
+
+
 

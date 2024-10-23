@@ -11,19 +11,21 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.gymforce.R
+import com.example.gymforce.ui.screens.auth.login.LoginScreen
+import com.example.gymforce.ui.screens.auth.register.RegisterScreen
 import com.example.gymforce.ui.screens.exercises.ExercisesScreen
-import com.example.gymforce.ui.screens.setting.SettingScreen
-import com.example.gymforce.ui.screens.tools.ToolsScreen
 import com.example.gymforce.ui.screens.exercises.training_details.TrainingDetailsScreen
 import com.example.gymforce.ui.screens.exercises.type.TypeScreen
 import com.example.gymforce.ui.screens.profile.ProfileScreen
+import com.example.gymforce.ui.screens.setting.SettingScreen
+import com.example.gymforce.ui.screens.tools.ToolsScreen
 
 
 @Composable
 fun NavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = BottomNavItem.Home.screen_route,
+        startDestination = "Login", // Or set it to "Login" to start from login
         modifier = Modifier.background(color = colorResource(id = R.color.black))
     ) {
         composable(BottomNavItem.Setting.screen_route) {
@@ -39,39 +41,42 @@ fun NavigationGraph(navController: NavHostController) {
             ProfileScreen(navController)
         }
 
-
         composable(
             route = "TrainingDetails/{trainingDetailsName}",
             arguments = listOf(
-                navArgument("trainingDetailsName",)
-                {
+                navArgument("trainingDetailsName") {
                     type = NavType.StringType
                 }
             )
-
         ) {
             val trainingDetailsName = remember {
                 it.arguments?.getString("trainingDetailsName")
             }
-            TrainingDetailsScreen(trainingDetailsName?:"")
-
+            TrainingDetailsScreen(trainingDetailsName ?: "")
         }
 
-
         composable(
-             route = "TypeTrainingScreen/{trainingName}",
-             arguments = listOf(
-                 navArgument("trainingName") {
-                     type = NavType.StringType
-                 }
-             )
-        ){
+            route = "TypeTrainingScreen/{trainingName}",
+            arguments = listOf(
+                navArgument("trainingName") {
+                    type = NavType.StringType
+                }
+            )
+        ) {
             val trainingName = remember {
                 it.arguments?.getString("trainingName")
             }
             TypeScreen(trainingName!!, navController)
         }
 
-    }
+        // New Login Screen route
+        composable("Login") {
+            LoginScreen(navController)
+        }
 
+        // New Register Screen route
+        composable("Register") {
+            RegisterScreen(navController)
+        }
+    }
 }
