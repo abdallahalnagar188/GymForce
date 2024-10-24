@@ -23,7 +23,7 @@ import com.example.gymforce.R
     )
     CircularProgressIndicator(
         progress = progressAnimationValue,
-        color = colorResource(id = R.color.black),
+        color = colorResource(id = R.color.green),
         modifier = modifier
     )
 }

@@ -53,12 +53,14 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
 
+    implementation ("com.google.firebase:firebase-firestore-ktx:24.6.0")
 
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.firestore.ktx)
     implementation( platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation (libs.firebase.auth)
+    implementation (libs.play.services.auth)
     implementation("com.google.android.gms:play-services-auth:21.2.0")
     //room
     implementation ("androidx.room:room-runtime:2.5.1")

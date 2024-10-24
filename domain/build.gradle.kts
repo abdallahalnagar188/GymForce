@@ -1,9 +1,10 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+
     kotlin("kapt")
     id ("kotlin-parcelize")
-   // id("com.google.gms.google-services")
+    id("com.google.gms.google-services")
 
 }
 
@@ -50,7 +51,9 @@ dependencies {
     implementation( platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation (libs.firebase.auth)
+    implementation (libs.play.services.auth)
     implementation("com.google.android.gms:play-services-auth:21.2.0")
+    implementation ("com.google.firebase:firebase-firestore-ktx:24.6.0")
 
     implementation ("com.google.code.gson:gson:2.9.1")
     implementation ("androidx.room:room-runtime:2.5.1")

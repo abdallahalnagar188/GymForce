@@ -1,6 +1,6 @@
 package com.example.data.repoImpl
 
-import com.example.data.models.User
+import com.example.domain.models.User
 import com.example.domain.repo.AuthRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -69,5 +69,16 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
 
     override fun getCurrentUser(): FirebaseUser? {
         return firebaseAuth.currentUser
+    }
+
+    override suspend fun addUserToFirestore(user: User): Result<Unit> {
+
+        return try {
+            // Save user data to Firestore
+            firestore.collection("users").document(user.uid).set(user).await()
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
     }
 }

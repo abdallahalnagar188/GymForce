@@ -36,7 +36,7 @@ fun AppTextField(
                 label,
                 style = TextStyle(
                     color = colorResource(id = R.color.white),
-                    fontSize = 10.sp,
+                    fontSize = 12.sp,
                     fontWeight = FontWeight.Bold
                 )
             )
@@ -76,7 +76,7 @@ fun PassWordAppTextField(
                 label,
                 style = TextStyle(
                     color = colorResource(id = R.color.white),
-                    fontSize = 10.sp,
+                    fontSize = 12.sp,
                     fontWeight = FontWeight.Bold
                 ),
                 fontFamily = fontMedium

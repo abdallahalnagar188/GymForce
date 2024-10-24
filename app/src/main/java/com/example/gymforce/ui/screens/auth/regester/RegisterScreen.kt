@@ -1,18 +1,18 @@
 package com.example.gymforce.ui.screens.auth.register
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.displayCutoutPadding
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -27,11 +27,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.gymforce.R
+import com.example.gymforce.common.UiState
+import com.example.gymforce.common.fontBold
 import com.example.gymforce.common.fontMedium
 import com.example.gymforce.ui.commonUi.AppTextField
+import com.example.gymforce.ui.commonUi.CircularProgressAnimated
 import com.example.gymforce.ui.commonUi.PassWordAppTextField
-import com.example.gymforce.common.UiState
-import com.example.gymforce.ui.navigation.BottomNavItem
 import com.example.gymforce.ui.screens.auth.regester.RegisterViewModel
 
 @SuppressLint("StateFlowValueCalledInComposition")
@@ -51,8 +52,9 @@ fun RegisterScreen(
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+            .fillMaxHeight()
+            .fillMaxWidth()
+            .displayCutoutPadding().padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -104,7 +106,7 @@ fun RegisterScreen(
                     height = height.toDoubleOrNull() ?: 0.0
                 )
             },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().height(50.dp),
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = colorResource(id = R.color.green),
@@ -114,9 +116,9 @@ fun RegisterScreen(
                     weight.isNotEmpty() && height.isNotEmpty() && authState !is UiState.Loading,
         ) {
             if (authState is UiState.Loading) {
-                CircularProgressIndicator(color = Color.White)
+               // CircularProgressAnimated(Modifier.size(24.dp))
             } else {
-                Text("Register", fontFamily = fontMedium)
+                Text("Register", fontFamily = fontBold, color = Color.Black)
             }
         }
 

@@ -28,6 +28,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.gymforce.R
 import com.example.gymforce.common.UiState
+import com.example.gymforce.common.fontBold
 import com.example.gymforce.common.fontMedium
 import com.example.gymforce.ui.commonUi.AppTextField
 import com.example.gymforce.ui.commonUi.CircularProgressAnimated
@@ -74,7 +75,7 @@ fun LoginScreen(navController: NavHostController, viewModel: LoginViewModel = hi
             onClick = {
                 viewModel.signIn(email, password) // Trigger login
             },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().height(50.dp),
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = colorResource(id = R.color.green),
@@ -85,7 +86,7 @@ fun LoginScreen(navController: NavHostController, viewModel: LoginViewModel = hi
             if (authState is UiState.Loading) {
                 CircularProgressAnimated(Modifier.size(24.dp))
             } else {
-                Text("Login", color = Color.Black, fontFamily = fontMedium)
+                Text("Login", color = Color.Black, fontFamily = fontBold)
             }
         }
 

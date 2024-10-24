@@ -78,28 +78,32 @@ dependencies {
     implementation( platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation (libs.firebase.auth)
-    implementation("com.google.android.gms:play-services-auth:21.2.0")
+    implementation(libs.play.services.auth)
+    //noinspection GradleDependency
+    implementation (libs.play.services.auth) // or appropriate service you need
+
+    implementation ("com.google.firebase:firebase-firestore-ktx:24.6.0")
 
     implementation ("androidx.navigation:navigation-compose:2.7.7")
     implementation("androidx.compose.material:material:1.4.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.0-rc01")
 
     val nav_version = "2.7.0" // Use the latest version
-    implementation ("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation ("androidx.navigation:navigation-ui-ktx:$nav_version")
-    implementation ("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+    implementation (libs.androidx.navigation.fragment.ktx)
+    implementation (libs.androidx.navigation.ui.ktx)
+    implementation (libs.androidx.navigation.dynamic.features.fragment)
 
 
 
     implementation(project(":domain"))
     implementation(project(":data"))
-    implementation ("com.akexorcist:localization:1.2.11")
+    implementation (libs.localization)
 
 
     implementation ("androidx.room:room-runtime:2.5.1")
     kapt ("androidx.room:room-compiler:2.5.1")
     val room_version = "2.5.0" // Or use the latest version
-    implementation( "androidx.room:room-runtime:$room_version")
+    implementation( libs.room.runtime)
     implementation( "androidx.room:room-ktx:$room_version") // Add this line
     kapt( "androidx.room:room-compiler:$room_version")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
