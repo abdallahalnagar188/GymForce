@@ -1,10 +1,9 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-
     kotlin("kapt")
     id ("kotlin-parcelize")
-    id("com.google.gms.google-services")
+//    id("com.google.gms.google-services")
 
 }
 

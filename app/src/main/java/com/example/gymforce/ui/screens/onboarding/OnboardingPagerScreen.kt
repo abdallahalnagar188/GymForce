@@ -14,68 +14,68 @@ import com.example.gymforce.R
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.launch
 
-@Composable
-fun OnboardingPagerScreen(onComplete: () -> Unit) {
-    val pagerState = rememberPagerState()
-    val coroutineScope = rememberCoroutineScope()
-
-    // Onboarding pages data
-    val onboardingPages = listOf(
-        OnboardingPage(
-            title = "Welcome to GymForce",
-            description = "Track your workouts and progress.",
-            imageRes = R.drawable.image_one
-        ),
-        OnboardingPage(
-            title = "Track Your Workouts",
-            description = "Keep a detailed record of your workout routines.",
-            imageRes = R.drawable.image_two
-        ),
-        OnboardingPage(
-            title = "Achieve Your Goals",
-            description = "Set goals and achieve them with personalized plans.",
-            imageRes = R.drawable.image_tree
-        )
-    )
-
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        HorizontalPager(
-            count = onboardingPages.size,
-            state = pagerState,
-            modifier = Modifier.weight(1f)
-        ) { page ->
-            OnboardingPageContent(page = onboardingPages[page])
-        }
-
-        // Optional: Dots indicator for pager
-        HorizontalPagerIndicator(
-            pagerState = pagerState,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(16.dp)
-        )
-
-        // Button to finish the onboarding flow
-        Button(
-            onClick = {
-                coroutineScope.launch {
-                    if (pagerState.currentPage == onboardingPages.size - 1) {
-                        onComplete() // End the onboarding
-                    } else {
-                        pagerState.animateScrollToPage(pagerState.currentPage + 1)
-                    }
-                }
-            },
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Text(text = if (pagerState.currentPage == onboardingPages.size - 1) "Finish" else "Next")
-        }
-    }
-}
+//@Composable
+//fun OnboardingPagerScreen(onComplete: () -> Unit) {
+//    val pagerState = rememberPagerState()
+//    val coroutineScope = rememberCoroutineScope()
+//
+////    // Onboarding pages data
+////    val onboardingPages = listOf(
+////        OnboardingPage(
+////            title = "Welcome to GymForce",
+////            description = "Track your workouts and progress.",
+////            imageRes = R.drawable.image_one
+////        ),
+////        OnboardingPage(
+////            title = "Track Your Workouts",
+////            description = "Keep a detailed record of your workout routines.",
+////            imageRes = R.drawable.image_two
+////        ),
+////        OnboardingPage(
+////            title = "Achieve Your Goals",
+////            description = "Set goals and achieve them with personalized plans.",
+////            imageRes = R.drawable.image_tree
+////        )
+////    )
+//
+//    Column(
+//        modifier = Modifier.fillMaxSize(),
+//        verticalArrangement = Arrangement.Center,
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ) {
+//        HorizontalPager(
+//            count = onboardingPages.size,
+//            state = pagerState,
+//            modifier = Modifier.weight(1f)
+//        ) { page ->
+//            OnboardingPageContent(page = onboardingPages[page])
+//        }
+//
+//        // Optional: Dots indicator for pager
+//        HorizontalPagerIndicator(
+//            pagerState = pagerState,
+//            modifier = Modifier
+//                .align(Alignment.CenterHorizontally)
+//                .padding(16.dp)
+//        )
+//
+//        // Button to finish the onboarding flow
+//        Button(
+//            onClick = {
+//                coroutineScope.launch {
+//                    if (pagerState.currentPage == onboardingPages.size - 1) {
+//                        onComplete() // End the onboarding
+//                    } else {
+//                        pagerState.animateScrollToPage(pagerState.currentPage + 1)
+//                    }
+//                }
+//            },
+//            modifier = Modifier.padding(16.dp)
+//        ) {
+//            Text(text = if (pagerState.currentPage == onboardingPages.size - 1) "Finish" else "Next")
+//        }
+//    }
+//}
 
 @Composable
 fun OnboardingPageContent(page: OnboardingPage) {

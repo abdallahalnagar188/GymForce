@@ -8,4 +8,3 @@ val fontMedium = FontFamily(Font(R.font.cairo_medium))
 val fontRegular = FontFamily(Font(R.font.cairo_regular))
 val fontBold = FontFamily(Font(R.font.cairo_extra_bold))
 
-const val  APIKEY = "7a65a09525mshaf42380fc34ca7dp181720jsn51f33c3bc30f"

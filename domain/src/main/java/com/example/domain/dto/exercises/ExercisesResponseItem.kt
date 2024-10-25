@@ -1,4 +1,4 @@
-package com.example.domain.dto
+package com.example.domain.dto.exercises
 
 data class ExercisesResponseItem(
     val bodyPart: String,

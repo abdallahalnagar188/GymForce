@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.runtime.Composable
@@ -110,7 +109,7 @@ fun LoginScreen(navController: NavHostController, viewModel: LoginViewModel = hi
 
         // Navigate to Home on successful login
         if (authState is UiState.Success) {
-            navController.navigate(BottomNavItem.Home.screen_route) {
+            navController.navigate(BottomNavItem.Home.screenRoute) {
                 // Clear the back stack so the user can't navigate back to the login screen
                 popUpTo("Login") { inclusive = true }
             }

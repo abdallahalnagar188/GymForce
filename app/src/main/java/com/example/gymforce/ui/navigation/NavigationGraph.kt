@@ -2,7 +2,6 @@ package com.example.gymforce.ui.navigation
 
 import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.navigation.NavHostController
@@ -12,69 +11,50 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.gymforce.R
 import com.example.gymforce.ui.screens.auth.login.LoginScreen
-import com.example.gymforce.ui.screens.auth.register.RegisterScreen
-import com.example.gymforce.ui.screens.exercises.ExercisesScreen
-import com.example.gymforce.ui.screens.exercises.training_details.TrainingDetailsScreen
-import com.example.gymforce.ui.screens.exercises.type.TypeScreen
+import com.example.gymforce.ui.screens.auth.regester.RegisterScreen
+import com.example.gymforce.ui.screens.home.HomeScreen
+import com.example.gymforce.ui.screens.home.exercises.ExercisesByBodyPartScreen
 import com.example.gymforce.ui.screens.profile.ProfileScreen
 import com.example.gymforce.ui.screens.setting.SettingScreen
 import com.example.gymforce.ui.screens.tools.ToolsScreen
 
-
 @Composable
-fun NavigationGraph(navController: NavHostController) {
+fun NavigationGraph(navController: NavHostController, startDestination: String) {
     NavHost(
         navController = navController,
-        startDestination = "Login", // Or set it to "Login" to start from login
+        startDestination = startDestination,
         modifier = Modifier.background(color = colorResource(id = R.color.black))
     ) {
-        composable(BottomNavItem.Setting.screen_route) {
+        // Bottom navigation screens
+        composable(BottomNavItem.Setting.screenRoute) {
             SettingScreen()
         }
-        composable(BottomNavItem.Home.screen_route) {
-            ExercisesScreen(navController)
+        composable(BottomNavItem.Home.screenRoute) {
+            HomeScreen(navController)
         }
-        composable(BottomNavItem.Tools.screen_route) {
+        composable(BottomNavItem.Tools.screenRoute) {
             ToolsScreen(navController)
         }
-        composable(BottomNavItem.Profile.screen_route) {
+        composable(BottomNavItem.Profile.screenRoute) {
             ProfileScreen(navController)
         }
 
+        // Exercises screen with body part argument
         composable(
-            route = "TrainingDetails/{trainingDetailsName}",
-            arguments = listOf(
-                navArgument("trainingDetailsName") {
-                    type = NavType.StringType
-                }
-            )
-        ) {
-            val trainingDetailsName = remember {
-                it.arguments?.getString("trainingDetailsName")
-            }
-            TrainingDetailsScreen(trainingDetailsName ?: "")
+            route = "ExercisesByBodyPartScreen/{bodyPartName}",
+            arguments = listOf(navArgument("bodyPartName") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val bodyPartName = backStackEntry.arguments?.getString("bodyPartName") ?: ""
+            ExercisesByBodyPartScreen(bodyPartName, navController)
+
         }
 
-        composable(
-            route = "TypeTrainingScreen/{trainingName}",
-            arguments = listOf(
-                navArgument("trainingName") {
-                    type = NavType.StringType
-                }
-            )
-        ) {
-            val trainingName = remember {
-                it.arguments?.getString("trainingName")
-            }
-            TypeScreen(trainingName!!, navController)
-        }
-
-        // New Login Screen route
+        // Login screen
         composable("Login") {
             LoginScreen(navController)
         }
 
-        // New Register Screen route
+        // Register screen
         composable("Register") {
             RegisterScreen(navController)
         }

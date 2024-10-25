@@ -1,4 +1,4 @@
-package com.example.gymforce.ui.screens.auth.register
+package com.example.gymforce.ui.screens.auth.regester
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +15,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,16 +25,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.gymforce.R
 import com.example.gymforce.common.UiState
 import com.example.gymforce.common.fontBold
-import com.example.gymforce.common.fontMedium
 import com.example.gymforce.ui.commonUi.AppTextField
 import com.example.gymforce.ui.commonUi.CircularProgressAnimated
 import com.example.gymforce.ui.commonUi.PassWordAppTextField
-import com.example.gymforce.ui.screens.auth.regester.RegisterViewModel
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
@@ -54,7 +54,8 @@ fun RegisterScreen(
         modifier = Modifier
             .fillMaxHeight()
             .fillMaxWidth()
-            .displayCutoutPadding().padding(16.dp),
+            .displayCutoutPadding()
+            .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -106,7 +107,9 @@ fun RegisterScreen(
                     height = height.toDoubleOrNull() ?: 0.0
                 )
             },
-            modifier = Modifier.fillMaxWidth().height(50.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = colorResource(id = R.color.green),
@@ -116,13 +119,22 @@ fun RegisterScreen(
                     weight.isNotEmpty() && height.isNotEmpty() && authState !is UiState.Loading,
         ) {
             if (authState is UiState.Loading) {
-               // CircularProgressAnimated(Modifier.size(24.dp))
+                CircularProgressAnimated(Modifier.size(24.dp))
             } else {
-                Text("Register", fontFamily = fontBold, color = Color.Black)
+                Text("Register", fontFamily = fontBold, color = Color.Black, fontSize = 14.sp)
             }
         }
+    }
 
-        // ... Existing error message and navigation to Login code ...
+    // Navigate to the login screen after a successful registration
+    if (authState is UiState.Success) {
+        // Call LaunchedEffect to ensure that the navigation happens only once
+        LaunchedEffect(Unit) {
+            navController.navigate("Login") {
+                popUpTo("Register") { inclusive = true }
+            }
+        }
     }
 }
+
 

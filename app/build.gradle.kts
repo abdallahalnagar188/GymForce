@@ -66,6 +66,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.storage)
     implementation(libs.androidx.benchmark.common)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -87,7 +89,7 @@ dependencies {
     implementation ("androidx.navigation:navigation-compose:2.7.7")
     implementation("androidx.compose.material:material:1.4.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose-android:2.8.0-rc01")
-
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     val nav_version = "2.7.0" // Use the latest version
     implementation (libs.androidx.navigation.fragment.ktx)
     implementation (libs.androidx.navigation.ui.ktx)
@@ -120,6 +122,7 @@ dependencies {
 
     implementation ("com.airbnb.android:lottie:5.0.3" )// Check for the latest version
     implementation ("com.airbnb.android:lottie-compose:6.1.0")
+    implementation("com.airbnb.android:lottie-compose:5.0.3")
 
     implementation ("com.intuit.sdp:sdp-android:1.0.6")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
@@ -136,6 +139,7 @@ dependencies {
     implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
 // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+
 // Annotation processor
     //noinspection LifecycleAnnotationProcessorWithJava8
     kapt("androidx.lifecycle:lifecycle-compiler:2.7.0")

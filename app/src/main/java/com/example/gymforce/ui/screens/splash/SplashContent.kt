@@ -33,7 +33,8 @@ fun SplashContent() {
         LottieAnimation(
             composition = composition,
             progress = progress,
-            modifier = Modifier.size(160.dp).background(color = colorResource(id = R.color.black_low))
+            modifier = Modifier.size(160.dp).background(color = colorResource(id = R.color.transparent))
+            .align(Alignment.Center)
         )
     }
 }

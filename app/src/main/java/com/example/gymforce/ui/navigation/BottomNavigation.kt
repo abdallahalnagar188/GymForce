@@ -2,7 +2,6 @@ package com.example.gymforce.ui.navigation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,14 +36,17 @@ fun MyBottomNavigation(navController: NavController) {
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
+
+        // Determine which routes should hide the bottom navigation
+        val shouldShowBottomBar = currentRoute != "Login" && currentRoute != "Register"
         items.forEach { item ->
             BottomNavigationItem(
                 icon = {
-                    if (currentRoute == item.screen_route) {
+                    if (currentRoute == item.screenRoute) {
                         // Selected icon with text beside it
                         Row(
                             modifier = Modifier
-                                .clip(shape = RoundedCornerShape(10.dp))
+                                .clip(shape = RoundedCornerShape(20.dp))
                                 .background(colorResource(R.color.green)) // Background for selected item
                                 .padding(horizontal = 10.dp, vertical = 5.dp) // Adjust padding as needed
                         ) {
@@ -76,19 +78,16 @@ fun MyBottomNavigation(navController: NavController) {
                 selectedContentColor = colorResource(R.color.green),
                 unselectedContentColor = Color.Gray,
                 alwaysShowLabel = false, // Hide labels for unselected items
-                selected = currentRoute == item.screen_route,
+                selected = currentRoute == item.screenRoute,
                 onClick = {
-                    navController.navigate(item.screen_route) {
-                        navController.graph.startDestinationRoute?.let { screen_route ->
-                            popUpTo(screen_route) {
-                                navController.popBackStack(
-                                    route = "home",
-                                    inclusive = false
-                                )
+                    if (currentRoute != item.screenRoute) {
+                        navController.navigate(item.screenRoute) {
+                            popUpTo(navController.graph.startDestinationRoute?:"home") {
+                                saveState = true
                             }
+                            launchSingleTop = true
+                            restoreState = true
                         }
-                        launchSingleTop = true
-                        restoreState = true
                     }
                 }
             )
