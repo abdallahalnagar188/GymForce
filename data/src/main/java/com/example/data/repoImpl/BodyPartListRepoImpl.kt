@@ -7,7 +7,5 @@ import com.example.domain.repo.BodyPartListRepo
 import com.example.domain.repo.ExercisesRepo
 
 class BodyPartListRepoImpl(private val apiService: ApiService) : BodyPartListRepo {
-    override suspend fun getBodyPartList(): BodyPartListResponse {
-        return apiService.getBodyPartList()
-    }
+    override suspend fun getBodyPartList() = apiService.getBodyPartList()
 }

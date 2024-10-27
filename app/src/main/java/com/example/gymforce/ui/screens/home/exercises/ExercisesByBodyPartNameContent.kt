@@ -22,7 +22,7 @@ fun ExercisesByBodyPartContent(navHostController: NavHostController, bodyPartNam
 
         AppBar(
             navHostController = navHostController,
-            onBackClicked = { navHostController.popBackStack() }
+            partBodyName = bodyPartName
         )
         Text(
             text = bodyPartName,

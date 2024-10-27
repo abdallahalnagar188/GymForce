@@ -1,26 +1,27 @@
-package com.example.gymforce.ui.screens.home.exercises
+package com.example.gymforce.ui.screens.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -28,49 +29,66 @@ import com.example.gymforce.R
 import com.example.gymforce.common.fontBold
 
 @Composable
-fun AppBar(
+fun HomeAppBar(
     navHostController: NavHostController,
-    partBodyName: String
+    onClick: () -> Unit = {},
+    ivProfileId: Int
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween, // Distribute items with space between
+        horizontalArrangement = Arrangement.SpaceBetween, // Space items apart
         modifier = Modifier
             .fillMaxWidth()
             .height(60.dp)
             .background(color = colorResource(R.color.black_low))
-            .padding(horizontal = 8.dp) // Add padding if needed
+            .padding(horizontal = 8.dp) // Add horizontal padding if needed
     ) {
-        // Back Icon Button
+        // Profile Icon
         IconButton(
-            onClick = { navHostController.popBackStack() },
-            modifier = Modifier.size(40.dp) // Adjust size for balance
+            onClick = { onClick() },
+            modifier = Modifier
+                .border(
+                    width = 1.dp,
+                    color = colorResource(R.color.transparent),
+                    shape = CircleShape
+                )
+                .size(36.dp) // Adjust size to balance padding and appearance
         ) {
             Icon(
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = "Arrow Back",
-                tint = Color.White
+                painter = painterResource(ivProfileId),
+                contentDescription = "Image Profile",
+                tint = Color.White,
             )
         }
 
-        // Centered Text
+        // Centered Text in Box
         Box(
             modifier = Modifier
-                .weight(1f) // Center in Row
+                .weight(1f) // Use weight to center-align in Row
                 .fillMaxWidth(),
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "$partBodyName Exercises",
+                text = "GymForce",
                 color = Color.White,
                 fontFamily = fontBold,
-                fontSize = 18.sp,
+                fontSize = 16.sp,
                 style = typography.h6,
             )
         }
 
-        // Empty Spacer to balance Row layout
-        Spacer(modifier = Modifier.size(40.dp))
+        // Notifications Icon
+        IconButton(
+            onClick = { onClick() },
+            modifier = Modifier
+                .size(32.dp) // Adjust size for a balanced look
+        ) {
+            Icon(
+                imageVector = Icons.Default.Notifications,
+                contentDescription = "Notifications",
+                tint = Color.White
+            )
+        }
     }
 }
 

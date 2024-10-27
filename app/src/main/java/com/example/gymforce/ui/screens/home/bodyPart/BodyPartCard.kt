@@ -26,18 +26,16 @@ fun BodyPartCard(
 ) {
     Card(
         modifier = Modifier
-            .fillMaxWidth()
             .clickable { onClick() } // Entire card is clickable
             .padding(8.dp) // Padding around the card
             .border(
                 width = 1.dp,
                 color = White,
-                shape = RoundedCornerShape(8.dp)
+                shape = RoundedCornerShape(10.dp)
             ),
     ) {
         Box(
             modifier = Modifier
-                .fillMaxWidth()
                 .background(color = colorResource(R.color.black))
                 .padding(16.dp) // Padding inside the card
         ) {

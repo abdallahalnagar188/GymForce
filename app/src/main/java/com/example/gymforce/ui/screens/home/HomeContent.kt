@@ -15,11 +15,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.domain.dto.bodyPartList.BodyPartListResponse
+import com.example.gymforce.R
 import com.example.gymforce.common.UiState
 import com.example.gymforce.common.fontMedium
 import com.example.gymforce.ui.commonUi.CircularProgressAnimated
 import com.example.gymforce.ui.screens.home.bodyPart.BodyPartLazyColumn
-import com.example.gymforce.ui.screens.home.exercises.AppBar
 
 @Composable
 fun HomeContent(
@@ -31,7 +31,7 @@ fun HomeContent(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        AppBar(navHostController)
+        HomeAppBar(navHostController, ivProfileId = R.drawable.ic_proflle )
         Spacer(modifier = Modifier.height(10.dp))
         when (bodyPartList) {
             is UiState.Loading -> {
