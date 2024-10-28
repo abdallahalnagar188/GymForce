@@ -77,7 +77,11 @@ dependencies {
     kapt( "androidx.room:room-compiler:$room_version")
 
     implementation ("androidx.paging:paging-runtime:3.2.0")
+    implementation( "androidx.paging:paging-compose:1.0.0-alpha18")
 
     // For Kotlin coroutines support
     implementation ("androidx.paging:paging-common-ktx:3.2.0")
+
+
+
 }

@@ -150,12 +150,20 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:4.13.0")
 
     implementation ("androidx.paging:paging-runtime:3.2.0")
+    implementation ("androidx.paging:paging-compose:3.2.0")
 
     // For Kotlin coroutines support
     implementation ("androidx.paging:paging-common-ktx:3.2.0")
 
-    implementation( "com.google.accompanist:accompanist-pager:0.32.0" )// Check for the latest version
-    implementation( "com.google.accompanist:accompanist-pager-indicators:0.32.0")
+    implementation( libs.accompanist.pager )// Check for the latest version
+    implementation( libs.accompanist.pager.indicators)
+    implementation ("androidx.paging:paging-compose:1.0.0-alpha19")
+
+    implementation( libs.androidx.paging.compose)
+    implementation (libs.paging.runtime)
+
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    kapt ("com.github.bumptech.glide:compiler:4.15.1")
 
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0-RC")  // Use the latest version
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")

@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val exercisesUseCase: GetExercisesUseCase,
     private val bodyPartUseCase: GetBodyPartListUseCase
 ) : ViewModel() {
 
@@ -28,18 +27,6 @@ class HomeViewModel @Inject constructor(
         MutableStateFlow(UiState.Empty)
     val bodyPartList: StateFlow<UiState<BodyPartListResponse>> get() = _bodyPartList
 
-    fun getExercises(bodyPart: String) {
-        viewModelScope.launch {
-            try {
-                _exercises.value = UiState.Loading
-                val response = exercisesUseCase(bodyPart)
-                _exercises.value = UiState.Success(response)
-            } catch (e: Exception) {
-                _exercises.value = UiState.Error(e.message.toString())
-
-            }
-        }
-    }
 
     fun getBodyPartList() {
         viewModelScope.launch {

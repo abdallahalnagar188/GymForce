@@ -1,5 +1,6 @@
 package com.example.gymforce.ui.screens.home.exercises
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,11 +10,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.gymforce.common.fontMedium
 
 @Composable
-fun ExercisesByBodyPartContent(navHostController: NavHostController, bodyPartName: String) {
+fun ExercisesByBodyPartContent(navHostController: NavHostController, bodyPartName: String, viewModel: ExercisesViewModel = hiltViewModel()) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Top,
@@ -24,15 +27,9 @@ fun ExercisesByBodyPartContent(navHostController: NavHostController, bodyPartNam
             navHostController = navHostController,
             partBodyName = bodyPartName
         )
-        Text(
-            text = bodyPartName,
-            fontSize = 30.sp,
-            color = Color.White,
-            fontFamily = fontMedium,
-            modifier = Modifier.align(
-                Alignment.CenterHorizontally
-            )
-        )
+        val exercises = viewModel.getExercises(bodyPartName).collectAsLazyPagingItems()
+        ExercisesLazyColumn(exercises = exercises, navHostController)
+        Log.e("TAG", "ExercisesByBodyPartContent: $exercises")
 
     }
 

@@ -1,7 +1,9 @@
 package com.example.domain.repo
 
-import com.example.domain.dto.exercises.ExercisesResponse
+import androidx.paging.PagingData
+import com.example.domain.dto.exercises.ExercisesResponseItem
+import kotlinx.coroutines.flow.Flow
 
 interface ExercisesRepo {
-    suspend fun getExercises(bodyPart:String): ExercisesResponse
+     fun getExercisesPaged(bodyPart: String): Flow<PagingData<ExercisesResponseItem>>
 }

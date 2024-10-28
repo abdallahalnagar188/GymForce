@@ -16,7 +16,8 @@ fun MainScreenView(navController: NavHostController, startDestination: String) {
     val currentRoute = navBackStackEntry?.destination?.route
 
     // Determine which routes should hide the bottom navigation
-    val shouldShowBottomBar = currentRoute != "Login" && currentRoute != "Register"
+    val shouldShowBottomBar =
+        currentRoute != "Login" && currentRoute != "Register" && currentRoute != "ExercisesByBodyPartScreen/{bodyPartName}"
 
     Scaffold(
         bottomBar = {

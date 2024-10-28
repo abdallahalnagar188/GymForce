@@ -14,6 +14,8 @@ interface ApiService {
     @GET("exercises/bodyPart/{bodyPart}")
     suspend fun getExercises(
         @Path("bodyPart") bodyPart: String,
+        @Path("limit") limit: Int,
+        @Path("offset") offset: Int
     ): ExercisesResponse
 
 }

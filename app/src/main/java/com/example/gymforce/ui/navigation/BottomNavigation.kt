@@ -37,8 +37,6 @@ fun MyBottomNavigation(navController: NavController) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
 
-        // Determine which routes should hide the bottom navigation
-        val shouldShowBottomBar = currentRoute != "Login" && currentRoute != "Register"
         items.forEach { item ->
             BottomNavigationItem(
                 icon = {
