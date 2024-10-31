@@ -9,7 +9,6 @@ import com.example.gymforce.ui.navigation.BottomNavItem
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 

@@ -1,9 +1,12 @@
 package com.example.data.remote
 
 import com.example.domain.dto.bodyPartList.BodyPartListResponse
-import com.example.domain.dto.exercises.ExercisesResponse
+import com.example.domain.dto.exercises.ex2.ExercisesResponse
+import com.example.domain.dto.exercises.ex2.ExercisesResponseItem
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
+import retrofit2.Call
 
 interface ApiService {
 
@@ -14,8 +17,9 @@ interface ApiService {
     @GET("exercises/bodyPart/{bodyPart}")
     suspend fun getExercises(
         @Path("bodyPart") bodyPart: String,
-        @Path("limit") limit: Int,
-        @Path("offset") offset: Int
-    ): ExercisesResponse
+        @Query("limit") limit: Int = 10,
+        @Query("offset") offset: Int = 0
+    ): List<ExercisesResponseItem>
+
 
 }

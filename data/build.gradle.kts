@@ -64,6 +64,18 @@ dependencies {
     implementation ("androidx.room:room-runtime:2.5.1")
     kapt ("androidx.room:room-compiler:2.5.1")
 
+    // Paging dependencies
+    implementation("androidx.paging:paging-compose:3.2.0-alpha02")
+    implementation("androidx.paging:paging-runtime:3.2.0")
+
+    // Kotlin Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+
+    // Lifecycle and ViewModel for Compose
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
 
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation("com.google.dagger:hilt-android:2.49")

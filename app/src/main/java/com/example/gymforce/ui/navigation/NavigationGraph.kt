@@ -39,14 +39,12 @@ fun NavigationGraph(navController: NavHostController, startDestination: String) 
             ProfileScreen(navController)
         }
 
-        // Exercises screen with body part argument
         composable(
             route = "ExercisesByBodyPartScreen/{bodyPartName}",
             arguments = listOf(navArgument("bodyPartName") { type = NavType.StringType })
         ) { backStackEntry ->
             val bodyPartName = backStackEntry.arguments?.getString("bodyPartName") ?: ""
             ExercisesByBodyPartScreen(bodyPartName, navController)
-
         }
 
         // Login screen

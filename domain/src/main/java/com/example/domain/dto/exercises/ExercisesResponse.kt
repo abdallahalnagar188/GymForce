@@ -1,3 +1,3 @@
 package com.example.domain.dto.exercises
 
-class ExercisesResponse : ArrayList<ExercisesResponseItem>()
+//class ExercisesResponse : ArrayList<ExercisesResponseItem>()
