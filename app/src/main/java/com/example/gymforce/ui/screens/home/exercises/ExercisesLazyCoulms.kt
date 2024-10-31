@@ -1,7 +1,7 @@
 package com.example.gymforce.ui.screens.home.exercises
 
 import androidx.compose.foundation.layout.Arrangement
-
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,14 +19,17 @@ import com.example.gymforce.ui.commonUi.ErrorItem
 fun ExercisesLazyColumn(
     exercises: LazyPagingItems<ExercisesResponseItem>,
 ) {
-    LazyColumn(
+    Box(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        contentAlignment = Alignment.Center // Center the content within the Box
     ) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(), // Fill remaining space after progress bar
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-        // Show exercises or empty state
-        if (exercises.itemCount > 0) {
+            // Show exercises or empty state
             items(exercises.itemCount) { index ->
                 val exerciseItem = exercises[index]
                 exerciseItem?.let {
@@ -34,32 +37,26 @@ fun ExercisesLazyColumn(
                 }
             }
 
-        } else if (exercises.loadState.refresh !is LoadState.Loading) {
-            // Show a message when there are no items
-            item { ErrorItem(message = "No exercises available.") }
-        }
+            if (exercises.loadState.refresh is LoadState.Loading || exercises.loadState.append is LoadState.Loading) {
+                item {
+                    // Center the progress bar within the LazyColumn
+                    CircularProgressAnimated(
+                        modifier = Modifier
+                            .size(50.dp)
+                            .align(Alignment.Center)
+                    )
+                }
+            }
 
-        // Handle loading and error states
-        when {
-            exercises.loadState.refresh is LoadState.Loading -> {
-                item { CircularProgressAnimated(modifier = Modifier.size(30.dp)) }
-            }
-            exercises.loadState.append is LoadState.Loading -> {
-                item { CircularProgressAnimated(modifier = Modifier.size(30.dp)) }
-            }
-            exercises.loadState.refresh is LoadState.Error -> {
-                val error = exercises.loadState.refresh as LoadState.Error
-                item { ErrorItem(message = error.error.localizedMessage ?: "Unknown error") }
-            }
-            exercises.loadState.append is LoadState.Error -> {
-                val error = exercises.loadState.append as LoadState.Error
+            // Handle error states as before
+            if (exercises.loadState.refresh is LoadState.Error || exercises.loadState.append is LoadState.Error) {
+                val error = if (exercises.loadState.refresh is LoadState.Error) {
+                    exercises.loadState.refresh as LoadState.Error
+                } else {
+                    exercises.loadState.append as LoadState.Error
+                }
                 item { ErrorItem(message = error.error.localizedMessage ?: "Unknown error") }
             }
         }
     }
 }
-
-
-
-
-
