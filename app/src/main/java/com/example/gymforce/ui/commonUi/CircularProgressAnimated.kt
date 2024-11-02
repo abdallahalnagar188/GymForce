@@ -12,18 +12,24 @@ import androidx.compose.ui.res.colorResource
 import com.example.gymforce.R
 
 @Composable
- fun CircularProgressAnimated(modifier: Modifier) {
+fun CircularProgressAnimated(
+    modifier: Modifier = Modifier,
+    colorId: Int = R.color.green,
+    animationDurationMillis: Int = 900
+) {
     val infiniteTransition = rememberInfiniteTransition(label = "")
 
     val progressAnimationValue by infiniteTransition.animateFloat(
-        initialValue = 0.0f,
-        targetValue = 1.0f,
-        animationSpec = infiniteRepeatable(animation = tween(900)),
-        label = ""
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(animationDurationMillis)
+        ), label = ""
     )
+
     CircularProgressIndicator(
         progress = progressAnimationValue,
-        color = colorResource(id = R.color.green),
+        color = colorResource(id = colorId),
         modifier = modifier
     )
 }

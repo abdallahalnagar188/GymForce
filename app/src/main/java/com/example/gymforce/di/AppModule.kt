@@ -2,10 +2,12 @@ package com.example.gymforce.di
 
 import com.example.data.remote.ApiService
 import com.example.data.repoImpl.BodyPartListRepoImpl
+import com.example.data.repoImpl.ExerciseDetailsRepoImpl
 import com.example.data.repoImpl.ExercisesRepoImpl
 import com.example.data.repoImpl.FirebaseAuthRepositoryImpl
 import com.example.domain.repo.AuthRepository
 import com.example.domain.repo.BodyPartListRepo
+import com.example.domain.repo.ExerciseDetailsRepo
 import com.example.domain.repo.ExercisesRepo
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -51,6 +53,11 @@ object AppModule {
     @Singleton
    fun provideBodyPartListRepo(apiService: ApiService): BodyPartListRepo {
         return BodyPartListRepoImpl(apiService)
+    }
+    @Provides
+    @Singleton
+    fun provideExerciseDetailsRepo(apiService: ApiService): ExerciseDetailsRepo {
+        return ExerciseDetailsRepoImpl(apiService)
     }
 }
 

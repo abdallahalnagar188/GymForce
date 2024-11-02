@@ -1,7 +1,14 @@
 package com.example.gymforce.ui.screens.auth.regester
 
 import android.annotation.SuppressLint
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.displayCutoutPadding
@@ -10,7 +17,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
@@ -22,12 +32,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import coil.compose.rememberImagePainter
 import com.example.gymforce.R
 import com.example.gymforce.common.UiState
 import com.example.gymforce.common.fontBold
@@ -46,8 +58,17 @@ fun RegisterScreen(
     var password by remember { mutableStateOf("") }
     var weight by remember { mutableStateOf("") }
     var height by remember { mutableStateOf("") }
+    var imageUri by remember { mutableStateOf<Uri?>(null) } // To hold image URI
 
-    // Observing authState from ViewModel
+    // Image picker launcher
+    val imagePickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent(),
+        onResult = { uri ->
+            imageUri = uri // Update the image URI
+        }
+    )
+
+    val scrollState = rememberScrollState()
     val authState = viewModel.authState.value
 
     Column(
@@ -55,10 +76,38 @@ fun RegisterScreen(
             .fillMaxHeight()
             .fillMaxWidth()
             .displayCutoutPadding()
-            .padding(16.dp),
+            .padding(16.dp)
+            .verticalScroll(scrollState),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // Display the image if selected
+        imageUri?.let { uri ->
+            Image(
+                painter = rememberImagePainter(uri),
+                contentDescription = "Selected Image",
+                modifier = Modifier
+                    .size(100.dp)
+                    .clip(CircleShape)
+                    .border(2.dp, Color.Gray, CircleShape)
+                    .clickable { imagePickerLauncher.launch("image/*") } // Launch picker
+            )
+        } ?: run {
+            // Placeholder if no image is selected
+            Box(
+                modifier = Modifier
+                    .size(100.dp)
+                    .border(2.dp, Color.Gray, CircleShape)
+                    .clickable { imagePickerLauncher.launch("image/*") } // Launch picker
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("Select Photo")
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         AppTextField(
             value = name,
             label = "Name",
@@ -80,7 +129,6 @@ fun RegisterScreen(
         )
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Add fields for weight and height
         AppTextField(
             value = weight,
             label = "Weight (kg)",
@@ -95,17 +143,21 @@ fun RegisterScreen(
         )
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Register Button
         Button(
             onClick = {
-                // Validate and convert weight and height to Double before calling register
-                viewModel.register(
-                    name = name,
-                    email = email,
-                    password = password,
-                    weight = weight.toDoubleOrNull() ?: 0.0,
-                    height = height.toDoubleOrNull() ?: 0.0
-                )
+                val parsedWeight = weight.toDoubleOrNull()
+                val parsedHeight = height.toDoubleOrNull()
+
+                if (parsedWeight != null && parsedHeight != null) {
+                    viewModel.register(
+                        name = name,
+                        email = email,
+                        password = password,
+                        weight = parsedWeight,
+                        height = parsedHeight,
+                        imageUri = imageUri // Pass image URI to register function
+                    )
+                }
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -116,7 +168,9 @@ fun RegisterScreen(
                 contentColor = Color.Black
             ),
             enabled = name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() &&
-                    weight.isNotEmpty() && height.isNotEmpty() && authState !is UiState.Loading,
+                    weight.isNotEmpty() && height.isNotEmpty() &&
+                    weight.toDoubleOrNull() != null && height.toDoubleOrNull() != null &&
+                    authState !is UiState.Loading,
         ) {
             if (authState is UiState.Loading) {
                 CircularProgressAnimated(Modifier.size(24.dp))
@@ -126,15 +180,22 @@ fun RegisterScreen(
         }
     }
 
-    // Navigate to the login screen after a successful registration
     if (authState is UiState.Success) {
-        // Call LaunchedEffect to ensure that the navigation happens only once
         LaunchedEffect(Unit) {
+            // Clear fields on successful registration
+            name = ""
+            email = ""
+            password = ""
+            weight = ""
+            height = ""
+            imageUri = null // Clear image URI
+
             navController.navigate("Login") {
                 popUpTo("Register") { inclusive = true }
             }
         }
     }
 }
+
 
 

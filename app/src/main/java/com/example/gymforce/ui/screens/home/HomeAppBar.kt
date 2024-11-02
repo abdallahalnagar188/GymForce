@@ -32,7 +32,8 @@ import com.example.gymforce.common.fontBold
 fun HomeAppBar(
     navHostController: NavHostController,
     onClick: () -> Unit = {},
-    ivProfileId: Int
+    ivProfileId: Int,
+    imageUrl: String? = null
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,

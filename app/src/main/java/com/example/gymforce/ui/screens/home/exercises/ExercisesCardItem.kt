@@ -1,5 +1,6 @@
 package com.example.gymforce.ui.screens.home.exercises
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -21,16 +22,16 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.size.Scale
-import com.example.domain.dto.exercises.ex2.ExercisesResponseItem
-import com.example.gymforce.common.fontBold
+import com.example.domain.dto.exercises.ExercisesResponseItem
 import com.example.gymforce.common.fontMedium
 
 @Composable
 fun ExercisesCardItem(
-    exerciseItem: ExercisesResponseItem
+    exerciseItem: ExercisesResponseItem,
+    onClick: () -> Unit = {}
 ) {
     Card(
-        modifier = Modifier
+        modifier = Modifier.clickable { onClick() }
             .fillMaxWidth()
             .height(140.dp)
             .padding(vertical = 4.dp, horizontal = 8.dp),
@@ -38,7 +39,7 @@ fun ExercisesCardItem(
         shape = RoundedCornerShape(10.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.Gray
-        )
+        ),
     ) {
         Row(modifier = Modifier.fillMaxSize()) {
             // Image on the left half

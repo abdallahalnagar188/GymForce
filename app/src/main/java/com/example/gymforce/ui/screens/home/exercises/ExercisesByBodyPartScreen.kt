@@ -19,8 +19,12 @@ fun ExercisesByBodyPartScreen(
 
     // Collect exercises as LazyPagingItems
     val exercises = viewModel.exercisesFlow.collectAsLazyPagingItems()
+    val exerciseItems = exercises.itemSnapshotList
 
     // Render the content with LazyPagingItems
-    ExercisesByBodyPartContent(navHostController, bodyPartName, exercises)
+    ExercisesByBodyPartContent(navHostController, bodyPartName, exercises, onClick = {
+        navHostController.navigate("ExerciseDetailsScreen/${exerciseItems.items.firstOrNull()?.id}")
+    })
 }
+
 

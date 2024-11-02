@@ -11,13 +11,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import com.example.domain.dto.exercises.ex2.ExercisesResponseItem
+import com.example.domain.dto.exercises.ExercisesResponseItem
 import com.example.gymforce.ui.commonUi.CircularProgressAnimated
 import com.example.gymforce.ui.commonUi.ErrorItem
 
 @Composable
 fun ExercisesLazyColumn(
     exercises: LazyPagingItems<ExercisesResponseItem>,
+    onClick: () -> Unit = {}
 ) {
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -33,7 +34,7 @@ fun ExercisesLazyColumn(
             items(exercises.itemCount) { index ->
                 val exerciseItem = exercises[index]
                 exerciseItem?.let {
-                    ExercisesCardItem(exerciseItem = it)
+                    ExercisesCardItem(exerciseItem = it, onClick = onClick)
                 }
             }
 

@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.androidx.benchmark.common)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.firebase.storage.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -145,7 +146,13 @@ dependencies {
     // Paging dependencies
     implementation("androidx.paging:paging-compose:3.2.0-alpha02")
     implementation("androidx.paging:paging-runtime:3.2.0")
+    implementation ("androidx.activity:activity-ktx:1.6.1")
+    implementation("com.google.firebase:firebase-storage-ktx:20.3.0") // Check for the latest version
 
+    // CameraX
+    implementation("androidx.camera:camera-camera2:1.2.1") // Check for the latest version
+    implementation("androidx.camera:camera-lifecycle:1.2.1") // Check for the latest version
+    implementation("androidx.camera:camera-view:1.0.0-alpha30")
     // Kotlin Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")

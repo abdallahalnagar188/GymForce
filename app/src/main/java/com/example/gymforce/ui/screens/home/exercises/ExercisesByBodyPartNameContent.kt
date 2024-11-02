@@ -7,13 +7,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.paging.compose.LazyPagingItems
-import com.example.domain.dto.exercises.ex2.ExercisesResponseItem
+import com.example.domain.dto.exercises.ExercisesResponseItem
 
 @Composable
 fun ExercisesByBodyPartContent(
     navHostController: NavHostController,
     bodyPartName: String,
     exercises: LazyPagingItems<ExercisesResponseItem>,
+    onClick: () -> Unit = {}
     ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -25,6 +26,6 @@ fun ExercisesByBodyPartContent(
         )
 
         // Display exercises in a LazyColumn
-        ExercisesLazyColumn(exercises = exercises)
+        ExercisesLazyColumn(exercises = exercises, onClick =onClick )
     }
 }

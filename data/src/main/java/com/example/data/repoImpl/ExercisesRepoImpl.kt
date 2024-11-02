@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.data.paging.ExercisePagingSource
 import com.example.data.remote.ApiService
-import com.example.domain.dto.exercises.ex2.ExercisesResponseItem
+import com.example.domain.dto.exercises.ExercisesResponseItem
 import com.example.domain.repo.ExercisesRepo
 import kotlinx.coroutines.flow.Flow
 

@@ -3,7 +3,7 @@ package com.example.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.data.remote.ApiService
-import com.example.domain.dto.exercises.ex2.ExercisesResponseItem
+import com.example.domain.dto.exercises.ExercisesResponseItem
 
 
 

@@ -1,8 +1,10 @@
 package com.example.gymforce.di
 
 import com.example.domain.repo.BodyPartListRepo
+import com.example.domain.repo.ExerciseDetailsRepo
 import com.example.domain.repo.ExercisesRepo
 import com.example.domain.usecase.GetBodyPartListUseCase
+import com.example.domain.usecase.GetExerciseDetailsUseCase
 import com.example.domain.usecase.GetExercisesUseCase
 import dagger.Module
 import dagger.Provides
@@ -25,6 +27,11 @@ object UseCaseModule {
     @Singleton
     fun provideGetBodyPartListUseCase(bodyPartListRepo: BodyPartListRepo): GetBodyPartListUseCase {
         return GetBodyPartListUseCase(bodyPartListRepo)
+    }
+    @Provides
+    @Singleton
+    fun provideGetExerciseDetailsUseCase(exerciseDetailsRepo: ExerciseDetailsRepo): GetExerciseDetailsUseCase {
+        return GetExerciseDetailsUseCase(exerciseDetailsRepo)
     }
 
 }

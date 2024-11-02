@@ -3,7 +3,7 @@ package com.example.gymforce.ui.screens.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.dto.bodyPartList.BodyPartListResponse
-import com.example.domain.dto.exercises.ex2.ExercisesResponse
+import com.example.domain.dto.exercises.ExercisesResponse
 import com.example.domain.usecase.GetBodyPartListUseCase
 import com.example.gymforce.common.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel

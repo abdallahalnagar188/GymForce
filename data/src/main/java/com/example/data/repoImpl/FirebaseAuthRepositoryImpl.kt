@@ -31,23 +31,26 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
         password: String,
         name: String,
         weight: Double,
-        height: Double
+        height: Double,
+        photoUrl: String? // Add this parameter for the photo URL
     ): Result<FirebaseUser?> {
         return try {
+            // Create the user in Firebase Authentication
             val authResult = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
             val user = authResult.user
 
             user?.let {
-                // Create User object
+                // Create a User data model instance
                 val userData = User(
                     uid = it.uid,
                     name = name,
                     email = email,
                     weight = weight,
-                    height = height
+                    height = height,
+                    photoUrl = photoUrl // Use the provided photoUrl
                 )
 
-                // Save user data to Firestore
+                // Save user data to Firestore in the "users" collection
                 firestore.collection("users").document(it.uid).set(userData).await()
             }
 
@@ -56,6 +59,8 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
             Result.failure(e)
         }
     }
+
+
 
 
     override suspend fun signOut(): Result<Unit> {

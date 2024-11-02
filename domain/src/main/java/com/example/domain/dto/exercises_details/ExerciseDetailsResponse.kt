@@ -1,14 +1,11 @@
-package com.example.domain.dto.exercises.ex2
+package com.example.domain.dto.exercises_details
 
+import kotlinx.parcelize.Parcelize
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
-data class ExercisesResponse(
-
-	@field:SerializedName("ExercisesResponse")
-	val exercisesResponse: List<ExercisesResponseItem>? = null
-)
-
-data class ExercisesResponseItem(
+@Parcelize
+data class ExerciseDetailsResponse(
 
 	@field:SerializedName("gifUrl")
 	val gifUrl: String? = null,
@@ -33,4 +30,4 @@ data class ExercisesResponseItem(
 
 	@field:SerializedName("target")
 	val target: String? = null
-)
+) : Parcelable

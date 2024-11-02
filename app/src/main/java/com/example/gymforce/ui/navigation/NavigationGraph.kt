@@ -13,6 +13,7 @@ import com.example.gymforce.R
 import com.example.gymforce.ui.screens.auth.login.LoginScreen
 import com.example.gymforce.ui.screens.auth.regester.RegisterScreen
 import com.example.gymforce.ui.screens.home.HomeScreen
+import com.example.gymforce.ui.screens.home.exercise_details.ExerciseDetailsScreen
 import com.example.gymforce.ui.screens.home.exercises.ExercisesByBodyPartScreen
 import com.example.gymforce.ui.screens.profile.ProfileScreen
 import com.example.gymforce.ui.screens.setting.SettingScreen
@@ -45,6 +46,13 @@ fun NavigationGraph(navController: NavHostController, startDestination: String) 
         ) { backStackEntry ->
             val bodyPartName = backStackEntry.arguments?.getString("bodyPartName") ?: ""
             ExercisesByBodyPartScreen(bodyPartName, navController)
+        }
+        composable(
+            route = "ExerciseDetailsScreen/{exerciseId}",
+            arguments = listOf(navArgument("exerciseId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val exerciseId = backStackEntry.arguments?.getString("exerciseId") ?: ""
+            ExerciseDetailsScreen(exerciseId, navController)
         }
 
         // Login screen
