@@ -74,11 +74,12 @@ fun LoginScreen(navController: NavHostController, viewModel: LoginViewModel = hi
             onClick = {
                 viewModel.signIn(email, password) // Trigger login
             },
-            modifier = Modifier.fillMaxWidth().height(50.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = colorResource(id = R.color.green),
-                contentColor = Color.Black
+                backgroundColor = colorResource(id = R.color.green), contentColor = Color.Black
             ),
             enabled = email.isNotEmpty() && password.isNotEmpty() && authState !is UiState.Loading
         ) {

@@ -16,9 +16,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/icon_app"
+        android:icon="@drawable/gym"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/icon_app"
+        android:roundIcon="@drawable/gym"
         android:supportsRtl="true"
         android:theme="@style/Theme.GymForce"
         tools:targetApi="31">

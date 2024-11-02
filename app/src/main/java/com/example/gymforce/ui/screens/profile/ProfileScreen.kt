@@ -41,7 +41,12 @@ fun ProfileScreen(
             userImageUrl = userImageUrl?:"no image",
             onSignOut = {
                 viewModel.signOut() // Call the sign-out function
-                navController.navigate("Login")
+                navController.navigate("Login"){
+                    popUpTo("Profile"){
+                        inclusive = true
+                    }
+                }
+
                 // Optionally, navigate to login screen here after sign-out
             }
         )

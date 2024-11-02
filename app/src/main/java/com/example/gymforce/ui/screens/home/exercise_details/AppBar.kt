@@ -60,7 +60,7 @@ fun AppBar(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "$exerciseId Exercises",
+                text = exerciseId,
                 color = Color.White,
                 fontFamily = fontBold,
                 fontSize = 18.sp,

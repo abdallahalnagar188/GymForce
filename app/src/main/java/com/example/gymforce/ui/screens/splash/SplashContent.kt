@@ -16,7 +16,7 @@ import com.example.gymforce.R
 @Composable
 fun SplashContent() {
     // Load Lottie animation from the raw resource directory
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.logo))
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.amimation_for_splash))
 
     // Set up the progress for the animation, loop indefinitely
     val progress by animateLottieCompositionAsState(
@@ -27,13 +27,13 @@ fun SplashContent() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = colorResource(id = R.color.black_low)),
+            .background(color = colorResource(id = R.color.baby_blue)),
         contentAlignment = Alignment.Center // Center the content in the Box
     ) {
         LottieAnimation(
             composition = composition,
             progress = progress,
-            modifier = Modifier.size(160.dp).background(color = colorResource(id = R.color.transparent))
+            modifier = Modifier.size(260.dp).background(color = colorResource(id = R.color.transparent))
             .align(Alignment.Center)
         )
     }

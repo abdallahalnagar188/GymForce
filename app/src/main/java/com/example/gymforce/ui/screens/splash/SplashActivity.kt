@@ -21,7 +21,7 @@ class SplashActivity : ComponentActivity() {
                     val intent = Intent(this@SplashActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()
-                },2200)
+                },2800)
                 SplashContent()
             }
         }

@@ -36,7 +36,7 @@ fun BodyPartCard(
     ) {
         Box(
             modifier = Modifier
-                .background(color = colorResource(R.color.black))
+                .background(color = colorResource(R.color.baby_blue))
                 .padding(16.dp) // Padding inside the card
         ) {
             Text(

@@ -20,9 +20,8 @@ fun MainScreenView(navController: NavHostController, startDestination: String) {
         "Login",
         "Register",
         "ExercisesByBodyPartScreen/{bodyPartName}",
-        "ExerciseDetailsScreen/{exerciseId}"
-
-        // Add more routes here as needed
+        "ExerciseDetailsScreen/{exerciseId}",
+        "Onboarding" // Hide bottom bar on the onboarding screen
     )
 
     val shouldShowBottomBar = currentRoute !in hideBottomBarRoutes
@@ -37,4 +36,5 @@ fun MainScreenView(navController: NavHostController, startDestination: String) {
         NavigationGraph(navController = navController, startDestination = startDestination)
     }
 }
+
 

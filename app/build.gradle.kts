@@ -86,6 +86,8 @@ dependencies {
     implementation (libs.play.services.auth) // or appropriate service you need
 
     implementation ("com.google.firebase:firebase-firestore-ktx:24.6.0")
+    implementation ("com.google.accompanist:accompanist-pager:0.29.0-alpha")
+
 
     implementation ("androidx.navigation:navigation-compose:2.7.7")
     implementation("androidx.compose.material:material:1.4.2")

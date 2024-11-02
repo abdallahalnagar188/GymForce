@@ -15,6 +15,7 @@ import com.example.gymforce.ui.screens.auth.regester.RegisterScreen
 import com.example.gymforce.ui.screens.home.HomeScreen
 import com.example.gymforce.ui.screens.home.exercise_details.ExerciseDetailsScreen
 import com.example.gymforce.ui.screens.home.exercises.ExercisesByBodyPartScreen
+import com.example.gymforce.ui.screens.onboarding.OnboardingScreen
 import com.example.gymforce.ui.screens.profile.ProfileScreen
 import com.example.gymforce.ui.screens.setting.SettingScreen
 import com.example.gymforce.ui.screens.tools.ToolsScreen
@@ -24,45 +25,57 @@ fun NavigationGraph(navController: NavHostController, startDestination: String) 
     NavHost(
         navController = navController,
         startDestination = startDestination,
-        modifier = Modifier.background(color = colorResource(id = R.color.black))
+        modifier = Modifier.background(color = colorResource(id = R.color.baby_blue))
     ) {
+//        // Splash screen
+//        composable(Screen.Splash.route) {
+//            SplashScreen { nextDestination ->
+//                navController.navigate(nextDestination) {
+//                    popUpTo(Screen.Splash.route) { inclusive = true }
+//                }
+//            }
+//        }
+
+        // Onboarding screen
+        composable(Screen.Onboarding.route) {
+            OnboardingScreen {
+                navController.navigate(Screen.Home.route) {
+                    popUpTo(Screen.Onboarding.route) { inclusive = true }
+                }
+            }
+        }
+
         // Bottom navigation screens
-        composable(BottomNavItem.Setting.screenRoute) {
-            SettingScreen()
-        }
-        composable(BottomNavItem.Home.screenRoute) {
-            HomeScreen(navController)
-        }
-        composable(BottomNavItem.Tools.screenRoute) {
-            ToolsScreen(navController)
-        }
-        composable(BottomNavItem.Profile.screenRoute) {
-            ProfileScreen(navController)
+        composable(BottomNavItem.Setting.screenRoute) { SettingScreen() }
+        composable(BottomNavItem.Home.screenRoute) { HomeScreen(navController) }
+        composable(BottomNavItem.Tools.screenRoute) { ToolsScreen(navController) }
+        composable(BottomNavItem.Profile.screenRoute) { ProfileScreen(navController) }
+
+        // Exercises screens
+        composable(
+            route = Screen.ExercisesByBodyPartScreen.route,
+            arguments = listOf(navArgument(Screen.ExercisesByBodyPartScreen.argument ?: "") {
+                type = NavType.StringType
+            })
+        ) { backStackEntry ->
+            val bodyPartName = backStackEntry.arguments?.getString(Screen.ExercisesByBodyPartScreen.argument) ?: ""
+            ExercisesByBodyPartScreen(bodyPartName, navController)
         }
 
         composable(
-            route = "ExercisesByBodyPartScreen/{bodyPartName}",
-            arguments = listOf(navArgument("bodyPartName") { type = NavType.StringType })
+            route = Screen.ExerciseDetailsScreen.route,
+            arguments = listOf(navArgument(Screen.ExerciseDetailsScreen.argument ?: "") {
+                type = NavType.StringType
+            })
         ) { backStackEntry ->
-            val bodyPartName = backStackEntry.arguments?.getString("bodyPartName") ?: ""
-            ExercisesByBodyPartScreen(bodyPartName, navController)
-        }
-        composable(
-            route = "ExerciseDetailsScreen/{exerciseId}",
-            arguments = listOf(navArgument("exerciseId") { type = NavType.StringType })
-        ) { backStackEntry ->
-            val exerciseId = backStackEntry.arguments?.getString("exerciseId") ?: ""
+            val exerciseId = backStackEntry.arguments?.getString(Screen.ExerciseDetailsScreen.argument) ?: ""
             ExerciseDetailsScreen(exerciseId, navController)
         }
 
-        // Login screen
-        composable("Login") {
-            LoginScreen(navController)
-        }
-
-        // Register screen
-        composable("Register") {
-            RegisterScreen(navController)
-        }
+        // Authentication screens
+        composable(Screen.Login.route) { LoginScreen(navController) }
+        composable(Screen.Register.route) { RegisterScreen(navController) }
     }
 }
+
+

@@ -18,9 +18,7 @@ fun ExercisesByBodyPartScreen(
 
     val exercises = viewModel.exercisesFlow.collectAsLazyPagingItems()
 
-    ExercisesByBodyPartContent(
-        navHostController, bodyPartName, exercises,
-    )
+    ExercisesByBodyPartContent(navHostController, bodyPartName, exercises,)
 }
 
 
