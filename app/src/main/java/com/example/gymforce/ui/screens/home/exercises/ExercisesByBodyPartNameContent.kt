@@ -14,7 +14,6 @@ fun ExercisesByBodyPartContent(
     navHostController: NavHostController,
     bodyPartName: String,
     exercises: LazyPagingItems<ExercisesResponseItem>,
-    onClick: () -> Unit = {}
     ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -26,6 +25,8 @@ fun ExercisesByBodyPartContent(
         )
 
         // Display exercises in a LazyColumn
-        ExercisesLazyColumn(exercises = exercises, onClick =onClick )
+        ExercisesLazyColumn(exercises = exercises, onClick = {exerciseId->
+            navHostController.navigate("ExerciseDetailsScreen/$exerciseId")
+        } )
     }
 }

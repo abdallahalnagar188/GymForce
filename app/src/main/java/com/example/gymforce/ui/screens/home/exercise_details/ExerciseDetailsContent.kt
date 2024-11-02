@@ -9,18 +9,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.TextUnit
+import androidx.navigation.NavHostController
 import com.example.gymforce.common.fontBold
 
 @Composable
-fun ExerciseDetailsContent() {
+fun ExerciseDetailsContent(
+    exerciseId: String,
+    navHostController: NavHostController
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
+        AppBar(
+            navHostController = navHostController,
+            exerciseId = exerciseId
+        )
         Text(
-            text = "Exercise Details",
+            text = exerciseId,
             color = Color.White,
             fontFamily = fontBold,
             fontSize = TextUnit.Unspecified

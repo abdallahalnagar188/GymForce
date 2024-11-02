@@ -18,7 +18,7 @@ import com.example.gymforce.ui.commonUi.ErrorItem
 @Composable
 fun ExercisesLazyColumn(
     exercises: LazyPagingItems<ExercisesResponseItem>,
-    onClick: () -> Unit = {}
+    onClick: (String) -> Unit // Accept exercise ID as a parameter
 ) {
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -34,7 +34,9 @@ fun ExercisesLazyColumn(
             items(exercises.itemCount) { index ->
                 val exerciseItem = exercises[index]
                 exerciseItem?.let {
-                    ExercisesCardItem(exerciseItem = it, onClick = onClick)
+                    ExercisesCardItem(exerciseItem = it, onClick = {
+                        onClick(it.id?:"1") // Pass the clicked item's ID
+                    })
                 }
             }
 

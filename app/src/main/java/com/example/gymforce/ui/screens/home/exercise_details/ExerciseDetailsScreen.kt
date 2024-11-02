@@ -9,7 +9,10 @@ fun ExerciseDetailsScreen(
     exerciseId: String,
     navController: NavHostController,
 ) {
-    ExerciseDetailsContent()
+    ExerciseDetailsContent(
+        exerciseId = exerciseId,
+        navHostController = navController
+    )
 
 
 }
