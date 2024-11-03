@@ -27,25 +27,21 @@ fun NavigationGraph(navController: NavHostController, startDestination: String) 
         startDestination = startDestination,
         modifier = Modifier.background(color = colorResource(id = R.color.baby_blue))
     ) {
-//        // Splash screen
-//        composable(Screen.Splash.route) {
-//            SplashScreen { nextDestination ->
-//                navController.navigate(nextDestination) {
-//                    popUpTo(Screen.Splash.route) { inclusive = true }
-//                }
-//            }
-//        }
 
         // Onboarding screen
         composable(Screen.Onboarding.route) {
-            OnboardingScreen {
-                navController.navigate(Screen.Home.route) {
+            OnboardingScreen(onOnboardingComplete = {
+                navController.navigate(Screen.Login.route) {
                     popUpTo(Screen.Onboarding.route) { inclusive = true }
                 }
-            }
+            })
         }
 
-        // Bottom navigation screens
+        // Authentication screens
+        composable(Screen.Login.route) { LoginScreen(navController) }
+        composable(Screen.Register.route) { RegisterScreen(navController) }
+
+        // Home and bottom navigation screens
         composable(BottomNavItem.Setting.screenRoute) { SettingScreen() }
         composable(BottomNavItem.Home.screenRoute) { HomeScreen(navController) }
         composable(BottomNavItem.Tools.screenRoute) { ToolsScreen(navController) }
@@ -54,9 +50,7 @@ fun NavigationGraph(navController: NavHostController, startDestination: String) 
         // Exercises screens
         composable(
             route = Screen.ExercisesByBodyPartScreen.route,
-            arguments = listOf(navArgument(Screen.ExercisesByBodyPartScreen.argument ?: "") {
-                type = NavType.StringType
-            })
+            arguments = listOf(navArgument(Screen.ExercisesByBodyPartScreen.argument?:"") { type = NavType.StringType })
         ) { backStackEntry ->
             val bodyPartName = backStackEntry.arguments?.getString(Screen.ExercisesByBodyPartScreen.argument) ?: ""
             ExercisesByBodyPartScreen(bodyPartName, navController)
@@ -64,18 +58,13 @@ fun NavigationGraph(navController: NavHostController, startDestination: String) 
 
         composable(
             route = Screen.ExerciseDetailsScreen.route,
-            arguments = listOf(navArgument(Screen.ExerciseDetailsScreen.argument ?: "") {
-                type = NavType.StringType
-            })
+            arguments = listOf(navArgument(Screen.ExerciseDetailsScreen.argument?:"") { type = NavType.StringType })
         ) { backStackEntry ->
             val exerciseId = backStackEntry.arguments?.getString(Screen.ExerciseDetailsScreen.argument) ?: ""
             ExerciseDetailsScreen(exerciseId, navController)
         }
-
-        // Authentication screens
-        composable(Screen.Login.route) { LoginScreen(navController) }
-        composable(Screen.Register.route) { RegisterScreen(navController) }
     }
 }
+
 
 

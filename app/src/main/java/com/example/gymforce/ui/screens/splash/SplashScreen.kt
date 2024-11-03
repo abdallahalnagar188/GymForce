@@ -1,11 +1,9 @@
 package com.example.gymforce.ui.screens.splash
 
-import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.example.gymforce.ui.navigation.BottomNavItem
 import com.example.gymforce.ui.navigation.Screen
-import com.example.gymforce.ui.screens.isOnboardingCompleted
 import kotlinx.coroutines.delay
 
 @Composable

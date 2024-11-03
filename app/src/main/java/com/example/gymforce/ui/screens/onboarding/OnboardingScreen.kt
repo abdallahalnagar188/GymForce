@@ -1,6 +1,5 @@
 package com.example.gymforce.ui.screens.onboarding
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,7 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -24,13 +23,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.example.gymforce.R
-import com.example.gymforce.ui.screens.setOnboardingCompleted
+import com.example.gymforce.utils.OnboardingPreferences.setOnboardingCompleted
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 
 @Composable
-fun OnboardingScreen(onFinish: () -> Unit) {
+fun OnboardingScreen(onOnboardingComplete: () -> Unit) {
     val pagerState = rememberPagerState()
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
@@ -59,7 +58,7 @@ fun OnboardingScreen(onFinish: () -> Unit) {
             // Indicators
             Row {
                 onboardingPages.indices.forEach { index ->
-                    val color = if (pagerState.currentPage == index) Color.Blue else Color.Gray
+                    val color = if (pagerState.currentPage == index) colorResource(R.color.green) else Color.Gray
                     Box(
                         modifier = Modifier
                             .padding(horizontal = 4.dp)
@@ -69,22 +68,30 @@ fun OnboardingScreen(onFinish: () -> Unit) {
                 }
             }
 
-            // Skip or Finish button
-            Button(modifier = Modifier.padding(end = 16.dp),
+            // Next or Finish button
+            Button(
+                modifier = Modifier.padding(end = 16.dp),
                 shape = RoundedCornerShape(8.dp),
-                colors = androidx.compose.material3.ButtonDefaults.buttonColors(
-                    containerColor = Color.Blue,
-                    contentColor = Color.White
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = colorResource(R.color.green),
+                    contentColor = colorResource(R.color.baby_blue)
                 ),
                 onClick = {
-                    setOnboardingCompleted(context) // Set onboarding as completed
-                    onFinish() // Navigate to login or home screen
+                    if (pagerState.currentPage == onboardingPages.size - 1) {
+                        // Set onboarding as completed on the last page
+                        setOnboardingCompleted(context)
+                        onOnboardingComplete()
+                    } else {
+                        coroutineScope.launch {
+                            pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                        }
+                    }
                 }
             ) {
-
                 Text(if (pagerState.currentPage == onboardingPages.size - 1) "Finish" else "Next")
             }
         }
     }
 }
+
 
