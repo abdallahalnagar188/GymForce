@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.navigation.compose.rememberNavController
 import com.example.domain.repo.AuthRepository
 import com.example.gymforce.ui.navigation.Screen
-import com.example.gymforce.utils.OnboardingPreferences
+import com.example.gymforce.common.OnboardingPreferences.isOnboardingCompleted
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
 
             // Determine the starting destination based on onboarding and login status
             val startDestination = when {
-                !isOnboardingCompleted() -> Screen.Onboarding.route // Start with Onboarding if not completed
+                !isOnboardingCompleted(this) -> Screen.Onboarding.route // Start with Onboarding if not completed
                 authRepository.getCurrentUser() != null -> Screen.Home.route // Start with Home if user is logged in
                 else -> Screen.Login.route // Otherwise, start with Login
             }
@@ -33,10 +33,10 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun isOnboardingCompleted(): Boolean {
-        val preferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
-        return preferences.getBoolean("onboarding_completed", false)
-    }
+//    private fun isOnboardingCompleted(): Boolean {
+//        val preferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
+//        return preferences.getBoolean("onboarding_completed", false)
+//    }
 }
 
 

@@ -23,7 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.example.gymforce.R
-import com.example.gymforce.utils.OnboardingPreferences.setOnboardingCompleted
+import com.example.gymforce.common.OnboardingPreferences.setOnboardingCompleted
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch

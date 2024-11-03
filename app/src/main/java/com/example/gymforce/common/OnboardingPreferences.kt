@@ -1,7 +1,6 @@
-package com.example.gymforce.utils
+package com.example.gymforce.common
 
 import android.content.Context
-import android.content.SharedPreferences
 
 object OnboardingPreferences {
 
