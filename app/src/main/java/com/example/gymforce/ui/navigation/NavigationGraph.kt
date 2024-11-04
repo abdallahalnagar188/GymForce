@@ -50,17 +50,23 @@ fun NavigationGraph(navController: NavHostController, startDestination: String) 
         // Exercises screens
         composable(
             route = Screen.ExercisesByBodyPartScreen.route,
-            arguments = listOf(navArgument(Screen.ExercisesByBodyPartScreen.argument?:"") { type = NavType.StringType })
+            arguments = listOf(navArgument(Screen.ExercisesByBodyPartScreen.argument ?: "") {
+                type = NavType.StringType
+            })
         ) { backStackEntry ->
-            val bodyPartName = backStackEntry.arguments?.getString(Screen.ExercisesByBodyPartScreen.argument) ?: ""
+            val bodyPartName =
+                backStackEntry.arguments?.getString(Screen.ExercisesByBodyPartScreen.argument) ?: ""
             ExercisesByBodyPartScreen(bodyPartName, navController)
         }
 
         composable(
             route = Screen.ExerciseDetailsScreen.route,
-            arguments = listOf(navArgument(Screen.ExerciseDetailsScreen.argument?:"") { type = NavType.StringType })
+            arguments = listOf(navArgument(Screen.ExerciseDetailsScreen.argument ?: "") {
+                type = NavType.StringType
+            })
         ) { backStackEntry ->
-            val exerciseId = backStackEntry.arguments?.getString(Screen.ExerciseDetailsScreen.argument) ?: ""
+            val exerciseId =
+                backStackEntry.arguments?.getString(Screen.ExerciseDetailsScreen.argument) ?: ""
             ExerciseDetailsScreen(exerciseId, navController)
         }
     }

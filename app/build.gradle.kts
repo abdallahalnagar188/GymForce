@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.gymforce"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.firebase.storage.ktx)
+    implementation(libs.androidx.foundation.layout.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -189,6 +190,10 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.5.0")
     implementation("androidx.navigation:navigation-compose:2.7.0")
     implementation("androidx.paging:paging-compose:3.2.0")
+//    implementation (libs.datetime)
+    implementation ("io.github.vanpra.compose-material-dialogs:datetime:0.9.0")
+
+
 
     // For Kotlin coroutines support
     implementation ("androidx.paging:paging-common-ktx:3.2.0")
@@ -196,6 +201,7 @@ dependencies {
     implementation( libs.accompanist.pager )// Check for the latest version
     implementation( libs.accompanist.pager.indicators)
     implementation ("androidx.paging:paging-compose:1.0.0-alpha19")
+    implementation ("co.yml:ytooltip:1.0.0")
 
     implementation( libs.androidx.paging.compose)
     implementation (libs.paging.runtime)

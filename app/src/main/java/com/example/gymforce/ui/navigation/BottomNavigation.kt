@@ -72,7 +72,7 @@ fun MyBottomNavigation(navController: NavController) {
                         )
                     }
                 },
-             //   label = { /* Hide label for unselected items */ },
+                //   label = { /* Hide label for unselected items */ },
                 selectedContentColor = colorResource(R.color.green),
                 unselectedContentColor = Color.Gray,
                 alwaysShowLabel = false, // Hide labels for unselected items

@@ -18,7 +18,7 @@ import javax.inject.Singleton
 object NetworkModule {
 
     private const val BASE_URL = "https://exercisedb.p.rapidapi.com/"
-    private const val RAPIDAPI_KEY = "7a65a09525mshaf42380fc34ca7dp181720jsn51f33c3bc30f"
+    private const val RAPIDAPI_KEY = "cf20e278e2msh0b5bc80b560eaaep1ea50cjsn16edf3c9867b"
     private const val RAPIDAPI_HOST = "exercisedb.p.rapidapi.com"
 
     @Provides
