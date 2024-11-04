@@ -2,6 +2,7 @@ package com.example.gymforce.ui.screens.auth.regester
 
 import android.annotation.SuppressLint
 import android.net.Uri
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -26,6 +28,7 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -47,7 +50,6 @@ import com.example.gymforce.ui.commonUi.AppTextField
 import com.example.gymforce.ui.commonUi.CircularProgressAnimated
 import com.example.gymforce.ui.commonUi.PassWordAppTextField
 
-@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun RegisterScreen(
     navController: NavHostController,
@@ -63,51 +65,30 @@ fun RegisterScreen(
     // Image picker launcher
     val imagePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent(),
-        onResult = { uri ->
-            imageUri = uri // Update the image URI
-        }
+        onResult = { uri -> imageUri = uri }
     )
 
     val scrollState = rememberScrollState()
-    val authState = viewModel.authState.value
+    val authState by viewModel.authState.collectAsState() // Improved state collection
 
     Column(
         modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth()
+            .fillMaxSize()
             .displayCutoutPadding()
             .padding(16.dp)
             .verticalScroll(scrollState),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Display the image if selected
-        imageUri?.let { uri ->
-            Image(
-                painter = rememberImagePainter(uri),
-                contentDescription = "Selected Image",
-                modifier = Modifier
-                    .size(100.dp)
-                    .clip(CircleShape)
-                    .border(2.dp, Color.Gray, CircleShape)
-                    .clickable { imagePickerLauncher.launch("image/*") } // Launch picker
-            )
-        } ?: run {
-            // Placeholder if no image is selected
-            Box(
-                modifier = Modifier
-                    .size(100.dp)
-                    .border(2.dp, Color.Gray, CircleShape)
-                    .clickable { imagePickerLauncher.launch("image/*") } // Launch picker
-                    .padding(16.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text("Select Photo")
-            }
-        }
+        // Image picker composable
+        ImagePicker(
+            imageUri = imageUri,
+            onClick = { imagePickerLauncher.launch("image/*") }
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Input fields
         AppTextField(
             value = name,
             label = "Name",
@@ -143,6 +124,7 @@ fun RegisterScreen(
         )
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Register button
         Button(
             onClick = {
                 val parsedWeight = weight.toDoubleOrNull()
@@ -157,6 +139,8 @@ fun RegisterScreen(
                         height = parsedHeight,
                         imageUri = imageUri // Pass image URI to register function
                     )
+                } else {
+                    Log.e("RegisterScreen", "Invalid weight or height")
                 }
             },
             modifier = Modifier
@@ -180,19 +164,48 @@ fun RegisterScreen(
         }
     }
 
+    // Handle successful registration
     if (authState is UiState.Success) {
         LaunchedEffect(Unit) {
-            // Clear fields on successful registration
+            Log.e("RegisterScreen", "Registration successful")
+            // Clear fields after success
             name = ""
             email = ""
             password = ""
             weight = ""
             height = ""
-            imageUri = null // Clear image URI
+            imageUri = null
 
+            // Navigate to login screen
             navController.navigate("Login") {
                 popUpTo("Register") { inclusive = true }
             }
+        }
+    }
+}
+
+@Composable
+fun ImagePicker(imageUri: Uri?, onClick: () -> Unit) {
+    imageUri?.let {
+        Image(
+            painter = rememberImagePainter(it),
+            contentDescription = "Selected Image",
+            modifier = Modifier
+                .size(100.dp)
+                .clip(CircleShape)
+                .border(2.dp, Color.Gray, CircleShape)
+                .clickable(onClick = onClick)
+        )
+    } ?: run {
+        Box(
+            modifier = Modifier
+                .size(100.dp)
+                .border(2.dp, Color.Gray, CircleShape)
+                .clickable(onClick = onClick)
+                .padding(16.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("Select Photo")
         }
     }
 }

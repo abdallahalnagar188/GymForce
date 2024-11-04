@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.gymforce.ui.commonUi.CircularProgressAnimated
+import com.example.gymforce.ui.navigation.Screen
 
 @Composable
 fun ProfileScreen(
@@ -41,8 +42,8 @@ fun ProfileScreen(
             userImageUrl = userImageUrl?:"no image",
             onSignOut = {
                 viewModel.signOut() // Call the sign-out function
-                navController.navigate("Login"){
-                    popUpTo("Profile"){
+                navController.navigate(Screen.Login.route){
+                    popUpTo(Screen.Profile.route){
                         inclusive = true
                     }
                 }
