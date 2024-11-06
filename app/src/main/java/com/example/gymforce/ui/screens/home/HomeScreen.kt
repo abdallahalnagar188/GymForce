@@ -8,7 +8,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 
 @Composable
-fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(
+    navHostController: NavHostController,
+    viewModel: HomeViewModel = hiltViewModel()) {
     // Fetch data only once
     LaunchedEffect(Unit) {
         viewModel.getBodyPartList()
