@@ -32,11 +32,6 @@ class MainActivity : ComponentActivity() {
             MainScreenView(navController = navController, startDestination = startDestination)
         }
     }
-
-//    private fun isOnboardingCompleted(): Boolean {
-//        val preferences = getSharedPreferences("app_prefs", MODE_PRIVATE)
-//        return preferences.getBoolean("onboarding_completed", false)
-//    }
 }
 
 

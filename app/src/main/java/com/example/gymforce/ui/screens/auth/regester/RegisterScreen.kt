@@ -1,6 +1,5 @@
 package com.example.gymforce.ui.screens.auth.regester
 
-import android.annotation.SuppressLint
 import android.net.Uri
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -13,7 +12,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.displayCutoutPadding
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -49,6 +47,9 @@ import com.example.gymforce.common.fontBold
 import com.example.gymforce.ui.commonUi.AppTextField
 import com.example.gymforce.ui.commonUi.CircularProgressAnimated
 import com.example.gymforce.ui.commonUi.PassWordAppTextField
+import com.example.gymforce.ui.commonUi.ShowToast
+import com.example.gymforce.ui.navigation.Screen
+
 
 @Composable
 fun RegisterScreen(
@@ -166,6 +167,7 @@ fun RegisterScreen(
 
     // Handle successful registration
     if (authState is UiState.Success) {
+        ShowToast(message = "Registration successful")
         LaunchedEffect(Unit) {
             Log.e("RegisterScreen", "Registration successful")
             // Clear fields after success
@@ -177,8 +179,8 @@ fun RegisterScreen(
             imageUri = null
 
             // Navigate to login screen
-            navController.navigate("Login") {
-                popUpTo("Register") { inclusive = true }
+            navController.navigate(Screen.Login.route) {
+                popUpTo(Screen.Register.route) { inclusive = true }
             }
         }
     }

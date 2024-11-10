@@ -21,7 +21,7 @@ fun MainScreenView(navController: NavHostController, startDestination: String) {
         "Register",
         "ExercisesByBodyPartScreen/{bodyPartName}",
         "ExerciseDetailsScreen/{exerciseId}",
-        "Onboarding" // Hide bottom bar on the onboarding screen
+        "Onboarding"
     )
 
     val shouldShowBottomBar = currentRoute !in hideBottomBarRoutes
