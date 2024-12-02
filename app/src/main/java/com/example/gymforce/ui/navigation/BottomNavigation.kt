@@ -26,7 +26,7 @@ import com.example.gymforce.R
 fun MyBottomNavigation(navController: NavController) {
     val items = listOf(
         BottomNavItem.Home,
-        BottomNavItem.Tools,
+     //   BottomNavItem.Tools,
         BottomNavItem.Setting,
         BottomNavItem.Profile
     )

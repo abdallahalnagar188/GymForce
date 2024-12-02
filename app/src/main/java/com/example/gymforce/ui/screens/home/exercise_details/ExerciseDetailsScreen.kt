@@ -13,6 +13,4 @@ fun ExerciseDetailsScreen(
         exerciseId = exerciseId,
         navHostController = navController
     )
-
-
 }
