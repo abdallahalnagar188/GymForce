@@ -60,7 +60,8 @@ fun ProfileScreen(
                 navController.navigate(Screen.Login.route) {
                     popUpTo(Screen.Profile.route) { inclusive = true }
                 }
-            }
+            },
+            navHostController = navController
         )
     }
 
