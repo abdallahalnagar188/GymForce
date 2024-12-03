@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">GymForce</string>
     <string name="title_activity_splash">SplashActivity</string>
+    <string name="ageLable">Age</string>
+    <string name="gender">Gender</string>
+    <string name="healthProblem">Health Problem</string>
+    <string name="problemToSolve">Problem To Solve</string>
+    <string name="user_type">User Type</string>
+    <string name="old">Old</string>
+    <string name="children">Children</string>
+    <string name="teenagers">Teenagers</string>
+    <string name="adults">Adults</string>
+    <string name="Categories">Categories</string>
+    <string name="HealthForm">Health Form</string>
+    <string name="home">Home</string>
+    <string name="setting">Settings</string>
+    <string name="tools">Tools</string>
+    <string name="profile">Profile</string>
+    <string name="select_language">Select Language</string>
+    <string name="select_problem_to_solve">Select Problem to Solve (Optional)</string>
 </resources>

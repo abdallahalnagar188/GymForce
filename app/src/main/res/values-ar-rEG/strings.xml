@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GymForce</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="ageLable">العمر</string>
+    <string name="gender">الجنس</string>
+    <string name="healthProblem">مشكلة صحية</string>
+    <string name="problemToSolve">المشكلة التي تريد حلها</string>
+    <string name="user_type">نوع المستخدم</string>
+    <string name="old">كبار السن</string>
+    <string name="children">الأطفال</string>
+    <string name="teenagers">المراهقين</string>
+    <string name="adults">البالغين</string>
+    <string name="Categories">الفئات</string>
+    <string name="HealthForm">نموذج صحي</string>
+    <string name="home">الصفحة الرئيسية</string>
+    <string name="setting">الإعدادات</string>
+    <string name="tools">الأدوات</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="select_language">Select Language</string>
+    <string name="select_problem_to_solve">Select Problem to Solve (Optional)</string>
+
+</resources>

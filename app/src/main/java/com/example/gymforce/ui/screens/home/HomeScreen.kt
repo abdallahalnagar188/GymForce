@@ -15,11 +15,11 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
     }
 
     // Collect the state from the ViewModel
-    val bodyPartList by viewModel.bodyPartList.collectAsState()
+    //val bodyPartList by viewModel.bodyPartList.collectAsState()
 
 
     // Pass the exercises data to ExercisesContent to render the UI based on the state
-    HomeContent(navHostController, bodyPartList)
+    HomeContent(navHostController)
 
 }
 

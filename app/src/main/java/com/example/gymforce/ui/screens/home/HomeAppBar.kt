@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -33,34 +34,33 @@ fun HomeAppBar(
     navHostController: NavHostController,
     onClick: () -> Unit = {},
     ivProfileId: Int,
-    imageUrl: String? = null
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween, // Space items apart
         modifier = Modifier
             .fillMaxWidth()
-            .height(60.dp)
+            .height(50.dp)
             .background(color = colorResource(R.color.black_low))
-            .padding(horizontal = 8.dp) // Add horizontal padding if needed
+           // .padding(horizontal = 8.dp) // Add horizontal padding if needed
     ) {
         // Profile Icon
-        IconButton(
-            onClick = { onClick() },
-            modifier = Modifier
-                .border(
-                    width = 1.dp,
-                    color = colorResource(R.color.transparent),
-                    shape = CircleShape
-                )
-                .size(36.dp) // Adjust size to balance padding and appearance
-        ) {
-            Icon(
-                painter = painterResource(ivProfileId),
-                contentDescription = "Image Profile",
-                tint = Color.White,
-            )
-        }
+//        IconButton(
+//            onClick = { onClick() },
+//            modifier = Modifier
+//                .border(
+//                    width = 1.dp,
+//                    color = colorResource(R.color.transparent),
+//                    shape = CircleShape
+//                )
+//                .size(36.dp) // Adjust size to balance padding and appearance
+//        ) {
+//            Icon(
+//                painter = painterResource(ivProfileId),
+//                contentDescription = "Image Profile",
+//                tint = Color.White,
+//            )
+//        }
 
         // Centered Text in Box
         Box(
@@ -70,26 +70,26 @@ fun HomeAppBar(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "GymForce",
+                text = stringResource(R.string.app_name),
                 color = Color.White,
                 fontFamily = fontBold,
-                fontSize = 16.sp,
+                fontSize = 22.sp,
                 style = typography.h6,
             )
         }
 
         // Notifications Icon
-        IconButton(
-            onClick = { onClick() },
-            modifier = Modifier
-                .size(32.dp) // Adjust size for a balanced look
-        ) {
-            Icon(
-                imageVector = Icons.Default.Notifications,
-                contentDescription = "Notifications",
-                tint = Color.White
-            )
-        }
+//        IconButton(
+//            onClick = { onClick() },
+//            modifier = Modifier
+//                .size(32.dp) // Adjust size for a balanced look
+//        ) {
+//            Icon(
+//                imageVector = Icons.Default.Notifications,
+//                contentDescription = "Notifications",
+//                tint = Color.White
+//            )
+//        }
     }
 }
 

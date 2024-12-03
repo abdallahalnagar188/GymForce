@@ -12,6 +12,7 @@ import androidx.navigation.navArgument
 import com.example.gymforce.R
 import com.example.gymforce.ui.screens.auth.login.LoginScreen
 import com.example.gymforce.ui.screens.auth.regester.RegisterScreen
+import com.example.gymforce.ui.screens.healthyForm.HealthFormScreen
 import com.example.gymforce.ui.screens.home.HomeScreen
 import com.example.gymforce.ui.screens.home.exercise_details.ExerciseDetailsScreen
 import com.example.gymforce.ui.screens.home.exercises.ExercisesByBodyPartScreen
@@ -19,6 +20,7 @@ import com.example.gymforce.ui.screens.onboarding.OnboardingScreen
 import com.example.gymforce.ui.screens.profile.ProfileScreen
 import com.example.gymforce.ui.screens.setting.SettingScreen
 import com.example.gymforce.ui.screens.tools.ToolsScreen
+import com.example.gymforce.ui.screens.trainersScreen.TrainersScreen
 
 @Composable
 fun NavigationGraph(navController: NavHostController, startDestination: String) {
@@ -46,6 +48,8 @@ fun NavigationGraph(navController: NavHostController, startDestination: String) 
         composable(BottomNavItem.Home.screenRoute) { HomeScreen(navController) }
         composable(BottomNavItem.Tools.screenRoute) { ToolsScreen(navController) }
         composable(BottomNavItem.Profile.screenRoute) { ProfileScreen(navController) }
+        composable(Screen.HealthForm.route) { HealthFormScreen(navController) }
+        composable(Screen.Trainers.route) { TrainersScreen(navController) }
 
         // Exercises screens
         composable(

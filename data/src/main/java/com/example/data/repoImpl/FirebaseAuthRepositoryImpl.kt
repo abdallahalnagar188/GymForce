@@ -30,37 +30,33 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
         email: String,
         password: String,
         name: String,
-        weight: Double,
-        height: Double,
-        photoUrl: String? // Add this parameter for the photo URL
+        gender: String,
+        age: Int,
+        userType: String,
+//        healthProblem: String?,
+//        problemToSolve: String?
     ): Result<FirebaseUser?> {
         return try {
-            // Create the user in Firebase Authentication
             val authResult = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
             val user = authResult.user
-
             user?.let {
-                // Create a User data model instance
                 val userData = User(
                     uid = it.uid,
                     name = name,
                     email = email,
-                    weight = weight,
-                    height = height,
-                    photoUrl = photoUrl // Use the provided photoUrl
+                    gender = gender,
+                    age = age,
+                    userType = userType,
+//                    healthProblem = healthProblem,
+//                    problemToSolve = problemToSolve
                 )
-
-                // Save user data to Firestore in the "users" collection
                 firestore.collection("users").document(it.uid).set(userData).await()
             }
-
             Result.success(user)
         } catch (e: Exception) {
             Result.failure(e)
         }
     }
-
-
 
 
     override suspend fun signOut(): Result<Unit> {

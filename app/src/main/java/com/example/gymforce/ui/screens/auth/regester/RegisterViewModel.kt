@@ -23,42 +23,60 @@ class RegisterViewModel @Inject constructor(
     private val _authState = MutableStateFlow<UiState<FirebaseUser?>>(UiState.Empty)
     val authState: StateFlow<UiState<FirebaseUser?>> = _authState
 
-    fun register(name: String, email: String, password: String, weight: Double, height: Double, imageUri: Uri?) {
+    fun register(
+        name: String,
+        email: String,
+        password: String,
+        gender: String,
+        age: Int,
+        userType: String,
+//        healthProblems: String,
+//        problemToSolve: String
+    ) {
         viewModelScope.launch {
             _authState.value = UiState.Loading
 
-            val result = authRepository.signUpWithEmailAndPassword(email, password, name, weight, height, imageUri?.toString())
+            val result = authRepository.signUpWithEmailAndPassword(
+                email, password, name,
+                gender, age, userType = userType
+                //healthProblems, problemToSolve
+            )
 
             if (result.isSuccess) {
                 val user = result.getOrNull()
                 user?.let {
                     // Upload image and get URL
-                    val imageUrl = imageUri?.let { uri ->
-                        uploadImageToFirebaseStorage(uri, it.uid) // Your method to upload image
-                    }
+//                    val imageUrl = imageUri?.let { uri ->
+//                        uploadImageToFirebaseStorage(uri, it.uid) // Your method to upload image
+//                    }
 
                     val userData = User(
                         uid = it.uid,
                         name = name,
                         email = email,
-                        weight = weight,
-                        height = height,
-                        photoUrl = imageUrl // Include the image URL in User object
+                        gender = gender,
+                        age = age,
+                        userType = userType,
+//                        healthProblem = healthProblems,
+//                        problemToSolve = problemToSolve,
                     )
 
                     val firestoreResult = authRepository.addUserToFirestore(userData)
                     if (firestoreResult.isSuccess) {
                         _authState.value = UiState.Success(user)
                     } else {
-                        _authState.value = UiState.Error(firestoreResult.exceptionOrNull()?.message ?: "Failed to save user data")
+                        _authState.value = UiState.Error(
+                            firestoreResult.exceptionOrNull()?.message ?: "Failed to save user data"
+                        )
                     }
                 }
             } else {
-                _authState.value = UiState.Error(result.exceptionOrNull()?.message ?: "Unknown error during registration")
+                _authState.value = UiState.Error(
+                    result.exceptionOrNull()?.message ?: "Unknown error during registration"
+                )
             }
         }
     }
-
 
 
     // Function to upload image to Firebase Storage

@@ -11,4 +11,8 @@ sealed class Screen(val route: String, val argument: String? = null) {
     data object ExerciseDetailsScreen : Screen("ExerciseDetailsScreen/{exerciseId}", argument = "exerciseId")
     data object Onboarding : Screen("Onboarding")
     data object Splash : Screen("Splash")
+    data object HealthForm : Screen("HealthForm")
+    data object Trainers : Screen("Trainers")
+
+
 }

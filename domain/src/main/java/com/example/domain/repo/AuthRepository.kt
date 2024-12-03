@@ -12,9 +12,11 @@ interface AuthRepository {
         email: String,
         password: String,
         name: String,
-        weight: Double,
-        height: Double,
-        photoUrl: String? // Add this parameter for the photo URL
+        gender: String,
+        age: Int,
+        userType: String,
+//        healthProblem: String?,
+//        problemToSolve: String?,
     ): Result<FirebaseUser?>
 
     suspend fun signOut(): Result<Unit>

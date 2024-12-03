@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.gymforce.ui.navigation.MyBottomNavigation
 import com.example.gymforce.ui.navigation.NavigationGraph
+import com.example.gymforce.ui.navigation.Screen
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -21,7 +22,9 @@ fun MainScreenView(navController: NavHostController, startDestination: String) {
         "Register",
         "ExercisesByBodyPartScreen/{bodyPartName}",
         "ExerciseDetailsScreen/{exerciseId}",
-        "Onboarding"
+        "Onboarding",
+        Screen.HealthForm.route,
+        Screen.Trainers.route
     )
 
     val shouldShowBottomBar = currentRoute !in hideBottomBarRoutes

@@ -16,6 +16,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -25,9 +26,9 @@ import com.example.gymforce.R
 @Composable
 fun MyBottomNavigation(navController: NavController) {
     val items = listOf(
-        BottomNavItem.Home,
-     //   BottomNavItem.Tools,
         BottomNavItem.Setting,
+        BottomNavItem.Home,
+        //   BottomNavItem.Tools,
         BottomNavItem.Profile
     )
     BottomNavigation(
@@ -46,16 +47,19 @@ fun MyBottomNavigation(navController: NavController) {
                             modifier = Modifier
                                 .clip(shape = RoundedCornerShape(20.dp))
                                 .background(colorResource(R.color.green)) // Background for selected item
-                                .padding(horizontal = 10.dp, vertical = 5.dp) // Adjust padding as needed
+                                .padding(
+                                    horizontal = 10.dp,
+                                    vertical = 5.dp
+                                ) // Adjust padding as needed
                         ) {
                             Icon(
                                 painterResource(id = item.icon),
-                                contentDescription = item.title,
+                                contentDescription = stringResource(item.titleRes) ,
                                 modifier = Modifier.size(25.dp), // Icon size
                                 tint = colorResource(R.color.black_low)
                             )
                             Text(
-                                text = item.title,
+                                text = stringResource(item.titleRes),
                                 fontSize = 14.sp, // Font size
                                 color = colorResource(R.color.black_low),
                                 modifier = Modifier.padding(start = 8.dp) // Space between icon and text
@@ -65,7 +69,7 @@ fun MyBottomNavigation(navController: NavController) {
                         // Unselected icon (without label)
                         Icon(
                             painterResource(id = item.icon),
-                            contentDescription = item.title,
+                            contentDescription = stringResource(item.titleRes),
                             modifier = Modifier
                                 .padding(top = 6.dp)
                                 .size(25.dp)
@@ -80,7 +84,7 @@ fun MyBottomNavigation(navController: NavController) {
                 onClick = {
                     if (currentRoute != item.screenRoute) {
                         navController.navigate(item.screenRoute) {
-                            popUpTo(navController.graph.startDestinationRoute?:"home") {
+                            popUpTo(navController.graph.startDestinationRoute ?: "home") {
                                 saveState = true
                             }
                             launchSingleTop = true
