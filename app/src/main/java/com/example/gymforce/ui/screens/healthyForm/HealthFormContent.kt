@@ -17,6 +17,7 @@ import androidx.navigation.NavHostController
 import com.example.gymforce.R
 import com.example.gymforce.ui.commonUi.AppTextField
 import com.example.gymforce.ui.commonUi.CustomAppBar
+import com.example.gymforce.ui.commonUi.GenderSelector
 import com.example.gymforce.ui.navigation.Screen
 import com.example.gymforce.ui.screens.profile.ProfileViewModel
 
@@ -25,7 +26,6 @@ fun HealthFormContent(
     navHostController: NavHostController,
     viewModel: ProfileViewModel = hiltViewModel()
 ) {
-
     val user = viewModel.getCurrentUser()
     val userName by viewModel.userName.collectAsState()
     val email by viewModel.userEmail.collectAsState()
@@ -35,7 +35,9 @@ fun HealthFormContent(
     var age by remember { mutableIntStateOf(0) }
     var healthyProblem by remember { mutableStateOf("") }
     var selectedProblem by remember { mutableStateOf("") }
+    var selectedGender by remember { mutableStateOf("") }
     val problems = listOf("Thin", "Fat")
+    val genders = listOf("Male", "Female")
     var isSubmitting by remember { mutableStateOf(false) }
 
     Scaffold(
@@ -59,46 +61,67 @@ fun HealthFormContent(
                     verticalArrangement = Arrangement.spacedBy(6.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    // Healthy Problem Text Field using AppTextField
-
+                    // Name Text Field
                     AppTextField(
                         value = name,
                         label = stringResource(R.string.name),
                         onValueChange = { name = it },
-                        // leadingIcon = R.drawable.ic_name // Replace with your drawable resource)
                     )
                     Spacer(modifier = Modifier.height(6.dp))
-                    AppTextField(
-                        value = gender,
-                        label = stringResource(R.string.gender),
-                        onValueChange = { gender = it },
-                        // leadingIcon = R.drawable.ic_gender // Replace with your drawable resource
+                    Text(
+                        text = stringResource(R.string.gender),
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.align(Alignment.Start)
                     )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Start,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        genders.forEach { gender ->
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.padding(vertical = 4.dp)
+                            ) {
+                                RadioButton(
+                                    selected = (selectedGender == gender),
+                                    onClick = { selectedGender = gender },
+                                    colors = RadioButtonDefaults.colors(selectedColor = Color.Green)
+                                )
+                                Text(
+                                    text = gender,
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    modifier = Modifier.padding(start = 8.dp)
+                                )
+                            }
+                        }
+                    }
+                    // Gender Selector using Radio Buttons
+
                     Spacer(modifier = Modifier.height(6.dp))
-                    // Age Text Field using AppTextField
+
+                    // Age Text Field
                     AppTextField(
                         value = age.toString(),
                         label = stringResource(R.string.age),
                         onValueChange = { value -> age = value.toIntOrNull() ?: 0 },
-                        // leadingIcon = R.drawable.ic_age
                     )
                     Spacer(modifier = Modifier.height(6.dp))
-                    // Healthy Problem Text Field using AppTextField
+
+                    // Healthy Problem Text Field
                     AppTextField(
                         value = healthyProblem,
                         label = stringResource(R.string.healthProblem),
                         onValueChange = { healthyProblem = it },
-                        // leadingIcon = R.drawable.ic_health // Replace with your drawable resource
                     )
                     Spacer(modifier = Modifier.height(6.dp))
 
-                    // Problem Selector
+                    // Problem Selector using Radio Buttons
                     Text(
                         text = stringResource(R.string.select_problem_to_solve),
                         style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.align(Alignment.Start)
                     )
-
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Start,

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GymForce</string>
+    <string name="app_name">Virtual Coach</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="ageLable">Age</string>
     <string name="gender">Gender</string>

@@ -89,6 +89,9 @@ dependencies {
     implementation ("com.google.firebase:firebase-firestore-ktx:24.6.0")
     implementation ("com.google.accompanist:accompanist-pager:0.29.0-alpha")
 
+//    implementation ("com.google.accompanist:accompanist-glide:0.28.0")
+//    implementation ("com.github.bumptech.glide:glide:4.16.0")
+//    implementation ("com.github.bumptech.glide:compose:1.0.0-alpha.5")
 
     implementation ("androidx.navigation:navigation-compose:2.7.7")
     implementation("androidx.compose.material:material:1.4.2")

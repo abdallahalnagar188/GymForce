@@ -33,16 +33,17 @@ fun ProfileScreen(
     val isLoading by viewModel.isLoading.collectAsState()
     val showToast = remember { mutableStateOf(false) }
 
-    val user = if (userName != null && email != null && age != null && gender != null && userType != null) {
-        User(
-            uid = viewModel.getCurrentUser()?.uid ?: "",
-            name = userName ?: "",
-            email = email ?: "",
-            age = age ?: 0,
-            gender = gender ?: "N/A",
-            userType = userType ?: "N/A"
-        )
-    } else null
+    val user =
+        if (userName != null && email != null && age != null && gender != null && userType != null) {
+            User(
+                uid = viewModel.getCurrentUser()?.uid ?: "",
+                name = userName ?: "",
+                email = email ?: "",
+                age = age ?: 0,
+                gender = gender ?: "N/A",
+                userType = userType ?: "N/A"
+            )
+        } else null
 
     if (isLoading) {
         Box(
@@ -53,7 +54,7 @@ fun ProfileScreen(
         }
     } else {
         ProfileScreenContent(
-            user = user?: User(),
+            user = user ?: User(),
             onSignOut = {
                 viewModel.signOut()
                 showToast.value = true
