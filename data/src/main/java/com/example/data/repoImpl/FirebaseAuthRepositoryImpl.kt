@@ -8,7 +8,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-// Data Layer: FirebaseAuthRepositoryImpl.kt
 class FirebaseAuthRepositoryImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
     private val firestore: FirebaseFirestore
@@ -32,9 +31,7 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
         name: String,
         gender: String,
         age: Int,
-        userType: String,
-//        healthProblem: String?,
-//        problemToSolve: String?
+        userType: String
     ): Result<FirebaseUser?> {
         return try {
             val authResult = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
@@ -46,9 +43,7 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
                     email = email,
                     gender = gender,
                     age = age,
-                    userType = userType,
-//                    healthProblem = healthProblem,
-//                    problemToSolve = problemToSolve
+                    userType = userType
                 )
                 firestore.collection("users").document(it.uid).set(userData).await()
             }
@@ -57,7 +52,6 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
             Result.failure(e)
         }
     }
-
 
     override suspend fun signOut(): Result<Unit> {
         return try {
@@ -73,11 +67,23 @@ class FirebaseAuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addUserToFirestore(user: User): Result<Unit> {
-
         return try {
-            // Save user data to Firestore
             firestore.collection("users").document(user.uid).set(user).await()
             Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    override suspend fun getUserFromFirestore(userId: String): Result<User> {
+        return try {
+            val document = firestore.collection("users").document(userId).get().await()
+            val user = document.toObject(User::class.java)
+            if (user != null) {
+                Result.success(user)
+            } else {
+                Result.failure(Exception("User not found"))
+            }
         } catch (e: Exception) {
             Result.failure(e)
         }

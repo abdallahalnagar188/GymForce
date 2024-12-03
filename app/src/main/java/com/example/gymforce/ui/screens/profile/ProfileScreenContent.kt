@@ -20,15 +20,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.example.domain.models.User
 import com.example.gymforce.R
 import com.example.gymforce.common.fontMedium
 
 @Composable
 fun ProfileScreenContent(
-    userName: String,
-    userHeight: String,
-    userWeight: String,
-    userImageUrl: String?,
+    user: User,
     onSignOut: () -> Unit // Add the sign-out callback
 ) {
     Column(
@@ -37,14 +35,11 @@ fun ProfileScreenContent(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // Display user information
-        Text(text = userName, fontSize = 30.sp, color = Color.White, fontFamily = fontMedium)
-        Text(text = userHeight, fontSize = 30.sp, color = Color.White, fontFamily = fontMedium)
-        Text(text = userWeight, fontSize = 30.sp, color = Color.White, fontFamily = fontMedium)
-        AsyncImage(
-            model = userImageUrl,
-            contentDescription = "User Image",
-            modifier = Modifier.size(100.dp) // Set size for the image
-        )
+        Text(text = user.name, fontSize = 30.sp, color = Color.White, fontFamily = fontMedium)
+        Text(text = user.email, fontSize = 30.sp, color = Color.White, fontFamily = fontMedium)
+        Text(text = user.gender, fontSize = 30.sp, color = Color.White, fontFamily = fontMedium)
+        Text(text = user.age.toString(), fontSize = 30.sp, color = Color.White, fontFamily = fontMedium)
+        Text(text = user.userType, fontSize = 30.sp, color = Color.White, fontFamily = fontMedium)
 
         // Sign Out Button
         Button(

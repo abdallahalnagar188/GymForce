@@ -18,4 +18,9 @@
     <string name="profile">Profile</string>
     <string name="select_language">Select Language</string>
     <string name="select_problem_to_solve">Select Problem to Solve (Optional)</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="age">Age</string>
+    <string name="trainers">Trainers</string>
 </resources>

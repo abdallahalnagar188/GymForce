@@ -12,14 +12,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.gymforce.R
 import com.example.gymforce.ui.commonUi.AppTextField
 import com.example.gymforce.ui.commonUi.CustomAppBar
 import com.example.gymforce.ui.navigation.Screen
+import com.example.gymforce.ui.screens.profile.ProfileViewModel
 
 @Composable
-fun HealthFormContent(navHostController: NavHostController) {
+fun HealthFormContent(
+    navHostController: NavHostController,
+    viewModel: ProfileViewModel = hiltViewModel()
+) {
+
+    val user = viewModel.getCurrentUser()
+    val userName by viewModel.userName.collectAsState()
+    val email by viewModel.userEmail.collectAsState()
+
+    var name by remember { mutableStateOf("") }
+    var gender by remember { mutableStateOf("") }
+    var age by remember { mutableIntStateOf(0) }
     var healthyProblem by remember { mutableStateOf("") }
     var selectedProblem by remember { mutableStateOf("") }
     val problems = listOf("Thin", "Fat")
@@ -43,9 +56,33 @@ fun HealthFormContent(navHostController: NavHostController) {
             ) {
                 Column(
                     modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(6.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    // Healthy Problem Text Field using AppTextField
+
+                    AppTextField(
+                        value = name,
+                        label = stringResource(R.string.name),
+                        onValueChange = { name = it },
+                        // leadingIcon = R.drawable.ic_name // Replace with your drawable resource)
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    AppTextField(
+                        value = gender,
+                        label = stringResource(R.string.gender),
+                        onValueChange = { gender = it },
+                        // leadingIcon = R.drawable.ic_gender // Replace with your drawable resource
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
+                    // Age Text Field using AppTextField
+                    AppTextField(
+                        value = age.toString(),
+                        label = stringResource(R.string.age),
+                        onValueChange = { value -> age = value.toIntOrNull() ?: 0 },
+                        // leadingIcon = R.drawable.ic_age
+                    )
+                    Spacer(modifier = Modifier.height(6.dp))
                     // Healthy Problem Text Field using AppTextField
                     AppTextField(
                         value = healthyProblem,
@@ -53,6 +90,7 @@ fun HealthFormContent(navHostController: NavHostController) {
                         onValueChange = { healthyProblem = it },
                         // leadingIcon = R.drawable.ic_health // Replace with your drawable resource
                     )
+                    Spacer(modifier = Modifier.height(6.dp))
 
                     // Problem Selector
                     Text(
@@ -61,23 +99,27 @@ fun HealthFormContent(navHostController: NavHostController) {
                         modifier = Modifier.align(Alignment.Start)
                     )
 
-                    problems.forEach { problem ->
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 4.dp)
-                        ) {
-                            RadioButton(
-                                selected = (selectedProblem == problem),
-                                onClick = { selectedProblem = problem },
-                                colors = RadioButtonDefaults.colors(selectedColor = Color.Green)
-                            )
-                            Text(
-                                text = problem,
-                                style = MaterialTheme.typography.bodyLarge,
-                                modifier = Modifier.padding(start = 8.dp)
-                            )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Start,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        problems.forEach { problem ->
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.padding(vertical = 4.dp)
+                            ) {
+                                RadioButton(
+                                    selected = (selectedProblem == problem),
+                                    onClick = { selectedProblem = problem },
+                                    colors = RadioButtonDefaults.colors(selectedColor = Color.Green)
+                                )
+                                Text(
+                                    text = problem,
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    modifier = Modifier.padding(start = 8.dp)
+                                )
+                            }
                         }
                     }
 
@@ -104,6 +146,7 @@ fun HealthFormContent(navHostController: NavHostController) {
                             style = MaterialTheme.typography.labelLarge
                         )
                     }
+
                 }
             }
         }

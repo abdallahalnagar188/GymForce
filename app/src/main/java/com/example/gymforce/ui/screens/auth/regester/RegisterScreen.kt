@@ -80,15 +80,15 @@ fun RegisterScreen(
 
             )
 
-        AppTextField(value = name, label = "Name", onValueChange = { name = it })
+        AppTextField(value = name, label = stringResource(R.string.name), onValueChange = { name = it })
         Spacer(modifier = Modifier.height(16.dp))
 
-        AppTextField(value = email, label = "Email", onValueChange = { email = it })
+        AppTextField(value = email, label = stringResource(R.string.email), onValueChange = { email = it })
         Spacer(modifier = Modifier.height(16.dp))
 
         PassWordAppTextField(
             value = password,
-            label = "Password",
+            label = stringResource(R.string.password),
             onValueChange = { password = it })
 
         Spacer(modifier = Modifier.height(16.dp))

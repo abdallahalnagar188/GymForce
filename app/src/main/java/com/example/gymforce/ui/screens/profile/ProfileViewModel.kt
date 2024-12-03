@@ -2,9 +2,8 @@ package com.example.gymforce.ui.screens.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.models.User
 import com.example.domain.repo.AuthRepository
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,53 +21,51 @@ class ProfileViewModel @Inject constructor(
     private val _userEmail = MutableStateFlow<String?>(null)
     val userEmail: StateFlow<String?> = _userEmail
 
-    private val _userWeight = MutableStateFlow<Double?>(null)
-    val userWeight: StateFlow<Double?> = _userWeight
+    private val _userAge = MutableStateFlow<Int?>(null)
+    val userAge: StateFlow<Int?> = _userAge
 
-    private val _userHeight = MutableStateFlow<Double?>(null)
-    val userHeight: StateFlow<Double?> = _userHeight
+    private val _userGender = MutableStateFlow<String?>(null)
+    val userGender: StateFlow<String?> = _userGender
 
-    private val _userImageUrl = MutableStateFlow<String?>(null)
-    val userImageUrl: StateFlow<String?> = _userImageUrl
+    private val _userType = MutableStateFlow<String?>(null)
+    val userType: StateFlow<String?> = _userType
 
-    private val _isLoading = MutableStateFlow<Boolean>(true) // Add loading state
+    private val _isLoading = MutableStateFlow<Boolean>(true)
     val isLoading: StateFlow<Boolean> = _isLoading
-
-    private val firestore = FirebaseFirestore.getInstance()
-    private val currentUser = FirebaseAuth.getInstance().currentUser
 
     init {
         fetchUserProfile()
     }
 
     private fun fetchUserProfile() {
-        val userId = currentUser?.uid
-        if (userId != null) {
-            firestore.collection("users").document(userId).get()
-                .addOnSuccessListener { document ->
-                    if (document.exists()) {
-                        _userName.value = document.getString("name")
-                        _userEmail.value = document.getString("email")
-                        _userWeight.value = document.getDouble("weight")
-                        _userHeight.value = document.getDouble("height")
-                        _userImageUrl.value = document.getString("photoUrl")
+        val currentUser = authRepository.getCurrentUser()
+        if (currentUser != null) {
+            viewModelScope.launch {
+                val userId = currentUser.uid
+                authRepository.getUserFromFirestore(userId).fold(
+                    onSuccess = { user ->
+                        _userName.value = user.name
+                        _userEmail.value = user.email
+                        _userAge.value = user.age
+                        _userGender.value = user.gender
+                        _userType.value = user.userType
+                        _isLoading.value = false
+                    },
+                    onFailure = {
+                        _isLoading.value = false // Handle error appropriately
                     }
-                }
-                .addOnFailureListener {
-                    // Handle any errors here if needed
-                }
-                .addOnCompleteListener {
-                    _isLoading.value = false // Set loading to false when complete
-                }
+                )
+            }
         } else {
-            _isLoading.value = false // Set loading to false if user ID is null
+            _isLoading.value = false // No user is signed in
         }
     }
+
     fun signOut() {
         viewModelScope.launch {
             authRepository.signOut()
-            // Optionally, handle post-sign-out actions (like navigating to the login screen)
         }
     }
+
     fun getCurrentUser() = authRepository.getCurrentUser()
 }

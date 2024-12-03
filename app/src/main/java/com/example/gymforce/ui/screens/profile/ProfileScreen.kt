@@ -8,11 +8,14 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.domain.models.User
 import com.example.gymforce.ui.commonUi.CircularProgressAnimated
 import com.example.gymforce.ui.commonUi.ShowToast
 import com.example.gymforce.ui.navigation.Screen
@@ -22,33 +25,48 @@ fun ProfileScreen(
     navController: NavHostController,
     viewModel: ProfileViewModel = hiltViewModel()
 ) {
-    val user = viewModel.getCurrentUser()
     val userName by viewModel.userName.collectAsState()
     val email by viewModel.userEmail.collectAsState()
-    val weight by viewModel.userWeight.collectAsState()
-    val height by viewModel.userHeight.collectAsState()
+    val age by viewModel.userAge.collectAsState()
+    val gender by viewModel.userGender.collectAsState()
+    val userType by viewModel.userType.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
-    val userImageUrl by viewModel.userImageUrl.collectAsState() // Collect user image URL
+    val showToast = remember { mutableStateOf(false) }
 
-    // Display loading indicator while fetching data
+    val user = if (userName != null && email != null && age != null && gender != null && userType != null) {
+        User(
+            uid = viewModel.getCurrentUser()?.uid ?: "",
+            name = userName ?: "",
+            email = email ?: "",
+            age = age ?: 0,
+            gender = gender ?: "N/A",
+            userType = userType ?: "N/A"
+        )
+    } else null
+
     if (isLoading) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
             CircularProgressAnimated(modifier = Modifier.size(50.dp))
         }
     } else {
         ProfileScreenContent(
-            userName = userName ?: "",
-            userHeight = height?.toString() ?: "0",
-            userWeight = weight?.toString() ?: "0",
-            userImageUrl = userImageUrl?:"no image",
+            user = user?: User(),
             onSignOut = {
-                viewModel.signOut() // Call the sign-out function\
-                navController.navigate(Screen.Login.route){
-                    popUpTo(Screen.Profile.route){
-                        inclusive = true
-                    }
+                viewModel.signOut()
+                showToast.value = true
+                navController.navigate(Screen.Login.route) {
+                    popUpTo(Screen.Profile.route) { inclusive = true }
                 }
             }
         )
     }
+
+    if (showToast.value) {
+        ShowToast(message = "Signed out successfully")
+        showToast.value = false
+    }
 }
+
