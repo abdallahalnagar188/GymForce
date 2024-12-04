@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 
 @Composable
-fun TrainersScreen(navHostController: NavHostController) {
-    TrainersScreenContent(navHostController)
+fun TrainersScreen(navHostController: NavHostController,gender: String) {
+    TrainersScreenContent(navHostController,gender)
 }
 

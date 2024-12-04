@@ -108,6 +108,9 @@ dependencies {
     implementation(project(":data"))
     implementation (libs.localization)
 
+    implementation ("io.coil-kt:coil-compose:2.4.0")
+
+    implementation ("androidx.datastore:datastore-preferences:1.0.0")
 
     implementation ("androidx.room:room-runtime:2.5.1")
     kapt ("androidx.room:room-compiler:2.5.1")

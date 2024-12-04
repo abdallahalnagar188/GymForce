@@ -1,7 +1,7 @@
 package com.example.gymforce.di
 
 import android.app.Application
-import com.example.gymforce.ui.screens.setting.LocalUtil
+import com.example.gymforce.common.LocalUtil
 import com.google.firebase.FirebaseApp
 import dagger.hilt.android.HiltAndroidApp
 

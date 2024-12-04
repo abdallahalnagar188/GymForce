@@ -12,7 +12,7 @@ sealed class Screen(val route: String, val argument: String? = null) {
     data object Onboarding : Screen("Onboarding")
     data object Splash : Screen("Splash")
     data object HealthForm : Screen("HealthForm")
-    data object Trainers : Screen("Trainers")
+    data object Trainers : Screen("Trainers/{gender}", argument = "gender")
 
 
 }

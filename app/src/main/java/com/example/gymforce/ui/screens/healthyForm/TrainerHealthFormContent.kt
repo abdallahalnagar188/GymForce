@@ -1,6 +1,11 @@
 package com.example.gymforce.ui.screens.healthyForm
-
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.ButtonDefaults
@@ -10,35 +15,40 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
 import com.example.gymforce.R
 import com.example.gymforce.ui.commonUi.AppTextField
 import com.example.gymforce.ui.commonUi.CustomAppBar
-import com.example.gymforce.ui.commonUi.GenderSelector
 import com.example.gymforce.ui.navigation.Screen
 import com.example.gymforce.ui.screens.profile.ProfileViewModel
 
 @Composable
-fun HealthFormContent(
+fun TrainerHealthFormContent(
     navHostController: NavHostController,
     viewModel: ProfileViewModel = hiltViewModel()
 ) {
-    val user = viewModel.getCurrentUser()
-    val userName by viewModel.userName.collectAsState()
-    val email by viewModel.userEmail.collectAsState()
-
     var name by remember { mutableStateOf("") }
+    var phoneNumber by remember { mutableStateOf("") }
+    var specialization by remember { mutableStateOf("") }
     var gender by remember { mutableStateOf("") }
-    var age by remember { mutableIntStateOf(0) }
-    var healthyProblem by remember { mutableStateOf("") }
-    var selectedProblem by remember { mutableStateOf("") }
-    var selectedGender by remember { mutableStateOf("") }
-    val problems = listOf("Thin", "Fat")
+    var idNumber by remember { mutableStateOf("") }
+    var imageUri by remember { mutableStateOf<String?>(null) }
     val genders = listOf("Male", "Female")
+    var selectedGender by remember { mutableStateOf("") }
     var isSubmitting by remember { mutableStateOf(false) }
+    val scrollState = rememberScrollState()
+
+    // Image picker launcher
+    val imagePickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.GetContent()
+    ) { uri ->
+        imageUri = uri?.toString()
+    }
 
     Scaffold(
         containerColor = Color.Transparent,
@@ -46,7 +56,7 @@ fun HealthFormContent(
         topBar = {
             CustomAppBar(
                 navHostController = navHostController,
-                title = stringResource(R.string.HealthForm)
+                title = stringResource(R.string.TrainerHealthForm)
             )
         },
         content = { paddingValues ->
@@ -61,13 +71,52 @@ fun HealthFormContent(
                     verticalArrangement = Arrangement.spacedBy(6.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    // Name Text Field
+                    // Image Picker Section
+                    Box(
+                        modifier = Modifier
+                            .size(100.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = if (imageUri != null) {
+                                rememberAsyncImagePainter(imageUri)
+                            } else {
+                                painterResource(R.drawable.adults) // Replace with your placeholder image resource
+                            },
+                            contentDescription = stringResource(R.string.image_selected),
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .clickable { imagePickerLauncher.launch("image/*") }
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    // Form Fields
                     AppTextField(
                         value = name,
                         label = stringResource(R.string.name),
-                        onValueChange = { name = it },
+                        onValueChange = { name = it }
                     )
+
                     Spacer(modifier = Modifier.height(6.dp))
+
+                    AppTextField(
+                        value = phoneNumber,
+                        label = stringResource(R.string.phone_number),
+                        onValueChange = { phoneNumber = it }
+                    )
+
+                    Spacer(modifier = Modifier.height(6.dp))
+
+                    AppTextField(
+                        value = specialization,
+                        label = stringResource(R.string.specialization),
+                        onValueChange = { specialization = it }
+                    )
+
+                    Spacer(modifier = Modifier.height(6.dp))
+
                     Text(
                         text = stringResource(R.string.gender),
                         style = MaterialTheme.typography.titleMedium,
@@ -96,62 +145,22 @@ fun HealthFormContent(
                             }
                         }
                     }
-                    // Gender Selector using Radio Buttons
 
                     Spacer(modifier = Modifier.height(6.dp))
 
-                    // Age Text Field
                     AppTextField(
-                        value = age.toString(),
-                        label = stringResource(R.string.age),
-                        onValueChange = { value -> age = value.toIntOrNull() ?: 0 },
+                        value = idNumber,
+                        label = stringResource(R.string.id_number),
+                        onValueChange = { idNumber = it }
                     )
-                    Spacer(modifier = Modifier.height(6.dp))
 
-                    // Healthy Problem Text Field
-                    AppTextField(
-                        value = healthyProblem,
-                        label = stringResource(R.string.healthProblem),
-                        onValueChange = { healthyProblem = it },
-                    )
-                    Spacer(modifier = Modifier.height(6.dp))
-
-                    // Problem Selector using Radio Buttons
-                    Text(
-                        text = stringResource(R.string.select_problem_to_solve),
-                        style = MaterialTheme.typography.titleMedium,
-                        modifier = Modifier.align(Alignment.Start)
-                    )
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Start,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        problems.forEach { problem ->
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier.padding(vertical = 4.dp)
-                            ) {
-                                RadioButton(
-                                    selected = (selectedProblem == problem),
-                                    onClick = { selectedProblem = problem },
-                                    colors = RadioButtonDefaults.colors(selectedColor = Color.Green)
-                                )
-                                Text(
-                                    text = problem,
-                                    style = MaterialTheme.typography.bodyLarge,
-                                    modifier = Modifier.padding(start = 8.dp)
-                                )
-                            }
-                        }
-                    }
+                    Spacer(modifier = Modifier.height(12.dp))
 
                     // Submit Button
                     Button(
                         onClick = {
                             isSubmitting = true
-                            // Simulate submission process
-                            navHostController.navigate(Screen.Trainers.route)
+                            navHostController.navigate("Trainers/$selectedGender")
                             isSubmitting = false
                         },
                         modifier = Modifier
@@ -161,20 +170,15 @@ fun HealthFormContent(
                         colors = ButtonDefaults.buttonColors(
                             containerColor = colorResource(id = R.color.green),
                             contentColor = Color.Black
-                        ),
-                        enabled = true // Always enabled as inputs are optional
+                        )
                     ) {
                         Text(
-                            text = if (isSubmitting) "Submitting..." else "Search for Trainer",
+                            text = if (isSubmitting) "Submitting..." else "Submit Form",
                             style = MaterialTheme.typography.labelLarge
                         )
                     }
-
                 }
             }
         }
     )
 }
-
-
-

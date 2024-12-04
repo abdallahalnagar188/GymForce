@@ -49,7 +49,12 @@ fun NavigationGraph(navController: NavHostController, startDestination: String) 
         composable(BottomNavItem.Tools.screenRoute) { ToolsScreen(navController) }
         composable(BottomNavItem.Profile.screenRoute) { ProfileScreen(navController) }
         composable(Screen.HealthForm.route) { HealthFormScreen(navController) }
-        composable(Screen.Trainers.route) { TrainersScreen(navController) }
+
+        composable(Screen.Trainers.route) { backStackEntry ->
+            val gender = backStackEntry.arguments?.getString("gender") ?: "Male" // Default to Male if no gender is provided
+            TrainersScreen(navController, gender = gender)  // Pass gender to TrainersScreen
+        }
+
 
         // Exercises screens
         composable(

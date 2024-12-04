@@ -15,20 +15,23 @@ import com.example.gymforce.R
 import com.example.gymforce.ui.commonUi.CustomAppBar
 
 @Composable
-fun TrainersScreenContent(navHostController: NavHostController) {
+fun TrainersScreenContent(navHostController: NavHostController,genders: String) {
     Column(modifier = Modifier.fillMaxSize()) {
         CustomAppBar(
             navHostController = navHostController,
             title = stringResource(R.string.trainers)
         )
         Spacer(modifier = Modifier.height(16.dp))
-        TrainerList(trainers = generateRandomTrainers(10))
+        if (genders == "Male"){
+            TrainerListMen(trainers = generateRandomMenTrainers(10))
+        }else{
+            TrainerListWomen(trainers = generateRandomWomenTrainers(10))
+        }
     }
-
 }
 
 @Preview
 @Composable
 fun TrainersScreenContentPreview() {
-    TrainersScreenContent(navHostController = rememberNavController())
+    //TrainersScreenContent(navHostController = rememberNavController())
 }

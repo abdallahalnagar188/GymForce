@@ -19,3 +19,11 @@ val categories = listOf(
         "old", R.drawable.old, R.string.old, R.color.bony
     )
 )
+
+val categoriesForTrainers = listOf(
+    Category(
+        "men", R.drawable.adults, R.string.adults, R.color.red
+    ),Category(
+        "women", R.drawable.woman, R.string.women, R.color.blue
+    )
+)

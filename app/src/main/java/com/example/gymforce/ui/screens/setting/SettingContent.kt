@@ -34,8 +34,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gymforce.R
+import com.example.gymforce.common.LocalUtil
 import com.example.gymforce.common.fontMedium
-import com.example.gymforce.ui.commonUi.CustomDatePicker
 
 @Composable
 fun SettingContent(context: Context = LocalContext.current) {

@@ -1,18 +1,15 @@
 package com.example.gymforce.ui.screens.auth.regester
 
-import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.models.User
 import com.example.domain.repo.AuthRepository
 import com.example.gymforce.common.UiState
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.storage.FirebaseStorage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,26 +27,22 @@ class RegisterViewModel @Inject constructor(
         gender: String,
         age: Int,
         userType: String,
-//        healthProblems: String,
-//        problemToSolve: String
     ) {
         viewModelScope.launch {
             _authState.value = UiState.Loading
 
             val result = authRepository.signUpWithEmailAndPassword(
-                email, password, name,
-                gender, age, userType = userType
-                //healthProblems, problemToSolve
+                email = email,
+                password = password,
+                name = name,
+                gender = gender,
+                age = age,
+                userType = userType
             )
 
             if (result.isSuccess) {
                 val user = result.getOrNull()
                 user?.let {
-                    // Upload image and get URL
-//                    val imageUrl = imageUri?.let { uri ->
-//                        uploadImageToFirebaseStorage(uri, it.uid) // Your method to upload image
-//                    }
-
                     val userData = User(
                         uid = it.uid,
                         name = name,
@@ -57,8 +50,6 @@ class RegisterViewModel @Inject constructor(
                         gender = gender,
                         age = age,
                         userType = userType,
-//                        healthProblem = healthProblems,
-//                        problemToSolve = problemToSolve,
                     )
 
                     val firestoreResult = authRepository.addUserToFirestore(userData)
@@ -78,17 +69,17 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-
-    // Function to upload image to Firebase Storage
-    private suspend fun uploadImageToFirebaseStorage(imageUri: Uri, uid: String): String? {
-        val storageRef = FirebaseStorage.getInstance().reference.child("users/$uid/profile.jpg")
-        return try {
-            storageRef.putFile(imageUri).await()
-            storageRef.downloadUrl.await().toString() // Get the download URL
-        } catch (e: Exception) {
-            null
-        }
-    }
+//
+//    // Function to upload image to Firebase Storage
+//    private suspend fun uploadImageToFirebaseStorage(imageUri: Uri, uid: String): String? {
+//        val storageRef = FirebaseStorage.getInstance().reference.child("users/$uid/profile.jpg")
+//        return try {
+//            storageRef.putFile(imageUri).await()
+//            storageRef.downloadUrl.await().toString() // Get the download URL
+//        } catch (e: Exception) {
+//            null
+//        }
+//    }
 
 }
 

@@ -1,5 +1,6 @@
 package com.example.gymforce.ui.commonUi
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -29,7 +30,9 @@ fun AppTextField(
     value: String,
     label: String,
     onValueChange: (String) -> Unit,
-    leadingIcon: Int? = null // Optional leading icon
+    leadingIcon: Int? = null, // Optional leading icon
+    readOnly: Boolean = false,
+    onClick: () -> Unit = {}
 ) {
     OutlinedTextField(
         value = value,
@@ -53,14 +56,14 @@ fun AppTextField(
                 )
             }
         },
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().clickable { onClick() },
         shape = RoundedCornerShape(10.dp),
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = colorResource(id = R.color.green),
             unfocusedBorderColor = Color.Gray,
             unfocusedTextColor = Color.White,
             focusedTextColor = Color.White
-        )
+        ),readOnly = readOnly,
     )
 }
 

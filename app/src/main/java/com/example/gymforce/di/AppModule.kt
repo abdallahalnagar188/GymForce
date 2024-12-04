@@ -1,5 +1,6 @@
 package com.example.gymforce.di
 
+import android.content.Context
 import com.example.data.remote.ApiService
 import com.example.data.repoImpl.BodyPartListRepoImpl
 import com.example.data.repoImpl.ExerciseDetailsRepoImpl
@@ -9,11 +10,13 @@ import com.example.domain.repo.AuthRepository
 import com.example.domain.repo.BodyPartListRepo
 import com.example.domain.repo.ExerciseDetailsRepo
 import com.example.domain.repo.ExercisesRepo
+import com.example.gymforce.common.UserCacheManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -51,13 +54,22 @@ object AppModule {
 
     @Provides
     @Singleton
-   fun provideBodyPartListRepo(apiService: ApiService): BodyPartListRepo {
+    fun provideBodyPartListRepo(apiService: ApiService): BodyPartListRepo {
         return BodyPartListRepoImpl(apiService)
     }
+
     @Provides
     @Singleton
     fun provideExerciseDetailsRepo(apiService: ApiService): ExerciseDetailsRepo {
         return ExerciseDetailsRepoImpl(apiService)
     }
+
+    @Provides
+    @Singleton
+    fun provideUserCacheManager(@ApplicationContext context: Context): UserCacheManager {
+        return UserCacheManager(context)
+
+    }
+
 }
 

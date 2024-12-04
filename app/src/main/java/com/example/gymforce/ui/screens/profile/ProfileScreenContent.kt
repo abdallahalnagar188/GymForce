@@ -35,7 +35,7 @@ import com.example.gymforce.ui.commonUi.ProfileCard
 @Composable
 fun ProfileScreenContent(
     user: User,
-   onSignOut: () -> Unit,
+    onSignOut: () -> Unit,
     navHostController: NavHostController,// Add the sign-out callback
 ) {
     Column(

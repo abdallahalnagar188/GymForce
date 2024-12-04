@@ -17,12 +17,22 @@
     <string name="setting">الإعدادات</string>
     <string name="tools">الأدوات</string>
     <string name="profile">الملف الشخصي</string>
-    <string name="select_language">Select Language</string>
-    <string name="select_problem_to_solve">Select Problem to Solve (Optional)</string>
-    <string name="name">Name</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="age">Age</string>
-    <string name="trainers">Trainers</string>
+    <string name="select_language">اختر اللغة</string>
+    <string name="select_problem_to_solve">اختر المشكلة لحلها (اختياري)</string>
+    <string name="name">الاسم</string>
+    <string name="email">البريد الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="age">العمر</string>
+    <string name="trainers">المدربون</string>
+    <string name="women">النساء</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="specialization">التخصص</string>
+    <string name="TrainerHealthForm">نموذج المدرب</string>
+    <string name="id_number">رقم الهوية</string>
+    <string name="image_selected">تم تحديد الصورة</string>
+    <string name="select_health_problem">اختر المشكلة الصحية</string>
+    <string name="submit">إرسال</string>
+    <string name="cancel">إلغاء</string>
+
 
 </resources>
