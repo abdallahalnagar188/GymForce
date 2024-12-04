@@ -86,7 +86,7 @@ fun TrainerCard(
                     Text(
                         text = "Co. ${trainer.name}",
                         fontFamily = fontBold,
-                        fontSize = 22.sp,
+                        fontSize = 20.sp,
                         color = colorResource(R.color.white)
                     )
                     Text(
@@ -98,7 +98,7 @@ fun TrainerCard(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(8.dp),
+                            .padding(vertical = 8.dp),
                         horizontalArrangement = Arrangement.Start
                     ) {
                         // Call Button with Icon

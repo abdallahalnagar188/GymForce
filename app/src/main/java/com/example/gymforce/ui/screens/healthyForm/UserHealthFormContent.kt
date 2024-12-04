@@ -84,7 +84,7 @@ fun UserHealthFormContent(
             ) {
                 Column(
                     modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.spacedBy(6.dp),
+                    verticalArrangement = Arrangement.spacedBy(2.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     // Name Text Field
@@ -93,38 +93,6 @@ fun UserHealthFormContent(
                         label = stringResource(R.string.name),
                         onValueChange = { name = it },
                     )
-                    Spacer(modifier = Modifier.height(6.dp))
-
-                    // Gender Selector using Radio Buttons
-                    Text(
-                        text = stringResource(R.string.gender),
-                        style = MaterialTheme.typography.titleMedium,
-                        modifier = Modifier.align(Alignment.Start)
-                    )
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Start,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        genders.forEach { gender ->
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier.padding(vertical = 4.dp)
-                            ) {
-                                RadioButton(
-                                    selected = (selectedGender == gender),
-                                    onClick = { selectedGender = gender },
-                                    colors = RadioButtonDefaults.colors(selectedColor = Color.Green)
-                                )
-                                Text(
-                                    text = gender,
-                                    style = MaterialTheme.typography.bodyLarge,
-                                    modifier = Modifier.padding(start = 8.dp)
-                                )
-                            }
-                        }
-                    }
-
                     Spacer(modifier = Modifier.height(6.dp))
 
                     // Age Text Field
@@ -162,7 +130,7 @@ fun UserHealthFormContent(
                         problems.forEach { problem ->
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier.padding(vertical = 4.dp)
+                                modifier = Modifier.padding(vertical = 2.dp)
                             ) {
                                 RadioButton(
                                     selected = (selectedProblem == problem),
@@ -177,7 +145,38 @@ fun UserHealthFormContent(
                             }
                         }
                     }
+                    Spacer(modifier = Modifier.height(6.dp))
 
+                    Text(
+                        text = stringResource(R.string.gender),
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.align(Alignment.Start)
+                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Start,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        genders.forEach { gender ->
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.padding(vertical = 4.dp)
+                            ) {
+                                RadioButton(
+                                    selected = (selectedGender == gender),
+                                    onClick = { selectedGender = gender },
+                                    colors = RadioButtonDefaults.colors(selectedColor = Color.Green)
+                                )
+                                Text(
+                                    text = gender,
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    modifier = Modifier.padding(start = 8.dp)
+                                )
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(6.dp))
                     // Submit Button
                     Button(
                         onClick = {

@@ -22,7 +22,7 @@ val categories = listOf(
 
 val categoriesForTrainers = listOf(
     Category(
-        "men", R.drawable.adults, R.string.adults, R.color.red
+        "men", R.drawable.adults, R.string.men, R.color.red
     ),Category(
         "women", R.drawable.woman, R.string.women, R.color.blue
     )

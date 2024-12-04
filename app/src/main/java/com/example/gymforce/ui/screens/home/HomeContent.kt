@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -21,6 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.gymforce.R
 import com.example.gymforce.common.fontBold
+import com.example.gymforce.ui.commonUi.CircularProgressAnimated
 import com.example.gymforce.ui.screens.profile.ProfileViewModel
 
 @Composable
@@ -37,8 +39,7 @@ fun HomeContent(
     ) {
         // Top app bar
         HomeAppBar(
-            navHostController = navHostController,
-            ivProfileId = R.drawable.ic_proflle
+          stringResource(R.string.app_name)
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -59,8 +60,10 @@ fun HomeContent(
         // LazyColumn content
         if (userType == "Trainer") {
             HomeLazyColumnForTrainers(navHostController)
-        } else{
+        } else if (userType == "User"){
             HomeLazyColumn(navHostController)
+        }else{
+            CircularProgressAnimated(modifier = Modifier.size(50.dp))
         }
     }
 }

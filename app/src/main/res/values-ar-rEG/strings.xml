@@ -33,6 +33,8 @@
     <string name="select_health_problem">اختر المشكلة الصحية</string>
     <string name="submit">إرسال</string>
     <string name="cancel">إلغاء</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="men">Men</string>
 
 
 </resources>

@@ -30,39 +30,16 @@ import com.example.gymforce.R
 import com.example.gymforce.common.fontBold
 
 @Composable
-fun HomeAppBar(
-    navHostController: NavHostController,
-    onClick: () -> Unit = {},
-    ivProfileId: Int,
-) {
+fun HomeAppBar(title: String){
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween, // Space items apart
+        horizontalArrangement = Arrangement.Center,
         modifier = Modifier
             .fillMaxWidth()
             .height(50.dp)
             .background(color = colorResource(R.color.black_low))
-           // .padding(horizontal = 8.dp) // Add horizontal padding if needed
     ) {
-        // Profile Icon
-//        IconButton(
-//            onClick = { onClick() },
-//            modifier = Modifier
-//                .border(
-//                    width = 1.dp,
-//                    color = colorResource(R.color.transparent),
-//                    shape = CircleShape
-//                )
-//                .size(36.dp) // Adjust size to balance padding and appearance
-//        ) {
-//            Icon(
-//                painter = painterResource(ivProfileId),
-//                contentDescription = "Image Profile",
-//                tint = Color.White,
-//            )
-//        }
 
-        // Centered Text in Box
         Box(
             modifier = Modifier
                 .weight(1f) // Use weight to center-align in Row
@@ -70,7 +47,7 @@ fun HomeAppBar(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = stringResource(R.string.app_name),
+                text = title,
                 color = Color.White,
                 fontFamily = fontBold,
                 fontSize = 22.sp,
@@ -78,18 +55,6 @@ fun HomeAppBar(
             )
         }
 
-        // Notifications Icon
-//        IconButton(
-//            onClick = { onClick() },
-//            modifier = Modifier
-//                .size(32.dp) // Adjust size for a balanced look
-//        ) {
-//            Icon(
-//                imageVector = Icons.Default.Notifications,
-//                contentDescription = "Notifications",
-//                tint = Color.White
-//            )
-//        }
     }
 }
 

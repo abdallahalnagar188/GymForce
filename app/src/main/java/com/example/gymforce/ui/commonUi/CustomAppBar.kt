@@ -63,7 +63,7 @@ fun CustomAppBar(
                 text = title,
                 color = Color.White,
                 fontFamily = fontBold,
-                fontSize = 18.sp,
+                fontSize = 22.sp,
                 style = typography.h6,
             )
         }
