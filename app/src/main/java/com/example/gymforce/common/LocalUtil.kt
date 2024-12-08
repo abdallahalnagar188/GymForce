@@ -1,36 +1,56 @@
 package com.example.gymforce.common
 
+import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.os.Build
 import java.util.Locale
 
 object LocalUtil {
-    private const val PREFS_NAME = "language_prefs"
-    private const val KEY_LANGUAGE = "language"
-    private lateinit var preferences: SharedPreferences
+    private lateinit var sharedPreferences: SharedPreferences
+    private const val LANGUAGE = "language"
 
-    fun initPreferences(context: Context) {
-        preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    // Initialize the SharedPreferences
+    fun init(context: Context) {
+        sharedPreferences = context.applicationContext.getSharedPreferences("local", Context.MODE_PRIVATE)
     }
 
-    fun loadSavedLanguage(): String {
-        return preferences.getString(KEY_LANGUAGE, "ar") ?: "ar" // Default to Arabic
+    // Load the saved language and apply it
+    fun loadLocal(activity: Activity) {
+        val language = sharedPreferences.getString(LANGUAGE, "en") ?: "en" // Default language is now "en"
+        setLocale(activity, language)
     }
 
-    fun setLanguage(context: Context, languageCode: String) {
-        preferences.edit().putString(KEY_LANGUAGE, languageCode).apply()
-        updateResources(context, languageCode)
+    // Get the currently saved language
+    fun getLang(): String {
+        return sharedPreferences.getString(LANGUAGE, "en") ?: "en" // Default language is "en"
     }
 
-    fun updateResources(context: Context, languageCode: String) {
-        val locale = Locale(languageCode)
+    // Check if the current language is English
+    fun isEnglish(): Boolean {
+        return getLang() == "en"
+    }
+
+    // Save the new language and update resources
+    fun setLocal(activity: Activity, language: String) {
+        sharedPreferences.edit().putString(LANGUAGE, language).apply()
+        setLocale(activity, language)
+        activity.recreate() // Recreate to apply changes
+    }
+
+    // Update the app's resources and layout direction safely
+    private fun setLocale(context: Context, language: String) {
+        val locale = Locale(language)
         Locale.setDefault(locale)
 
         val config = Configuration(context.resources.configuration)
         config.setLocale(locale)
-
-        context.resources.updateConfiguration(config, context.resources.displayMetrics)
-        context.applicationContext.resources.updateConfiguration(config, context.resources.displayMetrics)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            context.createConfigurationContext(config)
+        } else {
+            @Suppress("DEPRECATION")
+            context.resources.updateConfiguration(config, context.resources.displayMetrics)
+        }
     }
 }

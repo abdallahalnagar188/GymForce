@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.compose.rememberNavController
 import com.example.domain.repo.AuthRepository
+import com.example.gymforce.common.LocalUtil
 import com.example.gymforce.ui.navigation.Screen
 import com.example.gymforce.common.OnboardingPreferences.isOnboardingCompleted
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,14 +20,17 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Initialize LocalUtil and set the locale
+        LocalUtil.init(applicationContext)
+        LocalUtil.loadLocal(this)
+
         setContent {
             val navController = rememberNavController()
 
-            // Determine the starting destination based on onboarding and login status
             val startDestination = when {
-                !isOnboardingCompleted(this) -> Screen.Onboarding.route // Start with Onboarding if not completed
-                authRepository.getCurrentUser() != null -> Screen.Home.route // Start with Home if user is logged in
-                else -> Screen.Login.route // Otherwise, start with Login
+                !isOnboardingCompleted(this) -> Screen.Onboarding.route
+                authRepository.getCurrentUser() != null -> Screen.Home.route
+                else -> Screen.Login.route
             }
 
             MainScreenView(navController = navController, startDestination = startDestination)

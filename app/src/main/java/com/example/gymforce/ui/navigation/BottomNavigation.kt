@@ -27,8 +27,9 @@ import com.example.gymforce.R
 fun MyBottomNavigation(navController: NavController) {
     val items = listOf(
         BottomNavItem.Setting,
+        BottomNavItem.BrainGym,
         BottomNavItem.Home,
-        //   BottomNavItem.Tools,
+        BottomNavItem.Meals,
         BottomNavItem.Profile
     )
     BottomNavigation(
@@ -58,12 +59,12 @@ fun MyBottomNavigation(navController: NavController) {
                                 modifier = Modifier.size(25.dp), // Icon size
                                 tint = colorResource(R.color.black_low)
                             )
-                            Text(
-                                text = stringResource(item.titleRes),
-                                fontSize = 14.sp, // Font size
-                                color = colorResource(R.color.black_low),
-                                modifier = Modifier.padding(start = 8.dp) // Space between icon and text
-                            )
+//                            Text(
+//                                text = stringResource(item.titleRes),
+//                                fontSize = 12.sp, // Font size
+//                                color = colorResource(R.color.black_low),
+//                                modifier = Modifier.padding(start = 8.dp) // Space between icon and text
+//                            )
                         }
                     } else {
                         // Unselected icon (without label)

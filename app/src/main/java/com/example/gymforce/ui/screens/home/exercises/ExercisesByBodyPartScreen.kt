@@ -12,13 +12,13 @@ fun ExercisesByBodyPartScreen(
     navHostController: NavHostController,
     viewModel: ExercisesViewModel = hiltViewModel()
 ) {
-    LaunchedEffect(bodyPartName) {
-        viewModel.fetchExercises(bodyPartName)
-    }
+//    LaunchedEffect(bodyPartName) {
+//        viewModel.fetchExercises(bodyPartName)
+//    }
+//
+//    val exercises = viewModel.exercisesFlow.collectAsLazyPagingItems()
 
-    val exercises = viewModel.exercisesFlow.collectAsLazyPagingItems()
-
-    ExercisesByBodyPartContent(navHostController, bodyPartName, exercises,)
+    ExercisesByBodyPartContent(navHostController)
 }
 
 

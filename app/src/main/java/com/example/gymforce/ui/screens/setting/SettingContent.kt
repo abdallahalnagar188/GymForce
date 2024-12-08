@@ -2,27 +2,11 @@ package com.example.gymforce.ui.screens.setting
 
 import android.app.Activity
 import android.content.Context
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,17 +22,24 @@ import com.example.gymforce.common.LocalUtil
 import com.example.gymforce.common.fontMedium
 
 @Composable
-fun SettingContent(context: Context = LocalContext.current) {
-    // Initialize preferences
-    LocalUtil.initPreferences(context)
+fun SettingContent() {
+    val activity = LocalContext.current as Activity
+    LocalUtil.init(activity) // Ensure this is initialized early.
 
-    // Load saved language or default to Arabic
-    var selectedLanguage by remember { mutableStateOf(
-        if (LocalUtil.loadSavedLanguage() == "en") "English" else "Arabic"
-    )}
+    // Default to the current language
+    var selectedLanguage by remember {
+        mutableStateOf(
+            when (LocalUtil.getLang()) {
+                "ar" -> "Arabic"
+                else -> "English"
+            }
+        )
+    }
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -59,42 +50,33 @@ fun SettingContent(context: Context = LocalContext.current) {
             onLanguageSelected = { language ->
                 selectedLanguage = language
                 val languageCode = if (language == "English") "en" else "ar"
-                LocalUtil.setLanguage(context, languageCode)
-                context.recreateActivity() // Apply changes
+                LocalUtil.setLocal(activity, languageCode)
             }
         )
     }
 }
-
-
-
-fun Context.recreateActivity() {
-    if (this is Activity) {
-        this.recreate()
-    }
-}
-
 
 @Composable
 fun LanguageDropdown(
     selectedLanguage: String,
     onLanguageSelected: (String) -> Unit
 ) {
-    val languages = listOf("Arabic", "English")
+    val languages = listOf("English", "Arabic")
     var expanded by remember { mutableStateOf(false) }
 
     Box {
         OutlinedTextField(
             value = selectedLanguage,
-            onValueChange = { },
+            onValueChange = {},
             label = {
                 Text(
-                    stringResource(R.string.select_language),
+                    text = stringResource(R.string.select_language),
                     style = TextStyle(
                         fontFamily = fontMedium,
                         fontWeight = FontWeight.Normal,
                         fontSize = 16.sp,
-                        color = Color.White)
+                        color = Color.White
+                    )
                 )
             },
             readOnly = true,
@@ -103,15 +85,16 @@ fun LanguageDropdown(
                 IconButton(onClick = { expanded = !expanded }) {
                     Icon(
                         imageVector = Icons.Default.ArrowDropDown,
-                        contentDescription = null
+                        contentDescription = null,
+                        tint = Color.White
                     )
                 }
             },
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = colorResource(id = R.color.green),
                 unfocusedBorderColor = Color.Gray,
-                unfocusedTextColor = Color.White,
-                focusedTextColor = Color.White
+                cursorColor = Color.White,
+                unfocusedTextColor = Color.White
             )
         )
 
@@ -131,4 +114,3 @@ fun LanguageDropdown(
         }
     }
 }
-

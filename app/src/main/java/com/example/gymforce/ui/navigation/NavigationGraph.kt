@@ -12,14 +12,17 @@ import androidx.navigation.navArgument
 import com.example.gymforce.R
 import com.example.gymforce.ui.screens.auth.login.LoginScreen
 import com.example.gymforce.ui.screens.auth.regester.RegisterScreen
+import com.example.gymforce.ui.screens.brainGym.BrainGymScreen
 import com.example.gymforce.ui.screens.healthyForm.HealthFormScreen
 import com.example.gymforce.ui.screens.home.HomeScreen
 import com.example.gymforce.ui.screens.home.exercise_details.ExerciseDetailsScreen
 import com.example.gymforce.ui.screens.home.exercises.ExercisesByBodyPartScreen
+import com.example.gymforce.ui.screens.meals.details.MealsDetailsScreen
+import com.example.gymforce.ui.screens.meals.foodList.FoodByCategoryScreen
 import com.example.gymforce.ui.screens.onboarding.OnboardingScreen
 import com.example.gymforce.ui.screens.profile.ProfileScreen
 import com.example.gymforce.ui.screens.setting.SettingScreen
-import com.example.gymforce.ui.screens.tools.ToolsScreen
+import com.example.gymforce.ui.screens.meals.mealsList.MealsScreen
 import com.example.gymforce.ui.screens.trainersScreen.TrainersScreen
 
 @Composable
@@ -46,12 +49,26 @@ fun NavigationGraph(navController: NavHostController, startDestination: String) 
         // Home and bottom navigation screens
         composable(BottomNavItem.Setting.screenRoute) { SettingScreen() }
         composable(BottomNavItem.Home.screenRoute) { HomeScreen(navController) }
-        composable(BottomNavItem.Tools.screenRoute) { ToolsScreen(navController) }
+        composable(BottomNavItem.Meals.screenRoute) { MealsScreen(navController) }
         composable(BottomNavItem.Profile.screenRoute) { ProfileScreen(navController) }
         composable(Screen.HealthForm.route) { HealthFormScreen(navController) }
+        composable(Screen.FoodByCategory.route) {
+            val category = it.arguments?.getString("category") ?: ""
+            FoodByCategoryScreen(navController, category)
+        }
+
+        composable(Screen.MealsDetails.route) {
+            val mealId = it.arguments?.getString("id") ?: ""
+            MealsDetailsScreen(
+                navController = navController,
+                mealId = mealId
+            )
+        }
+        composable(Screen.BrainGym.route) { BrainGymScreen(navController) }
 
         composable(Screen.Trainers.route) { backStackEntry ->
-            val gender = backStackEntry.arguments?.getString("gender") ?: "Male" // Default to Male if no gender is provided
+            val gender = backStackEntry.arguments?.getString("gender")
+                ?: "Male" // Default to Male if no gender is provided
             TrainersScreen(navController, gender = gender)  // Pass gender to TrainersScreen
         }
 

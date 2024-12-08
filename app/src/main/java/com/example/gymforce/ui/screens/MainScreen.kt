@@ -24,7 +24,8 @@ fun MainScreenView(navController: NavHostController, startDestination: String) {
         "ExerciseDetailsScreen/{exerciseId}",
         "Onboarding",
         Screen.HealthForm.route,
-        Screen.Trainers.route
+        Screen.Trainers.route,
+        Screen.FoodByCategory.route
     )
 
     val shouldShowBottomBar = currentRoute !in hideBottomBarRoutes

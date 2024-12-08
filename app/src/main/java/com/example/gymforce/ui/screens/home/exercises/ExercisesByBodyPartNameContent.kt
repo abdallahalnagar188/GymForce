@@ -12,8 +12,8 @@ import com.example.domain.dto.exercises.ExercisesResponseItem
 @Composable
 fun ExercisesByBodyPartContent(
     navHostController: NavHostController,
-    bodyPartName: String,
-    exercises: LazyPagingItems<ExercisesResponseItem>,
+//    bodyPartName: String,
+//    exercises: LazyPagingItems<ExercisesResponseItem>,
     ) {
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -21,12 +21,7 @@ fun ExercisesByBodyPartContent(
     ) {
         AppBar(
             navHostController = navHostController,
-            partBodyName = bodyPartName
+            partBodyName = "Brain Gym"
         )
-
-        // Display exercises in a LazyColumn
-        ExercisesLazyColumn(exercises = exercises, onClick = {exerciseId->
-            navHostController.navigate("ExerciseDetailsScreen/$exerciseId")
-        } )
     }
 }

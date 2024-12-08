@@ -35,4 +35,6 @@
     <string name="cancel">Cancel</string>
     <string name="sign_out">Sign Out</string>
     <string name="men">Men</string>
+    <string name="meals">Meals</string>
+    <string name="brain_gym">Brain Gym</string>
 </resources>

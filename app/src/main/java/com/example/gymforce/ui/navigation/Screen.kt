@@ -13,6 +13,9 @@ sealed class Screen(val route: String, val argument: String? = null) {
     data object Splash : Screen("Splash")
     data object HealthForm : Screen("HealthForm")
     data object Trainers : Screen("Trainers/{gender}", argument = "gender")
-
+    data object Meals : Screen("meals")
+    data object MealsDetails : Screen("mealsDetails/{id}", argument = "id")
+    data object FoodByCategory : Screen("foodByCategory/{category}", argument = "category")
+    data object BrainGym : Screen("brain")
 
 }
