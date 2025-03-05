@@ -143,7 +143,7 @@ fun RegisterScreen(
             if (authState is UiState.Loading) {
                 CircularProgressAnimated(Modifier.size(24.dp))
             } else {
-                Text("Register", fontFamily = fontBold, color = Color.Black, fontSize = 14.sp)
+                Text(stringResource(R.string.register), fontFamily = fontBold, color = Color.Black, fontSize = 14.sp)
             }
         }
     }

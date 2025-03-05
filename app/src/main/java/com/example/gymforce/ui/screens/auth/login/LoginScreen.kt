@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -86,7 +87,7 @@ fun LoginScreen(navController: NavHostController, viewModel: LoginViewModel = hi
             if (authState is UiState.Loading) {
                 CircularProgressAnimated(Modifier.size(24.dp))
             } else {
-                Text("Login", color = Color.Black, fontFamily = fontBold)
+                Text(stringResource(R.string.login), color = Color.Black, fontFamily = fontBold)
             }
         }
 
@@ -100,7 +101,7 @@ fun LoginScreen(navController: NavHostController, viewModel: LoginViewModel = hi
 
         // Sign-up Text with Navigation to RegisterScreen
         Text(
-            text = "Don't have an account? Sign up",
+            text =stringResource(R.string.don_t_have_an_account),
             color = Color.White,
             modifier = Modifier.clickable {
                 navController.navigate("Register")
