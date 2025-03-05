@@ -56,14 +56,17 @@ fun AppTextField(
                 )
             }
         },
-        modifier = Modifier.fillMaxWidth().clickable { onClick() },
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick() },
         shape = RoundedCornerShape(10.dp),
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = colorResource(id = R.color.green),
             unfocusedBorderColor = Color.Gray,
             unfocusedTextColor = Color.White,
             focusedTextColor = Color.White
-        ),readOnly = readOnly,
+        ),
+        readOnly = readOnly,
     )
 }
 

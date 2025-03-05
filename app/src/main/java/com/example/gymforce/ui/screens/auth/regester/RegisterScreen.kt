@@ -55,9 +55,6 @@ fun RegisterScreen(
     var gender by remember { mutableStateOf("") }
     var age by remember { mutableIntStateOf(0) }
     var userType by remember { mutableStateOf("") }
-    var healthProblem by remember { mutableStateOf("") }
-    var problemToSolve by remember { mutableStateOf("") }
-    var imageUri by remember { mutableStateOf<Uri?>(null) }
 
     val scrollState = rememberScrollState()
     val authState by viewModel.authState.collectAsState()
@@ -77,13 +74,18 @@ fun RegisterScreen(
             fontFamily = fontBold,
             color = Color.White,
             modifier = Modifier.padding(bottom = 16.dp),
-
             )
 
-        AppTextField(value = name, label = stringResource(R.string.name), onValueChange = { name = it })
+        AppTextField(
+            value = name,
+            label = stringResource(R.string.name),
+            onValueChange = { name = it })
         Spacer(modifier = Modifier.height(16.dp))
 
-        AppTextField(value = email, label = stringResource(R.string.email), onValueChange = { email = it })
+        AppTextField(
+            value = email,
+            label = stringResource(R.string.email),
+            onValueChange = { email = it })
         Spacer(modifier = Modifier.height(16.dp))
 
         PassWordAppTextField(
@@ -107,7 +109,7 @@ fun RegisterScreen(
         )
         Spacer(modifier = Modifier.height(16.dp))
 
-        UserTypeSelector (
+        UserTypeSelector(
             selectedType = userType,
             onTypeSelected = { userType = it }
         )
@@ -120,10 +122,7 @@ fun RegisterScreen(
                     password = password,
                     gender = gender,
                     age = age,
-                    userType = userType,
-//                    healthProblems = healthProblem,
-//                    problemToSolve = problemToSolve
-                )
+                    userType = userType,)
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -139,9 +138,6 @@ fun RegisterScreen(
                     gender.isNotEmpty() &&
                     age > 0 &&
                     userType.isNotEmpty() &&
-
-//                    healthProblem.isNotEmpty() &&
-//                    problemToSolve.isNotEmpty() &&
                     authState !is UiState.Loading
         ) {
             if (authState is UiState.Loading) {
